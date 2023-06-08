@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('daily_activities', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('user_id')->comment('foreign key user');
+            $table->string('activity')->comment('kegiatan');
+            $table->boolean('has_done')->nullable()->comment('verif selesai');
             $table->timestamps();
         });
     }

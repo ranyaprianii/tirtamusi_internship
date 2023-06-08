@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class InternshipScore extends Model
 {
     use HasFactory;
+    protected $guarded = ['id'];
 }

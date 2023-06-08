@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('units', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->comment('nama');
+            $table->text('description')->comment('keterangan');
             $table->timestamps();
         });
     }

@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('section_units', function (Blueprint $table) {
             $table->id();
+            $table->string('unit_id')->comment('foreign key unit');
+            $table->string('name')->comment('nama');
+            $table->text('description')->comment('keterangan');
             $table->timestamps();
         });
     }

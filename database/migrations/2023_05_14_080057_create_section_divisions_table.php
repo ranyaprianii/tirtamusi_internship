@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('section_divisions', function (Blueprint $table) {
             $table->id();
+            $table->string('division_id')->comment('foreign key division');
+            $table->string('name')->comment('nama');
+            $table->text('description')->comment('keterangan');
             $table->timestamps();
         });
     }
