@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="#"><img src="{{ asset('mazer-admin/assets/images/tirtamusi.png') }}"
+                    <a href="#"><img src="{{ asset('mazer-admin/assets/images/logo1.png') }}"
                             alt="TirtaMusi Internship"></a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -73,7 +73,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            {{-- <a href="">Syarat dan Seragam</a> --}}
+                            <a href="component-badge.html">Tata Tertib</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="component-badge.html">Jadwal Magang</a>
@@ -103,10 +103,10 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="component-alert.html">Bagian</a>
+                            <a href="{{ route('division.index') }}">Bagian</a>
                         </li>
                         <li class="submenu-item ">
-                            <a href="component-badge.html">Unit</a>
+                            <a href="{{ route('unit.index') }}">Unit</a>
                         </li>
                     </ul>
                 </li>
