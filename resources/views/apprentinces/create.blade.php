@@ -76,8 +76,11 @@
                         <div class="col-md-6">
                             <label for="gender">Jenis Kelamin</label>
                             <div class="position-relative mb-2">
-                                <select class="form-select" name="" id="gender">
-                                    <option value=""></option>
+                                <select class="form-select" name="gender" id="gender" required>
+                                    <option value="" selected>Pilih Salah Satu</option>
+                                    @foreach (App\Models\Apprentince::GENDER_CHOICE as $key => $value)
+                                        <option value="{{ $key }}">{{ $value }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group has-icon-left">
