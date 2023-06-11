@@ -29,9 +29,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Apprentince
 Route::group(['controller' => ApprentinceController::class, 'prefix' => 'apprentince', 'as' => 'apprentince.'], function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/datatable', 'datatable')->name('datatable');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');

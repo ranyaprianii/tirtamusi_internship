@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tirta Musi Internship</title>
 
-{{-- Jquery --}}
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    {{-- Jquery --}}
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
-{{-- Data Table --}}
-<link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
-<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
+    {{-- Data Table --}}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
 
-<!-- FontAwesome JS-->
-<script defer src="{{ asset('portal/assets/plugins/fontawesome/js/all.min.js') }}"></script>
+    <!-- FontAwesome JS-->
+    <script defer src="{{ asset('portal/assets/plugins/fontawesome/js/all.min.js') }}"></script>
 
     <link rel="stylesheet" href="{{ asset('mazer-admin/assets/css/main/app.css') }}">
     <link rel="stylesheet" href="{{ asset('mazer-admin/assets/css/main/app-dark.css') }}">
@@ -45,7 +45,6 @@ integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="ano
 
             <div class="page-heading">
                 @yield('content-header')
-
             </div>
 
             <div class="page-content">

@@ -9,6 +9,8 @@ class Apprentince extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    // Status
     const STATUS_NOT_CONFIRMED = "Belum Dikonfirmasi";
     const STATUS_APPROVED = "Disetujui";
     const STATUS_REJECTED = "Ditolak";
@@ -18,4 +20,6 @@ class Apprentince extends Model
         self::STATUS_APPROVED => self::STATUS_APPROVED,
         self::STATUS_REJECTED => self::STATUS_REJECTED,
     ];
+
+    // Gender
 }

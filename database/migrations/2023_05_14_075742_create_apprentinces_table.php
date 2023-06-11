@@ -18,8 +18,7 @@ return new class extends Migration
             $table->bigInteger('section_unit_id')->nullable()->comment('foreign key section unit');
             $table->bigInteger('division_id')->nullable()->comment('foreign key division');
             $table->bigInteger('section_division_id')->nullable()->comment('foreign key section division');
-            $table->string('nisn')->nullable()->comment('nisn');
-            $table->string('nim')->nullable()->comment('nim');
+            $table->string('nisn_nim')->comment('nisn/nim');
             $table->string('school')->comment('asal kampus / sekolah');
             $table->string('department')->comment('asal jurusan');
             $table->string('name')->comment('nama');
@@ -28,10 +27,10 @@ return new class extends Migration
             $table->string('birth_place')->comment('tempat lahir');
             $table->text('address')->comment('alamat');
             $table->string('phone_number')->comment('nomor hp');
-            $table->date('date_start')->comment('tanggal mulai');
-            $table->date('date_end')->comment('tanggal selesai');
-            $table->string('file')->comment('file pendukung');
-            $table->string('sertificate')->comment('sertifikat magang');
+            $table->date('date_start')->nullable()->comment('tanggal mulai');
+            $table->date('date_end')->nullable()->comment('tanggal selesai');
+            $table->string('file')->nullable()->comment('file pendukung');
+            $table->string('sertificate')->nullable()->comment('sertifikat magang');
             $table->string('status')->comment('status magang');
             $table->timestamps();
         });

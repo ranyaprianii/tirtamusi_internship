@@ -12,65 +12,7 @@ use illuminate\http\Request;
 
 class ApprentinceController extends Controller
 {
-//     <script>
-//     $(document).ready(function() {
-//         getDatatable();
-//         filter();
-//     });
-
-//     let data_table = "";
-
-//     function getDatatable() {
-//         data_table = $("#data-table").DataTable({
-//             ajax: {
-//                 url: "{{ route('warkah_request.datatable') }}",
-//                 data: {
-//                     filter: $("#filter").val(),
-//                 }
-//             },
-//             serverSide: true,
-//             destroy: true,
-//             lengthChange: false,
-//             pageLength: 500,
-//             order: [
-//                 [4, 'desc']
-//             ],
-//             columns: [{
-//                     "data": null,
-//                     "sortable": false,
-//                     searchable: false,
-//                     render: function(data, type, row, meta) {
-//                         return meta.row + meta.settings._iDisplayStart + 1;
-//                     }
-//                 },
-//                 {
-//                     name: 'action',
-//                     data: 'action'
-//                 },
-//                 {
-//                     name: 'service',
-//                     data: 'service'
-//                 },
-//                 {
-//                     name: 'request_data',
-//                     data: 'request_data'
-//                 },
-//                 {
-//                     name: 'created_at',
-//                     data: 'created_at'
-//                 },
-//             ],
-//         });
-//     }
-
-//     function filter() {
-//         $("#filter").change(() => {
-//             getDatatable();
-//         })
-//     }
-// </script>
-
-public function index()
+    public function index()
     {
         // Confirm Delete Alert
         $title = 'Hapus Data!';
@@ -100,7 +42,7 @@ public function index()
 
     public function create()
     {
-        $apprentince= Apprentince::all();
+        $apprentince = Apprentince::all();
         return view('apprentinces.create', compact('apprentince'));
     }
 
@@ -254,8 +196,4 @@ public function index()
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
     }
-
 }
-
-
-
