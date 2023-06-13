@@ -58,8 +58,10 @@ class UnitController extends Controller
         $data = Unit::find($id);
         $unit = Unit::all();
 
-        return view('unit.edit', compact('data', 'unit'));
+        return view('units.edit', compact('data', 'unit'));
     }
+
+    
 
     public function show($id)
     {

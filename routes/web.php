@@ -36,6 +36,7 @@ Route::group(['controller' => ApprentinceController::class, 'prefix' => 'apprent
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');

@@ -15,7 +15,7 @@
 
     <div id="auth">
 
-        <section class="vh-120" style="background-color: #425bc9;">
+        <section class="vh-120" style="background-color: #435EBE;">
             <div class="container h-100">
               <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-lg-12 col-xl-11">
