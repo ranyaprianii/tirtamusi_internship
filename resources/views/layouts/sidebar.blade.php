@@ -111,11 +111,20 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item ">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Data Kehadiran</span>
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Aktivitas Magang</span>
                     </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('attendance.index') }}">Presensi</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-item ">

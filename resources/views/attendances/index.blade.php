@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Data Bagian</h3>
+    <h3>Presensi Siswa/Mahasiswa</h3>
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Data Bagian</h4>
+                        <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('division.create') }}"><i
+                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('attendance.create') }}"><i
                             class="fa fa-plus"></i> Tambah Data</a>
                 </div>
                 <div class="card-body">
@@ -25,9 +25,9 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama Bagian</th>
-                                    <th>Deskripsi</th>
-                                    <th>Diinput Pada</th>
+                                    <th>Lokasi</th>
+                                    <th>Waktu</th>
+                                    <th>Diinput pada</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,12 +50,12 @@
         function getDatatable() {
             data_table = $("#data-table").DataTable({
                 ajax: {
-                    url: "{{ route('division.datatable') }}",
+                    url: "{{ route('attendance.datatable') }}",
                 },
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [3, 'desc']
+                    [4, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -70,20 +70,22 @@
                         data: 'action'
                     },
                     {
-                        name: 'name',
-                        data: 'name'
+                        name: 'longitude',
+                        data: 'longitude'
                     },
                     {
-                        name: 'description',
-                        data: 'description'
+                        name: 'latitude',
+                        data: 'latitude'
                     },
                     {
-                        name: 'created_at',
-                        data: 'created_at'
+                        name: 'status',
+                        data: 'status'
                     },
 
                 ],
             });
         }
     </script>
+
+
 @endsection

@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('apprentinces', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->comment('foreign key user');
-
             $table->string('school')->comment('asal kampus / sekolah');
             $table->string('file')->nullable()->comment('file pendukung');
             $table->string('status')->comment('status magang');
@@ -30,5 +29,5 @@ return new class extends Migration
         Schema::dropIfExists('apprentinces');
     }
 
-    
+
 };

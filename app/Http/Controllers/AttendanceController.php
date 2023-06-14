@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\DailyActivity;
+use App\Models\Attendance;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use illuminate\http\Request;
 
-class DailyActivityController extends Controller
+class AttendanceController extends Controller
 {
     public function index()
     {
@@ -19,21 +19,21 @@ class DailyActivityController extends Controller
         $text = "Apakah yakin ingin menghapus data?";
         confirmDelete($title, $text);
 
-        return view('daily_activities.index');
+        return view('attendances.index');
     }
 
     public function datatable()
     {
-        $model = DailyActivity::query();
+        $model = Attendance::query();
         return DataTables::of($model)
         ->editColumn('created_at', function($data){
             $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
             return $dateformat;
         })
             ->addColumn('action', function ($data) {
-                $url_show = route('daily_activity.show', Crypt::encrypt($data->id));
-                $url_edit = route('daily_activity.edit', Crypt::encrypt($data->id));
-                $url_delete = route('daily_activity.destroy', Crypt::encrypt($data->id));
+                $url_show = route('attendance.show', Crypt::encrypt($data->id));
+                $url_edit = route('attendance.edit', Crypt::encrypt($data->id));
+                $url_delete = route('attendance.destroy', Crypt::encrypt($data->id));
 
                 $btn = "<div class='btn-group'>";
                 $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
@@ -48,17 +48,17 @@ class DailyActivityController extends Controller
 
     public function create()
     {
-        $dailyActivity = DailyActivity::all();
-        return view('daily_activities.create', compact('dailyActivity'));
+        $attendance = Attendance::all();
+        return view('attendances.create', compact('attendance'));
     }
 
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
-        $data = DailyActivity::find($id);
-        $dailyActivity = DailyActivity::all();
+        $data = Attendance::find($id);
+        $attendance = Attendance::all();
 
-        return view('daily_activities.edit', compact('data', 'dailyActivity'));
+        return view('attendances.edit', compact('data', 'attendance'));
     }
 
 
@@ -73,8 +73,8 @@ class DailyActivityController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'activity' => 'required',
-                'has_done' => 'required',
+                'name' => 'required',
+                'description' => 'required',
 
             ]);
 
@@ -82,14 +82,14 @@ class DailyActivityController extends Controller
             $input = $request->all();
 
 
-            DailyActivity::create($input);
+            Attendance::create($input);
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Disimpan', 'success');
-            return redirect()->route('daily_activity.index');
+            return redirect()->route('attendance.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
@@ -106,28 +106,27 @@ class DailyActivityController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'activity' => 'required',
-                'has_done' => 'required',
-
+                'name' => 'required',
+                'description' => 'required',
             ]);
 
             // Update Data
             $id = Crypt::decrypt($id);
-            $dailyActivity = DailyActivity::find($id);
+            $attendance = Attendance::find($id);
 
             $input = $request->all();
 
             // Decrypt Meeting Room Id
 
 
-            $dailyActivity->update($input);
+            $attendance->update($input);
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Diperbarui', 'success');
-            return redirect()->route('daily_activity.index');
+            return redirect()->route('attendance.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
@@ -144,17 +143,17 @@ class DailyActivityController extends Controller
             DB::beginTransaction();
 
             $id = Crypt::decrypt($id);
-            $dailyActivity = DailyActivity::find($id);
+            $attendance = attendance::find($id);
 
             // Delete Data
-            $dailyActivity->delete();
+            $attendance->delete();
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Dihapus', 'success');
-            return redirect()->route('daily_activity.index');
+            return redirect()->route('attendance.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();

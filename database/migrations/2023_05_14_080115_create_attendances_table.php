@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigInteger('user_id')->comment('foreign key user');
             $table->string('latitude')->nullable()->comment('latitude');
             $table->string('longitude')->nullable()->comment('longitude');
+            $table->string('foto')->nullable()->comment('foto');
+            $table->string('description')->nullable()->comment('Keterangan');
             $table->boolean('status')->nullable()->comment('status');
             $table->timestamps();
         });

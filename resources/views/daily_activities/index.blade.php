@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Data Bagian</h3>
+    <h3>Aktivitas Siswa/Mahasiswa</h3>
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Data Bagian</h4>
+                        <h4 class="card-title">Aktivitas Siswa/Mahasiswa</h4>
                     </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('division.create') }}"><i
+                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('daily_activity.create') }}"><i
                             class="fa fa-plus"></i> Tambah Data</a>
                 </div>
                 <div class="card-body">
@@ -25,9 +25,9 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama Bagian</th>
-                                    <th>Deskripsi</th>
-                                    <th>Diinput Pada</th>
+                                    <th>Catatan Aktivitas</th>
+                                    <th>Verifikasi</th>
+                                    <th>Diinput pada</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,7 +50,7 @@
         function getDatatable() {
             data_table = $("#data-table").DataTable({
                 ajax: {
-                    url: "{{ route('division.datatable') }}",
+                    url: "{{ route('daily_activity.datatable') }}",
                 },
                 serverSide: true,
                 destroy: true,
@@ -70,20 +70,18 @@
                         data: 'action'
                     },
                     {
-                        name: 'name',
-                        data: 'name'
+                        name: 'activity',
+                        data: 'activity'
                     },
                     {
-                        name: 'description',
-                        data: 'description'
-                    },
-                    {
-                        name: 'created_at',
-                        data: 'created_at'
+                        name: 'has_done',
+                        data: 'has_done'
                     },
 
                 ],
             });
         }
     </script>
+
+
 @endsection
