@@ -26,6 +26,10 @@ class ApprentinceController extends Controller
     {
         $model = Apprentince::query();
         return DataTables::of($model)
+             ->editColumn('created_at', function ($data) {
+            $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
+            return $formatedDate;
+               })
             ->addColumn('action', function ($data) {
                 $url_show = route('apprentince.show', Crypt::encrypt($data->id));
                 $url_edit = route('apprentince.edit', Crypt::encrypt($data->id));
@@ -36,6 +40,7 @@ class ApprentinceController extends Controller
                 $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
                 $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
                 $btn .= "</div>";
+                return $btn;
             })
             ->toJson();
     }
@@ -90,14 +95,8 @@ class ApprentinceController extends Controller
 
             // Create Data
             $input = $request->all();
-
-            // Decrypt Meeting Room Id
-            $input['user_id'] = Crypt::decrypt($request->user_id);
-            // Create Status
-
-
-
             Apprentince::create($input);
+
 
             // Save Data
             DB::commit();
@@ -148,10 +147,6 @@ class ApprentinceController extends Controller
             $apprentince = Apprentince::find($id);
 
             $input = $request->all();
-
-            // Decrypt Meeting Room Id
-            $input['user_id'] = Crypt::decrypt($request->user_id);
-
             $apprentince->update($input);
 
             // Save Data

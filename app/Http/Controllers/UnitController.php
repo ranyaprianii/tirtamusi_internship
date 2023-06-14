@@ -61,7 +61,7 @@ class UnitController extends Controller
         return view('units.edit', compact('data', 'unit'));
     }
 
-    
+
 
     public function show($id)
     {
@@ -117,7 +117,7 @@ class UnitController extends Controller
             $input = $request->all();
 
             // Decrypt Meeting Room Id
-            $input['user_id'] = Crypt::decrypt($request->user_id);
+          
 
             $unit->update($input);
 

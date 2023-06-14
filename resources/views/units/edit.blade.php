@@ -21,18 +21,18 @@
         @endif
 
         <div class="card-body">
-            <form action="{{ route('unit.update', Crypt::encrypt($unit['id'])) }}" method="post">
+            <form action="{{ route('unit.update', Crypt::encrypt($data['id'])) }}" method="post">
                 @csrf
                 @method('put')
                 <div class="form-group">
                     <label for="name">Nama Unit </label>
                     <input type="text" name="name" class="form-control" id="name"
-                        value="{{ old('name', $unit['name']) }}" placeholder="Nama Unit..." required>
+                        value="{{ old('name', $data['name']) }}" placeholder="Nama Unit..." required>
                 </div>
                 <div class="form-group">
                     <label for="description">Deskripsi </label>
-                    <input type="description" name="description" class="form-control" id="description"
-                        value="{{ old('description', $unit['description']) }}" placeholder="Deskripsi..." required>
+                    <input type="text" name="description" class="form-control" id="description"
+                        value="{{ old('description', $data['description']) }}" placeholder="Deskripsi..." required>
                 </div>
                 <div class="form-group">
 

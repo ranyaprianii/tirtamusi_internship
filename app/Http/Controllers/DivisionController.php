@@ -59,7 +59,7 @@ class DivisionController extends Controller
         $data = Division::find($id);
         $division = Division::all();
 
-        return view('division.edit', compact('data', 'division'));
+        return view('divisions.edit', compact('data', 'division'));
     }
 
     public function show($id)
@@ -115,8 +115,7 @@ class DivisionController extends Controller
 
             $input = $request->all();
 
-            // Decrypt Meeting Room Id
-            $input['user_id'] = Crypt::decrypt($request->user_id);
+        
 
             $division->update($input);
 
