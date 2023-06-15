@@ -71,6 +71,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     <li><a href="https://web.facebook.com/perumdatirtamusi/?show_switched_toast=0&show_invite_to_follow=0&show_switched_tooltip=0&show_podcast_settings=0&show_community_review_changes=0&show_community_rollback=0&show_follower_visibility_disclosure=0" class="fa fa-facebook"></a></li>
                     <li><a href="https://www.youtube.com/watch?v=hCsW42parTk" class="fa fa-youtube"></a></li>
                     <li><a href="https://www.instagram.com/perumdatirtamusi/" class="fa fa-instagram"></a></li>
+                    <li><a href="https://wa.me/+628117888282" class="fa fa-whatsapp"></a></li>
                 </ul>
             </div>
 
@@ -194,9 +195,9 @@ https://www.tooplate.com/view/2119-gymso-fitness
                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.363011488254!2d104.74323820000002!3d-2.9965410999999893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b9e0286a1675f%3A0x8aaf7acd0bf7d8d5!2sPerumda%20Tirta%20Musi!5e0!3m2!1sen!2sid!4v1685076852276!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                        </div>
                        <br>
-                       <img src="{{ asset('landing_page/images/team/tirta1.jpg') }}" alt="Tirta Musi" width="450px" data-aos="fade-up" data-aos-delay="900">
+                       <img src="{{ asset('landing_page/images/team/tirta1.jpg') }}" alt="Tirta Musi" width="450px" data-aos="fade-up" data-aos-delay="200">
                        <br> <br>
-                       <img src="{{ asset('landing_page/images/tirta3.jpg') }}" alt="Tirta Musi" width="450px" data-aos="fade-up" data-aos-delay="900">
+                       <img src="{{ asset('landing_page/images/tirta3.jpg') }}" alt="Tirta Musi" width="450px" data-aos="fade-up" data-aos-delay="200">
                     </div>
 
                     <div class="ml-auto col-lg-5 col-md-6 col-12">
