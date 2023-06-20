@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Apprentince;
+use App\Models\ApprentinceDetail;
+use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use illuminate\http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApprentinceController extends Controller
 {
@@ -47,17 +50,17 @@ class ApprentinceController extends Controller
 
     public function create()
     {
-        $apprentince = Apprentince::all();
-        return view('apprentinces.create', compact('apprentince'));
+        $users = User::where('name', '!=', 'admin')->get();
+        return view('apprentinces.create', compact('users'));
     }
 
     public function edit($id)
     {
         $id = Crypt::decrypt($id);
         $data = Apprentince::find($id);
-        $apprentince = Apprentince::all();
+        $apprentinces = Apprentince::all();
 
-        return view('apprentince.edit', compact('data', 'apprentince'));
+        return view('apprentince.edit', compact('data', 'apprentinces'));
     }
 
     public function show($id)
@@ -97,6 +100,40 @@ class ApprentinceController extends Controller
             $input = $request->all();
             Apprentince::create($input);
 
+              // Save file
+              if ($file = $request->file('file')) {
+                $destinationPath = 'assets/pengajuan/';
+                $fileName = "Pengajuan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['file'] = $fileName;
+            }
+
+            $input['user_id'] = Auth::user()->id;
+            $input['status'] = Apprentince::STATUS_NOT_CONFIRMED;
+
+             // Create Apprentince
+             $apprentince = Apprentince::create($input);
+
+             // Create Apprentince Detail
+             if ($request->department_detail) {
+                 $apprentince_detail = $request->input('department_detail', []);
+
+                 for ($i  = 0; $i < count($apprentince_detail); $i++) {
+                     if ($apprentince_detail[$i] != "") {
+                         ApprentinceDetail::create([
+                             'apprentince_id' => $apprentince->id,
+                             'nisn_nim' => $request->nisn_nim_detail[$i],
+                             'name' => $request->name_detail[$i],
+                             'department' => $request->department_detail[$i],
+                             'gender' => $request->gender_detail[$i],
+                             'birth_date' => $request->birth_date_detail[$i],
+                             'birth_place' => $request->birth_place_detail[$i],
+                             'address' => $request->address_detail[$i],
+                             'phone_number' => $request->phone_number_detail[$i],
+                         ]);
+                     }
+                 }
+             }
 
             // Save Data
             DB::commit();
@@ -147,7 +184,11 @@ class ApprentinceController extends Controller
             $apprentince = Apprentince::find($id);
 
             $input = $request->all();
-            $apprentince->update($input);
+
+             // Decrypt
+             $input['apprentince_id'] = Crypt::decrypt($request->apprentince_id);
+
+             $apprentince->update($input);
 
             // Save Data
             DB::commit();

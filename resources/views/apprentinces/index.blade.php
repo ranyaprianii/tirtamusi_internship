@@ -25,9 +25,11 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama</th>
+                                    <th>Nama Lengkap</th>
                                     <th>Nisn/NIM</th>
                                     <th>Asal Instansi</th>
+                                    <th>Tanggal Mulai</th>
+                                    <th>Tanggal Selesai</th>
                                     <th>Status Magang</th>
                                     <th>Diinput pada</th>
                                 </tr>
@@ -57,7 +59,7 @@
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [6, 'desc']
+                    [8, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -82,6 +84,14 @@
                     {
                         name: 'school',
                         data: 'school'
+                    },
+                    {
+                        name: 'date_start',
+                        data: 'date_start'
+                    },
+                    {
+                        name: 'date_end',
+                        data: 'date_end'
                     },
                     {
                         name: 'status',
