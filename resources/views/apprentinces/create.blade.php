@@ -10,7 +10,7 @@
 
 @section('content')
     <section class="section">
-        <div class="card">
+    <div class="card">
             <div class="card-header">
                 <h4 class="card-title">Data Mahasiwa / Siswa</h4>
             </div>
@@ -21,37 +21,93 @@
                 <form id="from-wizard1" action="{{ route('apprentince.store') }}" class="text-center mt-4" method="post"
                 enctype="multipart/form-data">
                     @csrf
-                    <ul id="top-tab-list" class="p-0">
-                        <li class="active" id="account">
-                            <a href="javascript:void();">
-                                <i class="ri-user-fill"></i><span>Data Ketua</span>
-                            </a>
-                        </li>
-                        <li id="personal">
-                            <a href="javascript:void();">
-                                <i class="ri-user-add-fill"></i><span>Data Anggota</span>
-                            </a>
-                        </li>
-                        <li id="payment">
-                            <a href="javascript:void();">
-                                <i class="ri-file-fill"></i><span>File Pengajuan</span>
-                            </a>
-                        </li>
-                        <li id="confirm">
-                            <a href="javascript:void();">
-                                <i class="ri-check-fill"></i><span>Selesai</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- fieldsets -->
-                    <fieldset>
-                        <div class="form-card text-left">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h3 class="mb-4">Data Ketua:</h3>
+
+                    <div class="row">
+                        <div class="col-6 col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body px-4 py-4-5">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                            <div class="stats-icon purple mb-2">
+                                                <i class="iconly-boldShow"></i>
+                                            </div>
+                                        </div>
+                                        <div id="account" class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                            <a href="javascript:void();">
+                                                <i class="ri-user-fill"></i><span>Data Ketua</span>
+                                            </a>
+
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                    <div class="row">
+                        </div>
+                        <div class="col-6 col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body px-4 py-4-5">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                            <div class="stats-icon blue mb-2">
+                                                <i class="iconly-boldProfile"></i>
+                                            </div>
+                                        </div>
+                                        <div id="personal" class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                            <a href="javascript:void();">
+                                                <i class="ri-user-add-fill"></i><span>Data Anggota</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body px-4 py-4-5">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                            <div class="stats-icon green mb-2">
+                                                <i class="iconly-boldAdd-User"></i>
+                                            </div>
+                                        </div>
+                                        <div id="payment" class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                            <a href="javascript:void();">
+                                                <i class="ri-file-fill"></i><span>File Pengajuan</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body px-4 py-4-5">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
+                                            <div class="stats-icon red mb-2">
+                                                <i class="iconly-boldBookmark"></i>
+                                            </div>
+                                        </div>
+                                        <div id="confirm" class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
+                                            <a href="javascript:void();">
+                                                <i class="ri-check-fill"></i><span>Selesai</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- fieldsets -->
+        <fieldset>
+            <div class="form-card text-left">
+                <div class="row">
+                    <div class="col-7">
+                        <h3 class="mb-4">Data Ketua:</h3>
+                    </div>
+                </div>
+
+                <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-icon-left">
                                 <label for="name">Nama Lengkap</label>
@@ -218,25 +274,12 @@
                                     @enderror
                             </div>
                         </div>
-                        {{-- <div class="col-12 d-flex justify-content-end mt-3">
-                            <a href="{{ route('apprentince.index') }}"
-                                class="btn btn-light-secondary me-3 mb-1">Kembali</a>
-                            <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-@endsection
-
-@section('js_after')
-@endsection --}}
-
-<button type="button" name="next" class="btn btn-primary next action-button float-right"
+                </div>
+                <button type="button" name="next" class="btn btn-primary next action-button float-right"
                                 value="Next">Selanjutnya</button>
-                                <fieldset>
-                        <fieldset>
+        </fieldset>
+
+        <fieldset>
                             <div class="form-card text-left">
                                 <div class="row">
                                     <div class="col-7">
@@ -254,7 +297,7 @@
                             <button type="button" name="previous"
                                 class="btn btn-dark previous action-button-previous float-right mr-3"
                                 value="Previous">Kembali</button>
-                        </fieldset>
+        </fieldset>
                         <fieldset>
                             <div class="form-card text-left">
                                 <div class="row">
@@ -274,8 +317,6 @@
                         </fieldset>
                     </form>
                 </div>
-            </div>
-        </div>
     </div>
 @endsection
 
