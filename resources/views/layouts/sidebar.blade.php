@@ -141,7 +141,7 @@
                     </a>
                     <ul class="submenu ">
                         <li class="submenu-item ">
-                            <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
+                            <a href="component-badge.html">Penilaian Sertifikat</a>
                         </li>
                         <li class="submenu-item ">
                             <a href="component-badge.html">Sertifikat Magang</a>
