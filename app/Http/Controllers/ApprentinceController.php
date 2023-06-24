@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Models\Apprentince;
-use App\Models\ApprentinceDetail;
 use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-use illuminate\http\Request;
 use Illuminate\Support\Facades\Auth;
+
 
 class ApprentinceController extends Controller
 {
@@ -28,6 +28,7 @@ class ApprentinceController extends Controller
     public function datatable()
     {
         $model = Apprentince::query();
+
         return DataTables::of($model)
             ->editColumn('created_at', function ($data) {
                 $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
@@ -95,35 +96,12 @@ class ApprentinceController extends Controller
                 $input['file'] = $fileName;
             }
 
+
+            $input['status'] = Apprentince::STATUS_NOT_CONFIRMED;
+            $input['user_id'] = Auth::user()->id;
+
+
             Apprentince::create($input);
-
-
-            // $input['user_id'] = Auth::user()->id;
-            // $input['status'] = Apprentince::STATUS_NOT_CONFIRMED;
-
-            // // Create Apprentince
-            // $apprentince = Apprentince::create($input);
-
-            // Create Apprentince Detail
-            // if ($request->department_detail) {
-            //     $apprentince_detail = $request->input('department_detail', []);
-
-            //     for ($i  = 0; $i < count($apprentince_detail); $i++) {
-            //         if ($apprentince_detail[$i] != "") {
-            //             ApprentinceDetail::create([
-            //                 'apprentince_id' => $apprentince->id,
-            //                 'nisn_nim' => $request->nisn_nim_detail[$i],
-            //                 'name' => $request->name_detail[$i],
-            //                 'department' => $request->department_detail[$i],
-            //                 'gender' => $request->gender_detail[$i],
-            //                 'birth_date' => $request->birth_date_detail[$i],
-            //                 'birth_place' => $request->birth_place_detail[$i],
-            //                 'address' => $request->address_detail[$i],
-            //                 'phone_number' => $request->phone_number_detail[$i],
-            //             ]);
-            //         }
-            //     }
-            // }
 
             // Save Data
             DB::commit();
@@ -137,7 +115,7 @@ class ApprentinceController extends Controller
 
             // Alert & Redirect
             Alert::toast('Data Tidak Tersimpan', 'error');
-            return redirect()->back()->with('error', 'Data Tidak Berhasil Disimpan' . $e->getMessage());
+            return redirect()->back()->withInput()->with('error', 'Data Tidak Berhasil Disimpan' . $e->getMessage());
         }
     }
 
