@@ -139,6 +139,14 @@
                         <i class="bi bi-grid-fill"></i>
                         <span>Sertifikat Magang</span>
                     </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="component-badge.html">Sertifikat Magang</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li class="sidebar-title">Log Out</li>

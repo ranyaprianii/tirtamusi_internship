@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Aktivitas Siswa/Mahasiswa</h3>
+    <h3>Penilaian Sertifikat</h3>
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Aktivitas Siswa/Mahasiswa</h4>
+                        <h4 class="card-title">Kategori Nilai Sertifikat</h4>
                     </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('daily_activity.create') }}"><i
+                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('division.create') }}"><i
                             class="fa fa-plus"></i> Tambah Data</a>
                 </div>
                 <div class="card-body">
@@ -25,9 +25,9 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Catatan Aktivitas</th>
-                                    <th>Verifikasi</th>
-                                    <th>Diinput pada</th>
+                                    <th>Nama Bagian</th>
+                                    <th>Deskripsi</th>
+                                    <th>Diinput Pada</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,12 +50,12 @@
         function getDatatable() {
             data_table = $("#data-table").DataTable({
                 ajax: {
-                    url: "{{ route('daily_activity.datatable') }}",
+                    url: "{{ route('division.datatable') }}",
                 },
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [4, 'desc']
+                    [3, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -70,22 +70,20 @@
                         data: 'action'
                     },
                     {
-                        name: 'activity',
-                        data: 'activity'
+                        name: 'name',
+                        data: 'name'
                     },
                     {
-                        name: 'has_done',
-                        data: 'has_done'
+                        name: 'description',
+                        data: 'description'
                     },
                     {
                         name: 'created_at',
-                        date: 'created_at'
+                        data: 'created_at'
                     },
 
                 ],
             });
         }
     </script>
-
-
 @endsection
