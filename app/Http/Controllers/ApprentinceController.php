@@ -29,10 +29,10 @@ class ApprentinceController extends Controller
     {
         $model = Apprentince::query();
         return DataTables::of($model)
-             ->editColumn('created_at', function ($data) {
-            $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
-            return $formatedDate;
-               })
+            ->editColumn('created_at', function ($data) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
+                return $formatedDate;
+            })
             ->addColumn('action', function ($data) {
                 $url_show = route('apprentince.show', Crypt::encrypt($data->id));
                 $url_edit = route('apprentince.edit', Crypt::encrypt($data->id));
@@ -73,13 +73,7 @@ class ApprentinceController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'user_id' => 'required',
-                'unit_id' => 'required',
-                'section_unit_id' => 'required',
-                'division_id' => 'required',
-                'section_division_id' => 'required',
-                'nisn' => 'required',
-                'nim' => 'required',
+                'nisn_nim' => 'required',
                 'school' => 'required',
                 'department' => 'required',
                 'name' => 'required',
@@ -88,52 +82,48 @@ class ApprentinceController extends Controller
                 'birth_place' => 'required',
                 'address' => 'required',
                 'phone_number' => 'required',
-                'date_start' => 'required',
-                'date_end' => 'required',
-                'file' => 'required',
-                'sertificate' => 'required',
-                'status' => 'required',
-
             ]);
 
             // Create Data
             $input = $request->all();
-            Apprentince::create($input);
 
-              // Save file
-              if ($file = $request->file('file')) {
+            // Save file
+            if ($file = $request->file('file')) {
                 $destinationPath = 'assets/pengajuan/';
                 $fileName = "Pengajuan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
                 $input['file'] = $fileName;
             }
 
-            $input['user_id'] = Auth::user()->id;
-            $input['status'] = Apprentince::STATUS_NOT_CONFIRMED;
+            Apprentince::create($input);
 
-             // Create Apprentince
-             $apprentince = Apprentince::create($input);
 
-             // Create Apprentince Detail
-             if ($request->department_detail) {
-                 $apprentince_detail = $request->input('department_detail', []);
+            // $input['user_id'] = Auth::user()->id;
+            // $input['status'] = Apprentince::STATUS_NOT_CONFIRMED;
 
-                 for ($i  = 0; $i < count($apprentince_detail); $i++) {
-                     if ($apprentince_detail[$i] != "") {
-                         ApprentinceDetail::create([
-                             'apprentince_id' => $apprentince->id,
-                             'nisn_nim' => $request->nisn_nim_detail[$i],
-                             'name' => $request->name_detail[$i],
-                             'department' => $request->department_detail[$i],
-                             'gender' => $request->gender_detail[$i],
-                             'birth_date' => $request->birth_date_detail[$i],
-                             'birth_place' => $request->birth_place_detail[$i],
-                             'address' => $request->address_detail[$i],
-                             'phone_number' => $request->phone_number_detail[$i],
-                         ]);
-                     }
-                 }
-             }
+            // // Create Apprentince
+            // $apprentince = Apprentince::create($input);
+
+            // Create Apprentince Detail
+            // if ($request->department_detail) {
+            //     $apprentince_detail = $request->input('department_detail', []);
+
+            //     for ($i  = 0; $i < count($apprentince_detail); $i++) {
+            //         if ($apprentince_detail[$i] != "") {
+            //             ApprentinceDetail::create([
+            //                 'apprentince_id' => $apprentince->id,
+            //                 'nisn_nim' => $request->nisn_nim_detail[$i],
+            //                 'name' => $request->name_detail[$i],
+            //                 'department' => $request->department_detail[$i],
+            //                 'gender' => $request->gender_detail[$i],
+            //                 'birth_date' => $request->birth_date_detail[$i],
+            //                 'birth_place' => $request->birth_place_detail[$i],
+            //                 'address' => $request->address_detail[$i],
+            //                 'phone_number' => $request->phone_number_detail[$i],
+            //             ]);
+            //         }
+            //     }
+            // }
 
             // Save Data
             DB::commit();
@@ -185,10 +175,10 @@ class ApprentinceController extends Controller
 
             $input = $request->all();
 
-             // Decrypt
-             $input['apprentince_id'] = Crypt::decrypt($request->apprentince_id);
+            // Decrypt
+            $input['apprentince_id'] = Crypt::decrypt($request->apprentince_id);
 
-             $apprentince->update($input);
+            $apprentince->update($input);
 
             // Save Data
             DB::commit();
