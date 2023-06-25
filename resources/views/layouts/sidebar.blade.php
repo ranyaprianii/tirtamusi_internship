@@ -51,6 +51,14 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item active">
+                    <a href="{{ route('tatib') }}" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
+                        <span>Ketentuan Magang</span>
+                    </a>
+
+                </li>
+
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
@@ -62,36 +70,6 @@
                         </li>
                         <li class="submenu-item ">
                             <a href="{{ route('role.index') }}">Peran</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>Ketentuan Magang</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="component-badge.html">Tata Tertib</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="component-badge.html">Jadwal Magang</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-stack"></i>
-                        <span>User Profile</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('apprentince.index') }}">Data Siswa/Mahasiswa</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="component-badge.html">Konfirmasi Magang</a>
                         </li>
                     </ul>
                 </li>
@@ -115,6 +93,24 @@
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-stack"></i>
+                        <span>Data dan Pengajuan Magang</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('apprentince.index') }}">Data Siswa/Mahasiswa</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="component-badge.html">Konfirmasi Magang</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-stack"></i>
                         <span>Aktivitas Magang</span>
                     </a>
                     <ul class="submenu ">
@@ -127,12 +123,7 @@
                     </ul>
                 </li>
 
-                <li class="sidebar-item ">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Laporan</span>
-                    </a>
-                </li>
+
 
                 <li class="sidebar-item ">
                     <a href="index.html" class='sidebar-link'>
@@ -147,6 +138,13 @@
                             <a href="component-badge.html">Sertifikat Magang</a>
                         </li>
                     </ul>
+                </li>
+
+                <li class="sidebar-item ">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Laporan</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-title">Log Out</li>

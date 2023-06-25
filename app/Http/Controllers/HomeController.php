@@ -28,4 +28,11 @@ class HomeController extends Controller
 
         return view('home', compact('totalUsers'));
     }
+
+    public function tatib()
+    {
+        $totalUsers = User::where('name', '!=', 'admin')->get()->count();
+
+        return view('tatib');
+    }
 }
