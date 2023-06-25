@@ -34,6 +34,16 @@ class ApprentinceController extends Controller
                 $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
                 return $formatedDate;
             })
+            ->editColumn('date_start', function ($data) {
+                $formatDate = Carbon::parse($data['date_start'])->format('d-m-Y');
+                return $formatDate;
+            })
+
+            ->editColumn('date_end', function ($data) {
+                $formatDate = Carbon::parse($data['date_end'])->format('d-m-Y');
+                return $formatDate;
+            })
+
             ->addColumn('action', function ($data) {
                 $url_show = route('apprentince.show', Crypt::encrypt($data->id));
                 $url_edit = route('apprentince.edit', Crypt::encrypt($data->id));
@@ -61,11 +71,15 @@ class ApprentinceController extends Controller
         $data = Apprentince::find($id);
         $apprentinces = Apprentince::all();
 
-        return view('apprentince.edit', compact('data', 'apprentinces'));
+        return view('apprentinces.edit', compact('data', 'apprentinces'));
     }
 
     public function show($id)
     {
+      $id = Crypt::decrypt($id);
+      $data = Apprentince::find($id);
+      
+        return view('apprentinces.show', compact('data'));
     }
 
     public function store(Request $request)

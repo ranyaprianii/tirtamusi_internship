@@ -72,7 +72,7 @@
                             <div class="form-group has-icon-left">
                                 <label for="department">Jurusan</label>
                                 <div class="position-relative">
-                                    <input type="text" class="form-control"  placeholder="Asal Instansi" value="{{ old('department') }}" id="department" name="department" required>
+                                    <input type="text" class="form-control"  placeholder="Jurusan" value="{{ old('department') }}" id="department" name="department" required>
                                     @error('department')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror
