@@ -71,8 +71,15 @@ class InternshipScoreController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'name' => 'required',
-                'description' => 'required',
+                'discipline_score'=>'required',
+                'teamwork_score'=>'required',
+                'initiative_score'=>'required',
+                'diligent_score'=>'required',
+                'responsibility_score'=>'required',
+                'attitude_score'=>'required',
+                'performance_score'=>'required',
+                'total_score'=>'required',
+                'average_score'=>'required',
 
             ]);
 

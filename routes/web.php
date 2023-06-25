@@ -9,6 +9,7 @@ use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\DailyActivityController;
+use App\Http\Controllers\InternshipScoreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,18 @@ Route::group(['controller' => DailyActivityController::class, 'prefix' => 'daily
 
 // Division
 Route::group(['controller' => DivisionController::class, 'prefix' => 'division', 'as' => 'division.'], function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+});
+
+// Internship Score
+Route::group(['controller' => InternshipScoreController::class, 'prefix' => 'internship_score', 'as' => 'internship_score.'], function () {
     Route::get('/', 'index')->name('index');
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::get('/create', 'create')->name('create');

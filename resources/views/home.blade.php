@@ -22,6 +22,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Akun Dibuat</h6>
+                                    <a href="{{ route('user.index') }}">Selengkapnya</a>
                                     <h6 class="font-extrabold mb-0">{{ $totalUsers }}</h6>
                                 </div>
                             </div>

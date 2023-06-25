@@ -26,6 +26,7 @@
                                     <th>No.</th>
                                     <th>Aksi</th>
                                     <th>Nama Unit</th>
+                                    <th>Sub Unit</th>
                                     <th>Deskripsi</th>
                                     <th>Diinput Pada</th>
                                 </tr>
@@ -72,6 +73,10 @@
                     {
                         name: 'name',
                         data: 'name'
+                    },
+                    {
+                        name: 'section_unit',
+                        data: 'section_unit'
                     },
                     {
                         name: 'description',

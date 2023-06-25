@@ -9,4 +9,9 @@ class Division extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function section_divisions()
+    {
+        return $this->hasMany(SectionDivision::class, 'division_id', 'id');
+    }
 }

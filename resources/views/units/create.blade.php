@@ -12,13 +12,17 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h4 class="card-title">Data Unit</h4>
+                <h3 class="card-title">Data Unit</h3>
+                <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" id="btn_add" class="btn btn-outline-primary"><i
+                                class="fa fa-plus"></i> Tambah SubUnit</button>
+                </div>
             </div>
             <div class="card-body">
                 <form action="{{ route('unit.store') }}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <div class="form-group has-icon-left">
                                 <label for="name">Nama Unit</label>
                                 <div class="position-relative">
@@ -32,7 +36,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+
                                 <div class="form-group has-icon-left">
                                     <label for="address">Deskripsi</label>
                                     <div class="position-relative">
@@ -46,14 +50,30 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-12 d-flex justify-content-end mt-3">
-                                <a href="{{ route('unit.index') }}"
-                                    class="btn btn-light-secondary me-3 mb-1">Kembali</a>
-                                <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
-                            </div>
                         </div>
 
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" width="100%">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Aksi</th>
+                                            <th>Nama Sub Unit</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <a href="{{ route('unit.index') }}"
+                            class="btn btn-light-secondary me-3 mb-1">Kembali</a>
+                        <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
                     </div>
                 </form>
             </div>
@@ -62,4 +82,56 @@
 @endsection
 
 @section('js_after')
+    <script>
+        $(() => {
+            initQuestionnaireOption();
+            showOption();
+            $("#option").hide();
+        })
+
+        // Option Question
+        function initQuestionnaireOption() {
+            let rowIndex = 0;
+
+            $("#btn_add").click(function() {
+                $("#tbody").append(`<tr id="row${++rowIndex}">
+                    <td class="text-center">
+                    <button type="button" class="btn btn-danger remove"><i class="fas fa-trash mr-2"></i> Hapus</button>
+                    </td>
+                    <td>
+                    <input class="form-control" type="text" name="sub_name[]" placeholder="Masukkan Opsi Jawaban" required>
+                    </td>
+                    <td>
+                    <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" required>
+                    </td>
+                    </tr>`);
+            });
+
+            $("#tbody").on('click', '.remove', function() {
+                let child = $(this).closest('tr').nextAll();
+
+                child.each(function() {
+                    let id = $(this).attr('id');
+                    let dig = parseInt(id.substring(1));
+                    $(this).attr('id', `row${dig - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                rowIndex--;
+            });
+        }
+
+        // Show Hide Option
+        // function showOption() {
+        //     let type = $('#type');
+        //     $('#type').click(function() {
+        //         if (type.val() == "Pilihan Ganda") {
+        //             $("#option").show();
+        //         } else {
+        //             $("#tbody").empty();
+        //             $("#option").hide();
+        //         }
+        //     })
+        // }
+    </script>
 @endsection

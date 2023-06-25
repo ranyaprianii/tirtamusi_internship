@@ -26,6 +26,7 @@
                                     <th>No.</th>
                                     <th>Aksi</th>
                                     <th>Nama Bagian</th>
+                                    <th>Sub Bagian</th>
                                     <th>Deskripsi</th>
                                     <th>Diinput Pada</th>
                                 </tr>
@@ -72,6 +73,10 @@
                     {
                         name: 'name',
                         data: 'name'
+                    },
+                    {
+                        name: 'section_division',
+                        data: 'section_division'
                     },
                     {
                         name: 'description',

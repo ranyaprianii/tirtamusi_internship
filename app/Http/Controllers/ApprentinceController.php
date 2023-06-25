@@ -78,7 +78,7 @@ class ApprentinceController extends Controller
     {
       $id = Crypt::decrypt($id);
       $data = Apprentince::find($id);
-      
+
         return view('apprentinces.show', compact('data'));
     }
 

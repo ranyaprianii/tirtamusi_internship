@@ -8,5 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class SectionDivision extends Model
 {
     use HasFactory;
+
+    protected $table = "section_divisions";
+
     protected $guarded = ['id'];
 }

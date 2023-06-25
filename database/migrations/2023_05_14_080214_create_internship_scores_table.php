@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('internship_scores', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->comment('foreign key user');
+            $table->bigInteger('apprentince_id')->comment('foreign key user');
             $table->bigInteger('discipline_score')->comment('skor disiplin');
             $table->bigInteger('teamwork_score')->comment('skor kerjasama');
             $table->bigInteger('initiative_score')->comment('skor inisiatif');

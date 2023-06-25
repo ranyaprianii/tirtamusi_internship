@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SectionUnit;
 use Illuminate\Http\Request;
 use App\Models\Unit;
 use Yajra\DataTables\DataTables;
@@ -31,17 +32,28 @@ class UnitController extends Controller
             return $dateformat;
         })
             ->addColumn('action', function ($data) {
-                $url_show = route('unit.show', Crypt::encrypt($data->id));
+                // $url_show = route('unit.show', Crypt::encrypt($data->id));
                 $url_edit = route('unit.edit', Crypt::encrypt($data->id));
                 $url_delete = route('unit.destroy', Crypt::encrypt($data->id));
 
                 $btn = "<div class='btn-group'>";
-                $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
+                // $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
                 $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
                 $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
                 $btn .= "</div>";
 
                 return $btn;
+
+            })
+            ->addColumn('section_unit', function ($data) {
+                if ($data->section_units->count()) {
+                    $sectionUnitList = [];
+                    foreach ($data->section_units as $item) {
+                        $name = $item->name;
+                        array_push($sectionUnitList, $name);
+                    }
+                    return $sectionUnitList;
+                }
             })
             ->toJson();
     }
@@ -63,9 +75,13 @@ class UnitController extends Controller
 
 
 
-    public function show($id)
-    {
-    }
+    // public function show($id)
+    // {
+    //     $id = Crypt::decrypt($id);
+    //     $data = Unit::find($id);
+
+    //       return view('units.show', compact('data'));
+    // }
 
     public function store(Request $request)
     {
@@ -82,7 +98,19 @@ class UnitController extends Controller
             $input = $request->all();
 
 
-            Unit::create($input);
+            $unit = Unit::create($input);
+
+
+            // Create Questionnaire Option
+            if ($subunit = $request->sub_name) {
+                for ($i  = 0; $i < count($subunit); $i++) {
+                    SectionUnit::create([
+                        'unit_id' => $unit->id,
+                        'name' => $request->sub_name[$i],
+                        'description' => $request->sub_description[$i]
+                    ]);
+                }
+            }
 
             // Save Data
             DB::commit();
@@ -117,7 +145,7 @@ class UnitController extends Controller
             $input = $request->all();
 
             // Decrypt Meeting Room Id
-          
+
 
             $unit->update($input);
 

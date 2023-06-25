@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Penilaian Sertifikat</h3>
+    <h3>Data Penilaian Sertifikat Magang</h3>
 @endsection
 
 @section('content')
@@ -13,9 +13,9 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Kategori Nilai Sertifikat</h4>
+                        <h4 class="card-title">Kategori Penilaian</h4>
                     </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('division.create') }}"><i
+                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('internship_score.create') }}"><i
                             class="fa fa-plus"></i> Tambah Data</a>
                 </div>
                 <div class="card-body">
@@ -25,9 +25,11 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama Bagian</th>
-                                    <th>Deskripsi</th>
-                                    <th>Diinput Pada</th>
+                                    <th>Nama Siswa/Mahasiswa</th>
+                                    <th>Jumlah</th>
+                                    <th>Rata-rata</th>
+
+                                    <th>Diinput pada</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -50,12 +52,12 @@
         function getDatatable() {
             data_table = $("#data-table").DataTable({
                 ajax: {
-                    url: "{{ route('division.datatable') }}",
+                    url: "{{ route('internship_score.datatable') }}",
                 },
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [3, 'desc']
+                    [5, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -70,13 +72,18 @@
                         data: 'action'
                     },
                     {
-                        name: 'name',
-                        data: 'name'
+                        name: 'apprentince_id',
+                        data: 'apprentince_id'
                     },
                     {
-                        name: 'description',
-                        data: 'description'
+                        name: 'total_score',
+                        data: 'total_score'
                     },
+                    {
+                        name: 'average_score',
+                        data: 'average_score'
+                    },
+
                     {
                         name: 'created_at',
                         data: 'created_at'
