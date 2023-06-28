@@ -200,43 +200,43 @@ https://www.tooplate.com/view/2119-gymso-fitness
                        <img src="{{ asset('landing_page/images/tirta3.jpg') }}" alt="Tirta Musi" width="450px" data-aos="fade-up" data-aos-delay="200">
                     </div>
 
-                    <div class="ml-auto col-lg-5 col-md-6 col-12">
+                    <div class="col-md-6 col-12">
                         <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">9 Kantor Cabang Unit Pelayanan Perumda Tirta Musi Palembang</h2>
 
                         <h5 ><b>Unit Pelayanan Rambutan</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Rambutan Ujung No.01, Kel. 32 Ilir Kec. Ilir Barat II</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/SyUN7q4m9iEJrfUz9">Jl. Rambutan Ujung No.01, Kel. 32 Ilir Kec. Ilir Barat II</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan KM. IV</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Jendral Sudirman Kel. 20 Ilir Kec. Ilir Timur I</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/Vqz2Eu3sWk8oyFxn7">Jl. Jendral Sudirman Kel. 20 Ilir Kec. Ilir Timur I</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan 3 Ilir</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Yos Sudarso Komp. Penyaringan No. 01 Kel. 3 Ilir Kec. Ilir Timur II</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/hfMenAVe8RsVUhGw6">Jl. Yos Sudarso Komp. Penyaringan No. 01 Kel. 3 Ilir Kec. Ilir Timur II</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Sako Kenten</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Musi Raya Simpang Lekipali No. 186 Kel. Suka Maju Kec. Sako</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/hBTbCzmdJ6oURaGC7">Jl. Musi Raya Simpang Lekipali No. 186 Kel. Suka Maju Kec. Sako</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Seberang Ulu II</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Mayjen. H.M. Ryacudu No.12 Kel. 7 Ulu Kec. Seberang Ulu I</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/YWRsWAU3V6JkkEkd9">Jl. Mayjen. H.M. Ryacudu No.12 Kel. 7 Ulu Kec. Seberang Ulu I</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Kalidoni</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Residen Abdul Rozak No.01 Kel. Kalidoni Kec. Kalidoni</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/e7Kah4NEXo3eYGqx6">Jl. Residen Abdul Rozak No.01 Kel. Kalidoni Kec. Kalidoni</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Karang Anyar</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Alamsyah Ratu Prawiranegara No. 591A Kel. Karang Jaya Kec. Gandus</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/NZ7SCJBnQiN3emcN8">Jl. Alamsyah Ratu Prawiranegara No. 591A Kel. Karang Jaya Kec. Gandus</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Alang-Alang Lebar</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Soekarno Hatta Kel. Karya Baru Kec. Alang-Alang Lebar</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/sp3NYro1EagJqyCS9">Jl. Soekarno Hatta Kel. Karya Baru Kec. Alang-Alang Lebar</a></p>
 
                             <br>
                             <h5 ><b>Unit Pelayanan Seberang Ulu I</b></h5>
-                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i>Jl. Ki Merogan Kel. Ogan Baru Kec. Kertapati</p>
+                            <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i><a href="https://goo.gl/maps/oxCRoDVAZmAVL2Xv5">Jl. Ki Merogan Kel. Ogan Baru Kec. Kertapati</a></p>
                     </div>
 
                </div>

@@ -66,7 +66,7 @@
                                         <thead>
                                             <tr class="text-center">
                                                 <th>Aksi</th>
-                                                <th>Nama</th>
+                                                <th>Nama Sub Bagian</th>
                                                 <th>Keterangan</th>
                                             </tr>
                                         </thead>

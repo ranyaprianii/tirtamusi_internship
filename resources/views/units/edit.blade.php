@@ -36,8 +36,10 @@
                 </div>
                 <div class="form-group">
 
+                <div class="col-12 d-flex justify-content-end mt-3">
                 <a href="{{ route('unit.index') }}" class="btn btn-warning">Kembali</a>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                </div>
             </form>
         </div>
     </div>

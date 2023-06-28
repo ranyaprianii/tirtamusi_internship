@@ -54,7 +54,7 @@
                 <li class="sidebar-item active">
                     <a href="{{ route('tatib') }}" class='sidebar-link'>
                       <i class="bi bi-journal-check"></i>
-                        <span>Ketentuan Magang</span>
+                        <span>Panduan Magang</span>
                     </a>
 
                 </li>

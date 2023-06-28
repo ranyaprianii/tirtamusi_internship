@@ -87,7 +87,8 @@
                             <div class="form-group has-icon-left">
                                 <label for="address">Alamat</label>
                                 <div class="position-relative">
-                                    <textarea type="text" class="form-control"  placeholder="Alamat Lengkap" value="{{ old('address') }}" id="address" name="address" required ></textarea>
+                                    <textarea type="text" class="form-control"
+                                    placeholder="Alamat Lengkap" value="{{ old('address') }}" id="address" name="address" required ></textarea>
                                     @error('address')
                                     <span class="text-danger">{{ $message }}</span>
                                     @enderror

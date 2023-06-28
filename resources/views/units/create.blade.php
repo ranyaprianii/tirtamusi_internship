@@ -13,10 +13,6 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Data Unit</h3>
-                <div class="col-12 d-flex justify-content-end mt-3">
-                        <button type="button" id="btn_add" class="btn btn-outline-primary"><i
-                                class="fa fa-plus"></i> Tambah SubUnit</button>
-                </div>
             </div>
             <div class="card-body">
                 <form action="{{ route('unit.store') }}" method="post">
@@ -53,6 +49,11 @@
                         </div>
 
                     </div>
+
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" id="btn_add" class="btn btn-outline-primary"><i
+                                class="fa fa-plus"></i> Tambah SubUnit</button>
+                </div>
 
                     <div class="card">
                         <div class="card-body">
