@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Data Penialaian Sertifikat Magang</h3>
+    <h3>Tambah Data Penialaian Sertifikat Magang</h3>
 @endsection
 
 
@@ -12,7 +12,7 @@
     <section class="section">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Penilaian Sertifikat</h3>
+                <h3 class="card-title">Tambah Data Penilaian Sertifikat</h3>
 
             </div>
             <div class="card-body">
@@ -123,7 +123,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-lg-12" >
+                                <div class="col-lg-6" >
                                     <div class="form-group has-icon-left">
                                         <label for="performance_score">Prestasi</label>
                                         <div class="position-relative">

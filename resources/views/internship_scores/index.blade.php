@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
-                        <h4 class="card-title">Kategori Penilaian</h4>
+                        <h4 class="card-title">Data Penilaian</h4>
                     </div>
                     <a class="text-end btn btn-sm btn-outline-info" href="{{ route('internship_score.create') }}"><i
                             class="fa fa-plus"></i> Tambah Data</a>
