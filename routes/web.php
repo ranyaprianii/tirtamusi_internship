@@ -48,6 +48,8 @@ Route::group(['controller' => ApprentinceController::class, 'prefix' => 'apprent
 Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendance', 'as' => 'attendance.'], function () {
     Route::get('/', 'index')->name('index');
     Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/datatable_student', 'datatable_student')->name('datatable_student');
+    Route::get('/datatable_manager', 'datatable_manager')->name('datatable_manager');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');

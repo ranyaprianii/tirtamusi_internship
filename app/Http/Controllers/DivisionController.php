@@ -28,10 +28,10 @@ class DivisionController extends Controller
     {
         $model = Division::query();
         return DataTables::of($model)
-        ->editColumn('created_at', function($data){
-            $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
-            return $dateformat;
-        })
+            ->editColumn('created_at', function ($data) {
+                $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
+                return $dateformat;
+            })
             ->addColumn('action', function ($data) {
                 // $url_show = route('division.show', Crypt::encrypt($data->id));
                 $url_edit = route('division.edit', Crypt::encrypt($data->id));
@@ -62,7 +62,6 @@ class DivisionController extends Controller
     {
         $division = Division::all();
         return view('divisions.create', compact('division'));
-
     }
 
     public function edit($id)
@@ -143,16 +142,38 @@ class DivisionController extends Controller
 
             $input = $request->all();
 
-
-
             $division->update($input);
+
+            $getSectionDivision = $request->section_division;
+
+            for ($i  = 0; $i < count($getSectionDivision); $i++) {
+                if ($getSectionDivision[$i] !== null) {
+                    $sectionDivision = SectionDivision::where('division_id',$id)->first();
+                    $sectionDivision->update([
+                        'division_id' => $division->id,
+                        'name' => $request->sub_name[$i],
+                        'description' => $request->sub_description[$i]
+                    ]);
+
+                    // Delete Data
+                    SectionDivision::where('division_id', $id)
+                        ->whereNotIn('id', $sectionDivision)
+                        ->delete();
+                } else {
+                    SectionDivision::create([
+                        'division_id' => $division->id,
+                        'name' => $request->sub_name[$i],
+                        'description' => $request->sub_description[$i]
+                    ]);
+                }
+            }
 
             // Save Data
             DB::commit();
 
             // Alert & Redirect
             Alert::toast('Data Berhasil Diperbarui', 'success');
-            return redirect()->route('division.index');
+            return redirect()->route('unit.index');
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();

@@ -27,10 +27,10 @@ class UnitController extends Controller
     {
         $model = Unit::query();
         return DataTables::of($model)
-        ->editColumn('created_at', function($data){
-            $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
-            return $dateformat;
-        })
+            ->editColumn('created_at', function ($data) {
+                $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
+                return $dateformat;
+            })
             ->addColumn('action', function ($data) {
                 // $url_show = route('unit.show', Crypt::encrypt($data->id));
                 $url_edit = route('unit.edit', Crypt::encrypt($data->id));
@@ -43,7 +43,6 @@ class UnitController extends Controller
                 $btn .= "</div>";
 
                 return $btn;
-
             })
             ->addColumn('section_unit', function ($data) {
                 if ($data->section_units->count()) {
@@ -73,15 +72,6 @@ class UnitController extends Controller
         return view('units.edit', compact('data', 'unit'));
     }
 
-
-
-    // public function show($id)
-    // {
-    //     $id = Crypt::decrypt($id);
-    //     $data = Unit::find($id);
-
-    //       return view('units.show', compact('data'));
-    // }
 
     public function store(Request $request)
     {
@@ -144,10 +134,31 @@ class UnitController extends Controller
 
             $input = $request->all();
 
-            // Decrypt Meeting Room Id
-
-
             $unit->update($input);
+
+            $getSectionUnit = $request->section_unit;
+
+            for ($i  = 0; $i < count($getSectionUnit); $i++) {
+                if ($getSectionUnit[$i] !== null) {
+                    $sectionUnit = SectionUnit::where('unit_id',$id)->first();
+                    $sectionUnit->update([
+                        'unit_id' => $unit->id,
+                        'name' => $request->sub_name[$i],
+                        'description' => $request->sub_description[$i]
+                    ]);
+
+                    // Delete Data
+                    SectionUnit::where('unit_id', $id)
+                        ->whereNotIn('id', $sectionUnit)
+                        ->delete();
+                } else {
+                    SectionUnit::create([
+                        'unit_id' => $unit->id,
+                        'name' => $request->sub_name[$i],
+                        'description' => $request->sub_description[$i]
+                    ]);
+                }
+            }
 
             // Save Data
             DB::commit();
@@ -191,5 +202,4 @@ class UnitController extends Controller
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
     }
-
 }

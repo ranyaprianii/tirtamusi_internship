@@ -28,65 +28,63 @@
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Nama Bagian..."
                                         value="{{ old('name') }}" id="name" name="name" required>
-                                        @error('name')
+                                    @error('name')
                                         <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    @enderror
                                     <div class="form-control-icon">
                                         <span class="fa-fw select-all fas"></span>
                                     </div>
                                 </div>
                             </div>
 
-                                <div class="form-group has-icon-left">
-                                    <label for="address">Deskripsi</label>
-                                    <div class="position-relative">
-                                        <textarea class="form-control" name="description" id="description" rows="3" placeholder="Deskripsi..."
-                                        required>{{ old('description') }}</textarea>
-                                        @error('description')
-                                            <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        <div class="form-control-icon">
-                                            <span class="fa-fw select-all fas"></span>
-                                        </div>
+                            <div class="form-group has-icon-left">
+                                <label for="address">Deskripsi</label>
+                                <div class="position-relative">
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Deskripsi..." required>{{ old('description') }}</textarea>
+                                    @error('description')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                    <div class="form-control-icon">
+                                        <span class="fa-fw select-all fas"></span>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
-                        <div class="card">
-                            <div class="col-12 d-flex justify-content-end mt-3">
-                                <button type="button" id="btn_add" class="btn btn-outline-primary"><i
-                                        class="fa fa-plus"></i> Tambah SubBagian</button>
-                        </div>
-                            <div class="card-body">
-
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" width="100%">
-                                        <thead>
-                                            <tr class="text-center">
-                                                <th>Aksi</th>
-                                                <th>Nama Sub Bagian</th>
-                                                <th>Keterangan</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbody"></tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 d-flex justify-content-end mt-3">
-                            <a href="{{ route('division.index') }}"
-                                class="btn btn-light-secondary me-3 mb-1">Kembali</a>
-                            <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
-                        </div>
                     </div>
 
+                    <div class="card">
+                        <div class="col-12 d-flex justify-content-end mt-3">
+                            <button type="button" id="btn_add" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
+                                Tambah SubBagian</button>
+                        </div>
+                        <div class="card-body">
 
-                </form>
-
-
+                            <div class="table-responsive">
+                                <table class="table table-bordered" width="100%">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th>Aksi</th>
+                                            <th>Nama Sub Bagian</th>
+                                            <th>Keterangan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <a href="{{ route('division.index') }}" class="btn btn-light-secondary me-3 mb-1">Kembali</a>
+                        <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
+                    </div>
             </div>
+
+
+            </form>
+
+
+        </div>
         </div>
     </section>
 @endsection

@@ -12,4 +12,6 @@ class SectionDivision extends Model
     protected $table = "section_divisions";
 
     protected $guarded = ['id'];
+
+
 }

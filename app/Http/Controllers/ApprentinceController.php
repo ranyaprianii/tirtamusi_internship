@@ -97,6 +97,7 @@ class ApprentinceController extends Controller
                 'birth_place' => 'required',
                 'address' => 'required',
                 'phone_number' => 'required',
+                'file' => 'required|mimes:pdf|max:3000'
             ]);
 
             // Create Data
@@ -139,13 +140,7 @@ class ApprentinceController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'user_id' => 'required',
-                'unit_id' => 'required',
-                'section_unit_id' => 'required',
-                'division_id' => 'required',
-                'section_division_id' => 'required',
-                'nisn' => 'required',
-                'nim' => 'required',
+                'nisn_nim' => 'required',
                 'school' => 'required',
                 'department' => 'required',
                 'name' => 'required',
@@ -156,9 +151,7 @@ class ApprentinceController extends Controller
                 'phone_number' => 'required',
                 'date_start' => 'required',
                 'date_end' => 'required',
-                'file' => 'required',
-                'sertificate' => 'required',
-                'status' => 'required',
+                'file' => 'mimes:pdf|max:3000',
             ]);
 
             // Update Data
@@ -167,8 +160,25 @@ class ApprentinceController extends Controller
 
             $input = $request->all();
 
-            // Decrypt
-            $input['apprentince_id'] = Crypt::decrypt($request->apprentince_id);
+            // File
+            if ($file = $request->file('file')) {
+                // Remove Old File
+                if (!empty($input['file'])) {
+                    $file_exist = 'assets/pengajuan/' . $input['file'];
+
+                    if (file_exists($file_exist)) {
+                        unlink($file_exist);
+                    }
+                }
+
+                // Store New File
+                $destinationPath = 'assets/pengajuan/';
+                $fileName = "Pengajuan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['file'] = $fileName;
+            } else {
+                unset($input['file']);
+            }
 
             $apprentince->update($input);
 

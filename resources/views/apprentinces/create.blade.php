@@ -203,6 +203,7 @@
                                     <div class="form-control-icon">
                                         <span class="fa-fw select-all fas"></span>
                                     </div>
+                                    <p><span class="text-danger">*</span>File Ekstensi PDF (Maks 3 MB)</p>
                                 </div>
                             </div>
                         </div>

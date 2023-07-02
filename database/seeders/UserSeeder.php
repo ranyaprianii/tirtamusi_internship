@@ -24,11 +24,18 @@ class UserSeeder extends Seeder
 
         $role = Role::create(['name' => 'Admin']);
 
+
+        // Role Mahasiswa
+        Role::create(['name' => 'Mahasiswa']);
+
         $permissions = Permission::pluck('id', 'id')->all();
 
         $role->syncPermissions($permissions);
 
         $user->assignRole([$role->id]);
 
+
+         // Role Mahasiswa
+         Role::create(['name' => 'Manager']);
     }
 }

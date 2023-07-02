@@ -34,11 +34,50 @@
                     <input type="text" name="description" class="form-control" id="description"
                         value="{{ old('description', $data['description']) }}" placeholder="Deskripsi..." required>
                 </div>
-                <div class="form-group">
+
+                <div class="card">
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" id="btn_add" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
+                            Tambah SubBagian</button>
+                    </div>
+                    <div class="card-body">
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered" width="100%">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>Aksi</th>
+                                        <th>Nama Sub Bagian</th>
+                                        <th>Keterangan</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
+                                    @foreach ($data['section_units'] as $item)
+                                        <tr>
+                                            <td class="text-center">
+                                                <button type="button" class="btn btn-danger remove"><i
+                                                        class="fas fa-trash mr-2"></i> Hapus</button>
+                                            </td>
+                                            <td>
+                                                <input type="hidden" id="section_unit" name="section_unit[]" value="{{ Crypt::encrypt($item->id) }}">
+                                                <input class="form-control" type="text" name="sub_name[]"
+                                                    placeholder="Masukkan Opsi Jawaban" value="{{ $item->name }}"
+                                                    required>
+                                            </td>
+                                            <td>
+                                                <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" value="{{ $item->description }}"   required>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="col-12 d-flex justify-content-end mt-3">
-                <a href="{{ route('unit.index') }}" class="btn btn-warning">Kembali</a>
-                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <a href="{{ route('unit.index') }}" class="btn btn-warning">Kembali</a>
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
                 </div>
             </form>
         </div>
@@ -46,12 +85,44 @@
 @endsection
 
 @section('js_after')
-    {{-- Select 2 --}}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+    $(() => {
+        initQuestionnaireOption();
+    })
 
-    {{-- <script>
-        $(document).ready(function() {
-            $(".select_role").select2();
+    // Option Question
+    function initQuestionnaireOption() {
+        let rowIndex = 0;
+
+        $("#btn_add").click(function() {
+            $("#tbody").append(`<tr id="row${++rowIndex}">
+            <td class="text-center">
+            <button type="button" class="btn btn-danger remove"><i class="fas fa-trash mr-2"></i> Hapus</button>
+            </td>
+            <td>
+            <input type="hidden" name="section_unit[]" value="">
+            <input class="form-control" type="text" name="sub_name[]" placeholder="Masukkan Opsi Jawaban" required>
+            </td>
+            <td>
+            <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" required>
+            </td>
+            </tr>`);
         });
-    </script> --}}
+
+        $("#tbody").on('click', '.remove', function() {
+            let child = $(this).closest('tr').nextAll();
+
+            child.each(function() {
+                let id = $(this).attr('id');
+                let dig = parseInt(id.substring(1));
+                $(this).attr('id', `row${dig - 1}`);
+            });
+
+            $(this).closest('tr').remove();
+            rowIndex--;
+
+
+        });
+    }
+</script>
 @endsection

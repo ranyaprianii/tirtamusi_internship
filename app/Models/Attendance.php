@@ -11,5 +11,17 @@ class Attendance extends Model
 
     protected $guarded = ['id'];
 
+    const STATUS_PRESENT = "Hadir";
+    const STATUS_ABSENT = "Tidak Hadir";
+
+    const STATUS_CHOICE = [
+        self::STATUS_PRESENT => self::STATUS_PRESENT,
+        self::STATUS_ABSENT => self::STATUS_ABSENT,
+    ];
+
+    public function apprentince()
+    {
+        return $this->belongsTo(Apprentince::class, 'apprentince_id', 'id');
+    }
 
 }
