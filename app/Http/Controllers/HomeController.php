@@ -25,6 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $totalUsers = User::where('name', '!=', 'admin')->get()->count();
+      
 
         return view('home', compact('totalUsers'));
     }
@@ -35,4 +36,6 @@ class HomeController extends Controller
 
         return view('tatib');
     }
+
+
 }

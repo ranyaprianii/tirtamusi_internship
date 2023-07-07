@@ -124,7 +124,7 @@
                     serverSide: true,
                     destroy: true,
                     order: [
-                        [4, 'desc']
+                        [6, 'desc']
                     ],
                     columns: [{
                             "data": null,
@@ -154,6 +154,11 @@
                             name: 'status',
                             data: 'status'
                         },
+                        {
+                            name: 'created_at',
+                            data: 'created_at'
+                        },
+
 
                     ],
                 });
@@ -178,7 +183,7 @@
             serverSide: true,
             destroy: true,
             order: [
-                [4, 'desc']
+                [5, 'desc']
             ],
             columns: [{
                     "data": null,
@@ -204,6 +209,10 @@
                     name: 'status',
                     data: 'status'
                 },
+                {
+                    name: 'created_at',
+                    data: 'created_at'
+                },
 
             ],
         });
@@ -221,12 +230,12 @@
         function getDatatable() {
             data_table = $("#data-table").DataTable({
                 ajax: {
-                    url: "{{ route('attendance.datatable') }}",
+                    url: "{{ route('attendance.datatable_manager') }}",
                 },
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [4, 'desc']
+                    [5, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -238,8 +247,8 @@
                     },
 
                     {
-                            name: 'apprentince_name',
-                            data: 'apprentince_name'
+                        name: 'apprentince_name',
+                        data: 'apprentince_name'
                         },
                     {
                         name: 'longitude',
@@ -253,6 +262,11 @@
                         name: 'status',
                         data: 'status'
                     },
+                    {
+                            name: 'created_at',
+                            data: 'created_at'
+                    },
+
 
                 ],
             });

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Apprentince;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
+use Barryvdh\DomPDF\PDF;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
@@ -85,7 +86,7 @@ class AttendanceController extends Controller
     }
     public function create()
     {
-        return view('attendances.add');
+        return view('attendances.create');
     }
 
     public function show($id)

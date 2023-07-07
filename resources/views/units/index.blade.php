@@ -3,6 +3,7 @@
 @section('css_after')
 @endsection
 
+@hasrole('Admin')
 @section('content-header')
     <h3>Data Unit</h3>
 @endsection
@@ -39,7 +40,9 @@
             </div>
         </section>
 @endsection
+@endrole
 
+@hasrole('Admin')
 @section('js_after')
     <script>
         $(document).ready(function() {
@@ -92,3 +95,4 @@
         }
     </script>
 @endsection
+@endrole
