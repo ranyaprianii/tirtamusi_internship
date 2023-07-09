@@ -22,20 +22,27 @@ class UserSeeder extends Seeder
             'password' => Hash::make('@admin_pdam')
         ]);
 
-        $role = Role::create(['name' => 'Admin']);
+        $data = [
+            [
+                'name' => 'Admin',
+            ],
+            [
+                'name' => 'Calon Magang',
+            ],
+            [
+                'name' => 'Siswa/Mahasiswa',
+            ],
+            [
+                'name' => 'Manager',
+            ],
+        ];
 
+        foreach ($data as $item) {
+            $role =  Role::create($item);
+            $permissions = Permission::pluck('id', 'id')->all();
 
-        // Role Mahasiswa
-        Role::create(['name' => 'Mahasiswa']);
-
-        $permissions = Permission::pluck('id', 'id')->all();
-
-        $role->syncPermissions($permissions);
-
-        $user->assignRole([$role->id]);
-
-
-         // Role Mahasiswa
-         Role::create(['name' => 'Manager']);
+            $role->syncPermissions($permissions);
+        }
+        $user->assignRole([1]);
     }
 }

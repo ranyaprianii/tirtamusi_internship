@@ -72,7 +72,9 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::where('name', '!=', 'Siswa/Mahasiswa')
+            ->where('name', '!=', 'Calon Magang')
+            ->pluck('name');
         return view('users.add', compact('roles'));
     }
 
@@ -89,7 +91,8 @@ class UserController extends Controller
         $id = Crypt::decrypt($id);
         $user = User::find($id);
 
-        $roles = Role::pluck('name', 'name')->all();
+        $roles = Role::pluck('name');
+
         $userRole = $user->roles->pluck('name', 'name')->all();
 
         return view('users.edit', compact('user', 'roles', 'userRole'));
@@ -112,6 +115,7 @@ class UserController extends Controller
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
             $user = User::create($input);
+            
             $user->assignRole($request->input('roles'));
 
             // Save Data

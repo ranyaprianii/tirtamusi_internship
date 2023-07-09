@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Apprentince;
+use App\Models\Division;
+use App\Models\Unit;
 use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
@@ -11,6 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 class ApprentinceController extends Controller
@@ -25,9 +28,45 @@ class ApprentinceController extends Controller
         return view('apprentinces.index');
     }
 
+    public function index_verification()
+    {
+        return view('apprentinces.index_verification');
+    }
+
     public function datatable()
     {
         $model = Apprentince::query();
+
+        return DataTables::of($model)
+            ->editColumn('created_at', function ($data) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
+                return $formatedDate;
+            })
+            ->editColumn('date_start', function ($data) {
+                $formatDate = Carbon::parse($data['date_start'])->format('d-m-Y');
+                return $formatDate;
+            })
+
+            ->editColumn('date_end', function ($data) {
+                $formatDate = Carbon::parse($data['date_end'])->format('d-m-Y');
+                return $formatDate;
+            })
+
+            ->addColumn('action', function ($data) {
+                $url_show = route('apprentince.show', Crypt::encrypt($data->id));
+
+                $btn = "<div class='btn-group'>";
+                $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
+                $btn .= "</div>";
+                return $btn;
+            })
+            ->toJson();
+    }
+
+    public function datatable_student()
+    {
+        $user_id = Auth::user()->id;
+        $model = Apprentince::where('user_id', $user_id);
 
         return DataTables::of($model)
             ->editColumn('created_at', function ($data) {
@@ -59,6 +98,176 @@ class ApprentinceController extends Controller
             ->toJson();
     }
 
+    public function datatable_verification()
+    {
+        $model = Apprentince::where('status', Apprentince::STATUS_NOT_CONFIRMED);
+
+        return DataTables::of($model)
+            ->editColumn('created_at', function ($data) {
+                $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
+                return $formatedDate;
+            })
+            ->editColumn('date_start', function ($data) {
+                $formatDate = Carbon::parse($data['date_start'])->format('d-m-Y');
+                return $formatDate;
+            })
+
+            ->editColumn('date_end', function ($data) {
+                $formatDate = Carbon::parse($data['date_end'])->format('d-m-Y');
+                return $formatDate;
+            })
+
+            ->addColumn('action', function ($data) {
+                $url_accept = route('apprentince.create_accept', Crypt::encrypt($data->id));
+                $url_reject = route('apprentince.create_reject', Crypt::encrypt($data->id));
+
+                $btn = "<div class='btn-group'>";
+                $btn .= "<a href='$url_accept' class = 'btn btn-outline-success btn-sm text-nowrap'><i class='fas fa-check mr-2'></i> Diterima</a>";
+                $btn .= "<a href='$url_reject' onclick='return confirm(\" Yakin? \")' class = 'btn btn-outline-danger btn-sm text-nowrap'><i class='fas fa-xmark mr-2'></i> Ditolak</a>";
+                $btn .= "</div>";
+                return $btn;
+            })
+            ->toJson();
+    }
+
+    public function create_accept($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = Apprentince::find($id);
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->isoFormat('D MMMM Y');
+        $data['date_start'] = Carbon::parse($data['date_start'])->isoFormat('D MMMM Y');
+        $data['date_end'] = Carbon::parse($data['date_end'])->isoFormat('D MMMM Y');
+
+        $divisions = Division::all();
+        $units = Unit::all();
+
+        return view('apprentinces.accept', compact('data', 'divisions', 'units'));
+    }
+
+    public function accept(Request $request, $id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $id = Crypt::decrypt($id);
+            $apprentince = Apprentince::find($id);
+
+            $user_id = $apprentince->user_id;
+            $user = User::find($user_id);
+
+            $input = $request->all();
+
+            if (!empty($request->division)) {
+                $input['division'] = Crypt::decrypt($request->division);
+            }
+
+            if (!empty($request->sub_division)) {
+                $input['sub_division'] = Crypt::decrypt($request->sub_division);
+            }
+
+            if (!empty($request->unit)) {
+                $input['unit'] = Crypt::decrypt($request->unit);
+            }
+
+            if (!empty($request->sub_unit)) {
+                $input['sub_unit'] = Crypt::decrypt($request->sub_unit);
+            }
+
+            // Save file
+            if ($file = $request->file('file_letter')) {
+                $destinationPath = 'assets/surat balasan/';
+                $fileName = "Surat Balasan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+                $input['file_letter'] = $fileName;
+            }
+
+            $apprentince->update([
+                'division_id' => $input['division'],
+                'section_division_id' => $input['sub_division'],
+                'unit_id' => $input['unit'],
+                'section_unit_id' => $input['sub_unit'],
+                'letter_file' => $input['file_letter'],
+                'status' => Apprentince::STATUS_APPROVED
+            ]);
+
+
+            DB::table('model_has_roles')
+                ->where('model_id', $user_id)
+                ->delete();
+
+            $user->assignRole([3]);
+
+            // Save Data
+            DB::commit();
+
+            // Alert & Redirect
+            Alert::toast('Data Berhasil Disimpan', 'success');
+            return redirect()->route('apprentince.index_verification');
+        } catch (\Exception $e) {
+            // If Data Error
+            DB::rollBack();
+
+            // Alert & Redirect
+            Alert::toast('Data Gagal Disimpan', 'error');
+            return redirect()->back()->withInput()->with('error', 'Data Tidak Berhasil Diperbarui' . $e->getMessage());
+        }
+    }
+
+    public function create_reject($id)
+    {
+        $id = Crypt::decrypt($id);
+        $data = Apprentince::find($id);
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->isoFormat('D MMMM Y');
+        $data['date_start'] = Carbon::parse($data['date_start'])->isoFormat('D MMMM Y');
+        $data['date_end'] = Carbon::parse($data['date_end'])->isoFormat('D MMMM Y');
+
+        return view('apprentinces.reject', compact('data'));
+    }
+
+    public function reject(Request $request, $id)
+    {
+        try {
+            DB::beginTransaction();
+
+            $id = Crypt::decrypt($id);
+            $apprentince = Apprentince::find($id);
+
+            $user_id = $apprentince->user_id;
+            $user = User::find($user_id);
+
+            // Save file
+            if ($file = $request->file('file_letter')) {
+                $destinationPath = 'assets/surat balasan/';
+                $fileName = "Surat Balasan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
+                $file->move($destinationPath, $fileName);
+            }
+
+            $subject_email = $request->subject_email;
+
+            $data = [
+                'title' => "Surat Balasan Penolakan Magang",
+                'name' => $user->name,
+                'email' => $user->email,
+                'file_email' => public_path('assets/surat balasan/' . $fileName),
+                'subject_email' => $subject_email
+            ];
+
+            // Save Data
+            DB::commit();
+
+            // Alert & Redirect
+            Alert::toast('Data Berhasil Disimpan', 'success');
+            return redirect()->route('apprentince.index_verification');
+        } catch (\Exception $e) {
+            // If Data Error
+            DB::rollBack();
+
+            // Alert & Redirect
+            Alert::toast('Data Gagal Disimpan', 'error');
+            return redirect()->back()->withInput()->with('error', 'Data Tidak Berhasil Diperbarui' . $e->getMessage());
+        }
+    }
+
     public function create()
     {
         $users = User::where('name', '!=', 'admin')->get();
@@ -76,8 +285,11 @@ class ApprentinceController extends Controller
 
     public function show($id)
     {
-      $id = Crypt::decrypt($id);
-      $data = Apprentince::find($id);
+        $id = Crypt::decrypt($id);
+        $data = Apprentince::find($id);
+        $data['birth_date'] = Carbon::parse($data['birth_date'])->isoFormat('D MMMM Y');
+        $data['date_start'] = Carbon::parse($data['date_start'])->isoFormat('D MMMM Y');
+        $data['date_end'] = Carbon::parse($data['date_end'])->isoFormat('D MMMM Y');
 
         return view('apprentinces.show', compact('data'));
     }

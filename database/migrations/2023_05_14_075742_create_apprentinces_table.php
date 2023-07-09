@@ -31,6 +31,7 @@ return new class extends Migration
             $table->date('date_end')->nullable()->comment('tanggal selesai');
             $table->string('sertificate')->nullable()->comment('sertifikat magang');
             $table->string('file')->comment('file pengajuan magang');
+            $table->string('letter_file')->nullable()->comment('file surat balasan magang');
             $table->string('status')->comment('status magang');
             $table->timestamps();
         });

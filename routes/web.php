@@ -35,14 +35,26 @@ Route::get('/tatib', [App\Http\Controllers\HomeController::class, 'tatib'])->nam
 
 // Apprentince
 Route::group(['controller' => ApprentinceController::class, 'prefix' => 'apprentince', 'as' => 'apprentince.'], function () {
-    Route::get('/', 'index')->name('index');
+    /* Data Table */
     Route::get('/datatable', 'datatable')->name('datatable');
-    Route::get('/create', 'create')->name('create');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/datatable_student', 'datatable_student')->name('datatable_student');
+    Route::get('/datatable_verification', 'datatable_verification')->name('datatable_verification');
+
+    /* Store & Update */
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+    Route::put('/accept/{id}', 'accept')->name('accept');
+    Route::put('/reject/{id}', 'reject')->name('reject');
+
+    /* Views */
+    Route::get('/', 'index')->name('index');
+    Route::get('/verification', 'index_verification')->name('index_verification');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/create_accept/{id}', 'create_accept')->name('create_accept');
+    Route::get('/create_reject/{id}', 'create_reject')->name('create_reject');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
 });
 
 // Attendence
@@ -119,16 +131,3 @@ Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' =>
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
-
-// Role
-Route::group(['controller' => RoleController::class, 'prefix' => 'role', 'as' => 'role.'], function () {
-    Route::get('/', 'index')->name('index');
-    Route::get('/datatable', 'datatable')->name('datatable');
-    Route::get('/create', 'create')->name('create');
-    Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
-    Route::post('/store', 'store')->name('store');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-});
-

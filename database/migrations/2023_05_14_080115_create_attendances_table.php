@@ -17,9 +17,10 @@ return new class extends Migration
             $table->bigInteger('apprentince_id')->comment('foreign key user');
             $table->string('latitude')->nullable()->comment('latitude');
             $table->string('longitude')->nullable()->comment('longitude');
-            $table->string('foto')->nullable()->comment('foto');
-            $table->string('description')->nullable()->comment('Keterangan');
-            $table->boolean('status')->nullable()->comment('status');
+            $table->string('file')->nullable()->comment('file');
+            $table->dateTime('present_in')->nullable()->comment('presensi masuk');
+            $table->dateTime('present_out')->nullable()->comment('presensi keluar');
+            $table->string('status')->nullable()->comment('status');
             $table->timestamps();
         });
     }
