@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apprentince;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\SectionDivision;
@@ -10,7 +11,8 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
-
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class DivisionController extends Controller
 {
@@ -88,14 +90,12 @@ class DivisionController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'description' => 'required',
 
             ]);
 
             // Create Data
             $input = $request->all();
-
-
+           
             $division = Division::create($input);
 
 
@@ -133,7 +133,7 @@ class DivisionController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'description' => 'required',
+
             ]);
 
             // Update Data

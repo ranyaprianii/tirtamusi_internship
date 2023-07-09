@@ -49,7 +49,6 @@ class DailyActivityController extends Controller
                 $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
                 return $dateformat;
             })
-
             ->addColumn('action', function ($data) {
                 $url_edit = route('daily_activity.edit', Crypt::encrypt($data->id));
                 $url_delete = route('daily_activity.destroy', Crypt::encrypt($data->id));
@@ -63,6 +62,8 @@ class DailyActivityController extends Controller
             })
             ->toJson();
     }
+
+
 
     public function create()
     {
@@ -88,6 +89,12 @@ class DailyActivityController extends Controller
 
             // Create Data
             $input = $request->all();
+            $user_id = Auth::user()->id;
+
+            $apprentince = Apprentince::where('user_id', $user_id)->first();
+            $apprentince_id = $apprentince->id;
+
+            $input['apprentince_id']=$apprentince_id;
 
             DailyActivity::create($input);
 

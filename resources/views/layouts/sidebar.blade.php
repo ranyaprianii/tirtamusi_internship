@@ -167,7 +167,7 @@
             </div>
         @endhasanyrole
 
-        @role('Mahasiswa')
+        @role('Siswa/Mahasiswa')
             <div class="sidebar-menu">
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
@@ -182,13 +182,13 @@
                     <li class="sidebar-item active">
                         <a href="{{ route('tatib') }}" class='sidebar-link'>
                             <i class="bi bi-journal-check"></i>
-                            <span>Panduan Magang</span>
+                            <span>Panduan Pendaftaran Magang</span>
                         </a>
 
                     </li>
 
                     <li class="sidebar-item ">
-                        <a href="index.html" class='sidebar-link'>
+                        <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
                             <i class="bi bi-postcard-fill"></i>
                             <span>Data Siswa/Mahasiswa</span>
                         </a>
@@ -211,19 +211,12 @@
 
 
 
-                    <li class="sidebar-item has-sub ">
-                        <a href="index.html" class='sidebar-link'>
+                    <li class="sidebar-item ">
+                        <a href="{{ route('internship_score.index') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
                             <span>Sertifikat Magang</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
-                            </li>
-                            <li class="submenu-item ">
-                                <a href="component-badge.html">Sertifikat Magang</a>
-                            </li>
-                        </ul>
+
                     </li>
 
                     <li class="sidebar-item active">

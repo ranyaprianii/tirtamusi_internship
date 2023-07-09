@@ -80,7 +80,7 @@ class UnitController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'description' => 'required',
+
 
             ]);
 
@@ -125,7 +125,7 @@ class UnitController extends Controller
 
             $request->validate([
                 'name' => 'required',
-                'description' => 'required',
+               
             ]);
 
             // Update Data

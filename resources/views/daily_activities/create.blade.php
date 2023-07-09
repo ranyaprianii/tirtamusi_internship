@@ -16,21 +16,27 @@
 
             </div>
             <div class="card-body">
+                @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
                 <form action="{{ route('daily_activity.store') }}" method="post">
                     @csrf
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-12">
                             <div class="form-group has-icon-left">
                                 <label for="activity">Aktivitas / Catatan Jobdesk</label>
                                 <div class="position-relative">
-                                    <input type="text" class="form-control" placeholder="Tambahkan Aktivitas..."
-                                        value="{{ old('activity') }}" id="activity" name="activity" required>
+                                    <textarea class="form-control" placeholder="Tambahkan Aktivitas..."
+                                        value="{{ old('activity') }}" id="activity" name="activity" required> </textarea>
                                         @error('activity')
                                         <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     <div class="form-control-icon">
                                         <span class="fa-fw select-all fas"></span>
                                     </div>
+
                                 </div>
                             </div>
 

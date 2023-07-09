@@ -131,7 +131,7 @@
                     serverSide: true,
                     destroy: true,
                     order: [
-                        [4, 'desc']
+                        [3, 'desc']
                     ],
                     columns: [{
                             "data": null,
@@ -151,9 +151,8 @@
                         },
                         {
                             name: 'created_at',
-                            date: 'created_at'
+                            data: 'created_at'
                         },
-
                     ],
                 });
             }

@@ -177,8 +177,8 @@
                             <div class="form-group has-icon-left">
                                 <label for="letter_file">Surat Balasan</label>
                                 <div class="position-relative">
-                                    <input type="letter_file" class="form-control"
-                                        placeholder="letter_File Pengajuan Magang" value="{{ old('letter_file') }}"
+                                    <input type="file" class="form-control"
+                                        placeholder="Kirim Surat Balasan" value="{{ old('letter_file') }}"
                                         id="letter_file" name="letter_file" required>
                                     @error('letter_file')
                                         <span class="text-danger">{{ $message }}</span>
