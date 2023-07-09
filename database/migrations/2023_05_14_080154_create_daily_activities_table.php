@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('apprentince_id')->comment('foreign key user');
             $table->string('activity')->comment('kegiatan');
-            $table->string('status')->nullable()->comment('status');
             $table->timestamps();
         });
     }

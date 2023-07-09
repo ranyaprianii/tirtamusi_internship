@@ -32,7 +32,7 @@
                 <div class="form-group">
                     <label for="description">Deskripsi </label>
                     <input type="text" name="description" class="form-control" id="description"
-                        value="{{ old('description', $data['description']) }}" placeholder="Deskripsi..." required>
+                        value="{{ old('description', $data['description']) }}" placeholder="Deskripsi...">
                 </div>
 
                 <div class="card">
@@ -64,7 +64,8 @@
                                                     required>
                                             </td>
                                             <td>
-                                                <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" value="{{ $item->description }}"   required>
+                                                <input class="form-control" type="text" name="sub_description[]"
+                                                    placeholder="Masukkan Sub Bagian" value="{{ $item->description }}">
                                             </td>
                                         </tr>
                                     @endforeach
@@ -93,7 +94,7 @@
             let rowIndex = 0;
 
             $("#btn_add").click(function() {
-            $("#tbody").append(`<tr id="row${++rowIndex}">
+                $("#tbody").append(`<tr id="row${++rowIndex}">
             <td class="text-center">
             <button type="button" class="btn btn-danger remove"><i class="fas fa-trash mr-2"></i> Hapus</button>
             </td>
@@ -102,25 +103,25 @@
             <input class="form-control" type="text" name="sub_name[]" placeholder="Masukkan Opsi Jawaban" required>
             </td>
             <td>
-            <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" required>
+            <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian">
             </td>
             </tr>`);
-        });
-
-        $("#tbody").on('click', '.remove', function() {
-            let child = $(this).closest('tr').nextAll();
-
-            child.each(function() {
-                let id = $(this).attr('id');
-                let dig = parseInt(id.substring(1));
-                $(this).attr('id', `row${dig - 1}`);
             });
 
-            $(this).closest('tr').remove();
-            rowIndex--;
+            $("#tbody").on('click', '.remove', function() {
+                let child = $(this).closest('tr').nextAll();
+
+                child.each(function() {
+                    let id = $(this).attr('id');
+                    let dig = parseInt(id.substring(1));
+                    $(this).attr('id', `row${dig - 1}`);
+                });
+
+                $(this).closest('tr').remove();
+                rowIndex--;
 
 
-        });
+            });
         }
     </script>
 @endsection

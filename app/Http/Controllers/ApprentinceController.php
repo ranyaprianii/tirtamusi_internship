@@ -123,7 +123,7 @@ class ApprentinceController extends Controller
 
                 $btn = "<div class='btn-group'>";
                 $btn .= "<a href='$url_accept' class = 'btn btn-outline-success btn-sm text-nowrap'><i class='fas fa-check mr-2'></i> Diterima</a>";
-                $btn .= "<a href='$url_reject' onclick='return confirm(\" Yakin? \")' class = 'btn btn-outline-danger btn-sm text-nowrap'><i class='fas fa-xmark mr-2'></i> Ditolak</a>";
+                $btn .= "<a href='$url_reject' class = 'btn btn-outline-danger btn-sm text-nowrap'><i class='fas fa-xmark mr-2'></i> Ditolak</a>";
                 $btn .= "</div>";
                 return $btn;
             })
@@ -174,11 +174,11 @@ class ApprentinceController extends Controller
             }
 
             // Save file
-            if ($file = $request->file('file_letter')) {
+            if ($file = $request->file('letter_file')) {
                 $destinationPath = 'assets/surat balasan/';
                 $fileName = "Surat Balasan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
-                $input['file_letter'] = $fileName;
+                $input['letter_file'] = $fileName;
             }
 
             $apprentince->update([
@@ -186,7 +186,7 @@ class ApprentinceController extends Controller
                 'section_division_id' => $input['sub_division'],
                 'unit_id' => $input['unit'],
                 'section_unit_id' => $input['sub_unit'],
-                'letter_file' => $input['file_letter'],
+                'letter_file' => $input['letter_file'],
                 'status' => Apprentince::STATUS_APPROVED
             ]);
 
@@ -236,7 +236,7 @@ class ApprentinceController extends Controller
             $user = User::find($user_id);
 
             // Save file
-            if ($file = $request->file('file_letter')) {
+            if ($file = $request->file('letter_file')) {
                 $destinationPath = 'assets/surat balasan/';
                 $fileName = "Surat Balasan" . "_" . date('YmdHis') . "." . $file->getClientOriginalExtension();
                 $file->move($destinationPath, $fileName);
@@ -251,6 +251,16 @@ class ApprentinceController extends Controller
                 'file_email' => public_path('assets/surat balasan/' . $fileName),
                 'subject_email' => $subject_email
             ];
+
+
+            Mail::send('apprentinces.email', $data, function ($message) use ($data) {
+                $message->to($data['email'], $data['email'])
+                    ->subject($data['title'])
+                    ->attach($data['file_email']);
+            });
+
+            $apprentince->delete();
+            $user->delete();
 
             // Save Data
             DB::commit();

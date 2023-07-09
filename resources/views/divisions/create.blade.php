@@ -40,7 +40,7 @@
                             <div class="form-group has-icon-left">
                                 <label for="address">Deskripsi</label>
                                 <div class="position-relative">
-                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Deskripsi..." required>{{ old('description') }}</textarea>
+                                    <textarea class="form-control" name="description" id="description" rows="3" placeholder="Deskripsi...">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -56,7 +56,7 @@
                     <div class="card">
                         <div class="col-12 d-flex justify-content-end mt-3">
                             <button type="button" id="btn_add" class="btn btn-outline-primary"><i class="fa fa-plus"></i>
-                                Tambah SubBagian</button>
+                                Tambah Sub Bagian</button>
                         </div>
                         <div class="card-body">
 
@@ -110,7 +110,7 @@
                     <input class="form-control" type="text" name="sub_name[]" placeholder="Masukkan Opsi Jawaban" required>
                     </td>
                     <td>
-                    <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian" required>
+                    <input class="form-control" type="text" name="sub_description[]" placeholder="Masukkan Sub Bagian">
                     </td>
                     </tr>`);
             });

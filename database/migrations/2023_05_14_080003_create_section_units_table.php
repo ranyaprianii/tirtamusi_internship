@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('unit_id')->comment('foreign key unit');
             $table->string('name')->comment('nama');
-            $table->text('description')->comment('keterangan');
+            $table->text('description')->nullable()->comment('keterangan');
             $table->timestamps();
         });
     }

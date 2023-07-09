@@ -76,6 +76,7 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
 Route::group(['controller' => DailyActivityController::class, 'prefix' => 'daily_activity', 'as' => 'daily_activity.'], function () {
     Route::get('/', 'index')->name('index');
     Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/datatable_student', 'datatable_student')->name('datatable_student');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');

@@ -171,18 +171,17 @@
                         <h5>Penolakan Surat Magang</h5>
                         <div class="col-md-6">
                             <div class="form-group has-icon-left">
-                                <label for="letter_file">Surat Balasan</label>
+                                <label for="subject_email">Alasan Penolakan</label>
                                 <div class="position-relative">
-                                    <input type="letter_file" class="form-control"
-                                        placeholder="letter_File Pengajuan Magang" value="{{ old('letter_file') }}"
-                                        id="letter_file" name="letter_file" required>
-                                    @error('letter_file')
+                                    <textarea class="form-control" placeholder="Alasan Penolakan" id="subject_email" name="subject_email" required>
+                                        {{ $data['subject_email'] }}
+                                    </textarea>
+                                    @error('subject_email')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                     <div class="form-control-icon">
                                         <span class="fa-fw select-all fas"></span>
                                     </div>
-                                    <p><span class="text-danger">*</span>File Ekstensi PDF (Maks 3 MB)</p>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +189,7 @@
                             <div class="form-group has-icon-left">
                                 <label for="letter_file">Surat Balasan</label>
                                 <div class="position-relative">
-                                    <input type="letter_file" class="form-control"
+                                    <input type="file" class="form-control"
                                         placeholder="letter_File Pengajuan Magang" value="{{ old('letter_file') }}"
                                         id="letter_file" name="letter_file" required>
                                     @error('letter_file')
