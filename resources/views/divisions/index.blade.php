@@ -3,12 +3,12 @@
 @section('css_after')
 @endsection
 
-@hasrole("Admin")
-@section('content-header')
-    <h3>Data Bagian</h3>
-@endsection
+@hasrole('Admin')
+    @section('content-header')
+        <h3>Data Bagian</h3>
+    @endsection
 
-@section('content')
+    @section('content')
         <!-- Basic Tables start -->
         <section class="section">
             <div class="card">
@@ -21,7 +21,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered" id="data-table" width="100%">
+                        <table class="table table-bordered text-nowrap" id="data-table" width="100%">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -39,60 +39,60 @@
                 </div>
             </div>
         </section>
-@endsection
+    @endsection
 @endrole
 
 @hasrole('Admin')
-@section('js_after')
-    <script>
-        $(document).ready(function() {
-            getDatatable();
-        });
-
-        let data_table = "";
-
-        function getDatatable() {
-            data_table = $("#data-table").DataTable({
-                ajax: {
-                    url: "{{ route('division.datatable') }}",
-                },
-                serverSide: true,
-                destroy: true,
-                order: [
-                    [3, 'desc']
-                ],
-                columns: [{
-                        "data": null,
-                        "sortable": false,
-                        searchable: false,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
-                    {
-                        name: 'action',
-                        data: 'action'
-                    },
-                    {
-                        name: 'name',
-                        data: 'name'
-                    },
-                    {
-                        name: 'section_division',
-                        data: 'section_division'
-                    },
-                    {
-                        name: 'description',
-                        data: 'description'
-                    },
-                    {
-                        name: 'created_at',
-                        data: 'created_at'
-                    },
-
-                ],
+    @section('js_after')
+        <script>
+            $(document).ready(function() {
+                getDatatable();
             });
-        }
-    </script>
-@endsection
+
+            let data_table = "";
+
+            function getDatatable() {
+                data_table = $("#data-table").DataTable({
+                    ajax: {
+                        url: "{{ route('division.datatable') }}",
+                    },
+                    serverSide: true,
+                    destroy: true,
+                    order: [
+                        [3, 'desc']
+                    ],
+                    columns: [{
+                            "data": null,
+                            "sortable": false,
+                            searchable: false,
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1;
+                            }
+                        },
+                        {
+                            name: 'action',
+                            data: 'action'
+                        },
+                        {
+                            name: 'name',
+                            data: 'name'
+                        },
+                        {
+                            name: 'section_division',
+                            data: 'section_division'
+                        },
+                        {
+                            name: 'description',
+                            data: 'description'
+                        },
+                        {
+                            name: 'created_at',
+                            data: 'created_at'
+                        },
+
+                    ],
+                });
+            }
+        </script>
+    @endsection
 @endrole

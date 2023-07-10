@@ -171,60 +171,6 @@
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="date_start">Tanggal Mulai magang</label>
-                                <div class="position-relative">
-                                    <input type="date" class="form-control" placeholder="Tanggal Mulai"
-                                        value="{{ old('date_start', $data['date_start']) }}" id="date_start"
-                                        name="date_start" required>
-                                    @error('date_start')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <div class="form-control-icon">
-                                        <span class="fa-fw select-all fas"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group has-icon-left">
-                                <label for="date_end">Tanggal Selesai Magang</label>
-                                <div class="position-relative">
-                                    <input type="date" class="form-control" placeholder="Tanggal Selesai"
-                                        value="{{ old('date_end', $data['date_end']) }}" id="date_end" name="date_end"
-                                        required>
-                                    @error('date_end')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <div class="form-control-icon">
-                                        <span class="fa-fw select-all fas"></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="file">File Pengajuan Magang</label>
-                                <div class="position-relative">
-                                    <input type="file" class="form-control" placeholder="File Pengajuan Magang"
-                                        id="file" name="file">
-                                    @error('file')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                    <div class="form-control-icon">
-                                        <span class="fa-fw select-all fas"></span>
-                                    </div>
-                                    <p><span class="text-danger">*</span>File Ekstensi PDF (Maks 3 MB)</p>
-                                    <a target="_blank" href="{{ asset('assets/pengajuan/' . $data['file']) }}"
-                                        class="btn btn-sm btn-primary">File Sebelumnya</a>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <a href="{{ route('apprentince.index') }}" class="btn btn-light-secondary me-3 mb-1">Kembali</a>

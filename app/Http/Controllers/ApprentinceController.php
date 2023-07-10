@@ -25,7 +25,10 @@ class ApprentinceController extends Controller
         $text = "Apakah yakin ingin menghapus data?";
         confirmDelete($title, $text);
 
-        return view('apprentinces.index');
+        $user_id = Auth::user()->id;
+        $data = Apprentince::where('user_id', $user_id)->get();
+
+        return view('apprentinces.index', compact('data'));
     }
 
     public function index_verification()
@@ -86,12 +89,10 @@ class ApprentinceController extends Controller
             ->addColumn('action', function ($data) {
                 $url_show = route('apprentince.show', Crypt::encrypt($data->id));
                 $url_edit = route('apprentince.edit', Crypt::encrypt($data->id));
-                $url_delete = route('apprentince.destroy', Crypt::encrypt($data->id));
 
                 $btn = "<div class='btn-group'>";
                 $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
                 $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
-                $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
                 $btn .= "</div>";
                 return $btn;
             })
@@ -259,8 +260,8 @@ class ApprentinceController extends Controller
                     ->attach($data['file_email']);
             });
 
-            $apprentince->delete();
             $user->delete();
+            $apprentince->delete();
 
             // Save Data
             DB::commit();

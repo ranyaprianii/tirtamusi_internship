@@ -8,16 +8,14 @@
 @endsection
 
 @section('content')
-        <!-- Basic Tables start -->
-        @hasrole('Admin')
+    <!-- Basic Tables start -->
+    @hasanyrole('Admin|Manager')
         <section class="section">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
-                    {{-- <a class="text-end btn btn-sm btn-outline-info" href="{{ route('attendance.create') }}"><i
-                            class="fa fa-plus"></i> Tambah Data</a> --}}
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -27,9 +25,8 @@
                                     <th>No.</th>
                                     <th>Aksi</th>
                                     <th>Nama</th>
-                                    <th>Lokasi</th>
-                                    <th>Waktu</th>
-                                    <th>Diinput pada</th>
+                                    <th>Waktu Masuk</th>
+                                    <th>Waktu Keluar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -39,18 +36,37 @@
                 </div>
             </div>
         </section>
-        @endrole
+    @endhasanyrole
 
-        @hasrole('Siswa/Mahasiswa')
+    @hasrole('Siswa/Mahasiswa')
         <section class="section">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('attendance.create') }}"><i
-                            class="fa fa-plus"></i> Tambah Data</a>
+                    @if ($absensiMasuk)
+                        @if ($absensiKeluar)
+                        @else
+                            <form action="{{ route('attendance.store_present_out') }}" method="post">
+                                @csrf
+                                @method('put')
+
+                                <input type="hidden" name="longitude" id="longitude">
+                                <input type="hidden" name="latitude" id="latitude">
+                                <button class="text-end btn btn-sm btn-outline-info" type="submit"
+                                    onclick="return confirm('Simpan Data?')"><i class="fa fa-plus"></i>
+                                    Presensi
+                                    Keluar</button>
+
+                            </form>
+                        @endif
+                    @else
+                        <a class="text-end btn btn-sm btn-outline-info" href="{{ route('attendance.create_present') }}"><i
+                                class="fa fa-plus"></i> Presensi Masuk</a>
+                    @endif
                 </div>
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="data-table" width="100%">
@@ -58,9 +74,8 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Lokasi</th>
-                                    <th>Waktu</th>
-                                    <th>Diinput pada</th>
+                                    <th>Waktu Masuk</th>
+                                    <th>Waktu Keluar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -70,45 +85,11 @@
                 </div>
             </div>
         </section>
-        @endrole
-
-        @hasrole('Manager')
-        <section class="section">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="header-title">
-                        <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
-                    </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('attendance.create') }}"><i
-                            class="fa fa-plus"></i> Tambah Data</a>
-                </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="data-table" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Nama Lengkap</th>
-                                    <th>Lokasi</th>
-                                    <th>Waktu</th>
-                                    <th>Diinput pada</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </section>
-        @endrole
-
-
+    @endrole
 @endsection
 
 @section('js_after')
-
-        @hasrole('Admin')
+    @hasanyrole('Admin|Manager')
         <script>
             $(document).ready(function() {
                 getDatatable();
@@ -123,9 +104,6 @@
                     },
                     serverSide: true,
                     destroy: true,
-                    order: [
-                        [6, 'desc']
-                    ],
                     columns: [{
                             "data": null,
                             "sortable": false,
@@ -143,134 +121,82 @@
                             data: 'apprentince_name'
                         },
                         {
-                            name: 'longitude',
-                            data: 'longitude'
+                            name: 'present_in',
+                            data: 'present_in'
                         },
                         {
-                            name: 'latitude',
-                            data: 'latitude'
+                            name: 'present_out',
+                            data: 'present_out'
                         },
-                        {
-                            name: 'status',
-                            data: 'status'
-                        },
-                        {
-                            name: 'created_at',
-                            data: 'created_at'
-                        },
-
-
                     ],
                 });
             }
         </script>
-        @endrole
+    @endhasanyrole
 
 
-@hasrole('Siswa/Mahasiswa')
-<script>
-    $(document).ready(function() {
-        getDatatable();
-    });
-
-    let data_table = "";
-
-    function getDatatable() {
-        data_table = $("#data-table").DataTable({
-            ajax: {
-                url: "{{ route('attendance.datatable_student') }}",
-            },
-            serverSide: true,
-            destroy: true,
-            order: [
-                [5, 'desc']
-            ],
-            columns: [{
-                    "data": null,
-                    "sortable": false,
-                    searchable: false,
-                    render: function(data, type, row, meta) {
-                        return meta.row + meta.settings._iDisplayStart + 1;
-                    }
-                },
-                {
-                    name: 'action',
-                    data: 'action'
-                },
-                {
-                    name: 'longitude',
-                    data: 'longitude'
-                },
-                {
-                    name: 'latitude',
-                    data: 'latitude'
-                },
-                {
-                    name: 'status',
-                    data: 'status'
-                },
-                {
-                    name: 'created_at',
-                    data: 'created_at'
-                },
-
-            ],
-        });
-    }
-</script>
-@endrole
-@hasrole('Manager')
- <script>
-        $(document).ready(function() {
-            getDatatable();
-        });
-
-        let data_table = "";
-
-        function getDatatable() {
-            data_table = $("#data-table").DataTable({
-                ajax: {
-                    url: "{{ route('attendance.datatable_manager') }}",
-                },
-                serverSide: true,
-                destroy: true,
-                order: [
-                    [5, 'desc']
-                ],
-                columns: [{
-                        "data": null,
-                        "sortable": false,
-                        searchable: false,
-                        render: function(data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        }
-                    },
-
-                    {
-                        name: 'apprentince_name',
-                        data: 'apprentince_name'
-                        },
-                    {
-                        name: 'longitude',
-                        data: 'longitude'
-                    },
-                    {
-                        name: 'latitude',
-                        data: 'latitude'
-                    },
-                    {
-                        name: 'status',
-                        data: 'status'
-                    },
-                    {
-                            name: 'created_at',
-                            data: 'created_at'
-                    },
-
-
-                ],
+    @hasrole('Siswa/Mahasiswa')
+        <script>
+            $(document).ready(function() {
+                getDatatable();
             });
-        }
-    </script>
-@endrole
+
+            let data_table = "";
+
+            function getDatatable() {
+                data_table = $("#data-table").DataTable({
+                    ajax: {
+                        url: "{{ route('attendance.datatable_student') }}",
+                    },
+                    serverSide: true,
+                    destroy: true,
+                    columns: [{
+                            "data": null,
+                            "sortable": false,
+                            searchable: false,
+                            render: function(data, type, row, meta) {
+                                return meta.row + meta.settings._iDisplayStart + 1;
+                            }
+                        },
+                        {
+                            name: 'action',
+                            data: 'action'
+                        },
+                        {
+                            name: 'present_in',
+                            data: 'present_in'
+                        },
+                        {
+                            name: 'present_out',
+                            data: 'present_out'
+                        },
+                    ],
+                });
+            }
+
+            function initGeolocation() {
+                if (navigator.geolocation) {
+                    let options = {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                    };
+                    // Call getCurrentPosition with success and failure callbacks
+                    navigator.geolocation.getCurrentPosition(success, fail, options);
+                } else {
+                    alert("Sorry, your browser does not support geolocation services.");
+                }
+            }
+
+            function success(position) {
+                $("#longitude").val(position.coords.longitude);
+                $("#latitude").val(position.coords.latitude);
+            }
+
+            function fail() {
+                // Could not obtain location
+            }
+
+            initGeolocation();
+        </script>
+    @endrole
 @endsection

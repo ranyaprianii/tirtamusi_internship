@@ -64,18 +64,12 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
     Route::get('/datatable', 'datatable')->name('datatable');
     Route::get('/datatable_student', 'datatable_student')->name('datatable_student');
     Route::get('/datatable_manager', 'datatable_manager')->name('datatable_manager');
-
-     /* Store dan Update */
-    Route::post('/store', 'store')->name('store');
-    Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
-
-     /* View */
-    Route::get('/', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
+    Route::get('/create_present', 'create_present')->name('create_present');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
+    Route::post('/store_present_in', 'store_present_in')->name('store_present_in');
+    Route::put('/store_present_out', 'store_present_out')->name('store_present_out');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 });
 
 
