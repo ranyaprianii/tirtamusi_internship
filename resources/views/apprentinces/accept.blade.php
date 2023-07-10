@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col--6">
                             <div class="form-group has-icon-left">
                                 <label for="date_end">Tanggal Selesai Magang</label>
                                 <div class="position-relative">
@@ -177,9 +177,8 @@
                             <div class="form-group has-icon-left">
                                 <label for="letter_file">Surat Balasan</label>
                                 <div class="position-relative">
-                                    <input type="file" class="form-control"
-                                        placeholder="Kirim Surat Balasan" value="{{ old('letter_file') }}"
-                                        id="letter_file" name="letter_file" required>
+                                    <input type="file" class="form-control" placeholder="Kirim Surat Balasan"
+                                        value="{{ old('letter_file') }}" id="letter_file" name="letter_file" required>
                                     @error('letter_file')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -192,69 +191,94 @@
                         </div>
                         <h5>Penempatan Bagian / Unit</h5>
                         <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="division">Bagian</label>
-                                <select class="form-control" name="division" id="division">
-                                    <option value="" selected>Pilih Salah Satu</option>
-                                    @foreach ($divisions as $item)
-                                        <option value="{{ Crypt::encrypt($item->id) }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('division')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                            <div class="form-check  form-check-inline">
+                                <input class="form-check-input" type="radio" name="radio_select"
+                                    id="select_division">
+                                <label class="form-check-label" for="select_division">
+                                    Bagian
+                                </label>
+                            </div>
+                            <div class="form-check  form-check-inline">
+                                <input class="form-check-input" type="radio" name="radio_select" id="select_unit">
+                                <label class="form-check-label" for="select_unit">
+                                    Unit
+                                </label>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="sub_division">Sub bagian</label>
-                                <select class="form-control" name="sub_division" id="sub_division">
-                                    <option value="" selected>Pilih Salah Satu</option>
-                                    @foreach ($divisions as $item)
-                                        @foreach ($item->section_divisions as $item2)
-                                            <option value="{{ Crypt::encrypt($item2->id) }}">{{ $item2->name }}</option>
-                                        @endforeach
-                                    @endforeach
-                                </select>
-                                @error('sub_division')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                        <div class="division_group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="division">Bagian</label>
+                                        <select class="form-control" name="division" id="division">
+                                            <option value="" selected>Pilih Salah Satu</option>
+                                            @foreach ($divisions as $item)
+                                                <option value="{{ Crypt::encrypt($item->id) }}">{{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('division')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="sub_division">Sub bagian</label>
+                                        <select class="form-control" name="sub_division" id="sub_division">
+                                            <option value="" selected>Pilih Salah Satu</option>
+                                            @foreach ($divisions as $item)
+                                                @foreach ($item->section_divisions as $item2)
+                                                    <option value="{{ Crypt::encrypt($item2->id) }}">{{ $item2->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endforeach
+                                        </select>
+                                        @error('sub_division')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="unit">Unit</label>
-                                <select class="form-control" name="unit" id="unit">
-                                    <option value="" selected>Pilih Salah Satu</option>
-                                    @foreach ($units as $item)
-                                        <option value="{{ Crypt::encrypt($item->id) }}">{{ $item->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('unit')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                        <div class="unit_group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="unit">Unit</label>
+                                        <select class="form-control" name="unit" id="unit">
+                                            <option value="" selected>Pilih Salah Satu</option>
+                                            @foreach ($units as $item)
+                                                <option value="{{ Crypt::encrypt($item->id) }}">{{ $item->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('unit')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group has-icon-left">
+                                        <label for="sub_unit">Sub unit</label>
+                                        <select class="form-control" name="sub_unit" id="sub_unit">
+                                            <option value="" selected>Pilih Salah Satu</option>
+                                            @foreach ($units as $item)
+                                                @foreach ($item->section_units as $item2)
+                                                    <option value="{{ Crypt::encrypt($item2->id) }}">{{ $item2->name }}
+                                                    </option>
+                                                @endforeach
+                                            @endforeach
+                                        </select>
+                                        @error('sub_unit')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-icon-left">
-                                <label for="sub_unit">Sub unit</label>
-                                <select class="form-control" name="sub_unit" id="sub_unit">
-                                    <option value="" selected>Pilih Salah Satu</option>
-                                    @foreach ($units as $item)
-                                        @foreach ($item->section_units as $item2)
-                                            <option value="{{ Crypt::encrypt($item2->id) }}">{{ $item2->name }}</option>
-                                        @endforeach
-                                    @endforeach
-                                </select>
-                                @error('sub_unit')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-                        </div>
-
-
                     </div>
                     <div class="col-12 d-flex justify-content-end mt-3">
                         <a href="{{ route('apprentince.index_verification') }}"
@@ -285,6 +309,27 @@
             $("#sub_unit").select2({
                 width: '100%'
             });
+
+            $(".division_group").hide()
+            $(".unit_group").hide()
+
+            filter();
         });
+
+        function filter() {
+            $("#select_division").click(function() {
+                $(".division_group").show()
+                $(".unit_group").hide()
+                $("#unit").val('').trigger('change');
+                $("#sub_unit").val('').trigger('change');
+            })
+
+            $("#select_unit").click(function() {
+                $(".unit_group").show()
+                $(".division_group").hide()
+                $("#disivion").val('').trigger('change');
+                $("#sub_division").val('').trigger('change');
+            })
+        }
     </script>
 @endsection

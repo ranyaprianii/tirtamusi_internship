@@ -15,10 +15,12 @@
                 <div class="header-title">
                     <h4 class="card-title">Data Siswa/Mahasiswa</h4>
                 </div>
-                @hasanyrole('Siswa/Mahasiswa|Calon Magang')
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('apprentince.create') }}"><i
-                            class="fa fa-plus"></i> Tambah Data</a>
-                @endhasanyrole
+                @role('Calon Magang')
+                    @if (count($data) == 0)
+                        <a class="text-end btn btn-sm btn-outline-info" href="{{ route('apprentince.create') }}"><i
+                                class="fa fa-plus"></i> Tambah Data</a>
+                    @endif
+                @endrole
 
             </div>
             <div class="card-body">
