@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="header-title">
-                    <h4 class="card-title">Data Siswa/Mahasiswa</h4>
+                    <h4 class="card-title">Pengajuan Magang</h4>
                 </div>
                 @role('Calon Magang')
                     @if (count($data) == 0)

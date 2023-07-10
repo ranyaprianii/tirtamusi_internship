@@ -8,37 +8,37 @@
 @endsection
 
 @section('content')
-        <!-- Basic Tables start -->
-        <section class="section">
-            <div class="card">
-                <div class="card-header d-flex justify-content-between">
-                    <div class="header-title">
-                        <h4 class="card-title">Data Penilaian</h4>
-                    </div>
-                    <a class="text-end btn btn-sm btn-outline-info" href="{{ route('internship_score.create') }}"><i
-                            class="fa fa-plus"></i> Tambah Data</a>
+    <!-- Basic Tables start -->
+    <section class="section">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Data Penilaian</h4>
                 </div>
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="data-table" width="100%">
-                            <thead>
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Aksi</th>
-                                    <th>Nama Siswa/Mahasiswa</th>
-                                    <th>Jumlah</th>
-                                    <th>Rata-rata</th>
+                <a class="text-end btn btn-sm btn-outline-info" href="{{ route('internship_score.create') }}"><i
+                        class="fa fa-plus"></i> Tambah Data</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="data-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Aksi</th>
+                                <th>Nama Siswa/Mahasiswa</th>
+                                <th>Jumlah</th>
+                                <th>Rata-rata</th>
 
-                                    <th>Diinput pada</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                                <th>Diinput pada</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 @endsection
 
 @section('js_after')

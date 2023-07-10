@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        @hasanyrole('Admin|Manager')
+        @hasrole('Admin')
             <div class="sidebar-menu">
                 <ul class="menu">
                     <li class="sidebar-title">Menu</li>
@@ -53,16 +53,9 @@
                         </a>
                     </li>
 
+
                     <li class="sidebar-item active">
-                        <a href="{{ route('tatib') }}" class='sidebar-link'>
-                            <i class="bi bi-journal-check"></i>
-                            <span>Panduan Magang</span>
-                        </a>
-
-                    </li>
-
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
+                        <a href="{{ route('user.index') }}" class='sidebar-link'>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-person-fill-gear" viewBox="0 0 16 16">
                                 <path
@@ -70,11 +63,6 @@
                             </svg>
                             <span>Kelola Pengguna</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('user.index') }}">Pengguna</a>
-                            </li>
-                        </ul>
                     </li>
 
                     <li class="sidebar-item  has-sub">
@@ -165,7 +153,92 @@
                     </li>
                 </ul>
             </div>
-        @endhasanyrole
+        @endhasrole
+
+        @hasrole('Manager')
+        <div class="sidebar-menu">
+            <ul class="menu">
+                <li class="sidebar-title">Menu</li>
+
+                <li class="sidebar-item active ">
+                    <a href="{{ route('home') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item active">
+                    <a href="{{ route('tatib') }}" class='sidebar-link'>
+                        <i class="bi bi-journal-check"></i>
+                        <span>Panduan Penilaian Magang</span>
+                    </a>
+
+                </li>
+
+
+                <li class="sidebar-item">
+                    <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                        <span>Data Siswa/Mahasiswa</span>
+                    </a>
+
+                </li>
+
+
+
+
+                <li class="sidebar-item  has-sub">
+                    <a href="#" class='sidebar-link'>
+                        <i class="bi bi-clipboard-data-fill"></i>
+                        <span>Aktivitas Magang</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('attendance.index') }}">Presensi</a>
+                        </li>
+                        <li class="submenu-item ">
+                            <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+                <li class="sidebar-item has-sub ">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-bookmark-fill"></i>
+                        <span>Sertifikat Magang</span>
+                    </a>
+                    <ul class="submenu ">
+                        <li class="submenu-item ">
+                            <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item ">
+                    <a href="index.html" class='sidebar-link'>
+                        <i class="bi bi-postcard-fill"></i>
+                        <span>Laporan</span>
+                    </a>
+                </li>
+
+
+                <li class="sidebar-item active">
+                    <a href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();"
+                        class='sidebar-link'>
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span>Log Out</span>
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+                </li>
+            </ul>
+        </div>
+    @endhasrole
 
         @role('Siswa/Mahasiswa')
             <div class="sidebar-menu">
@@ -182,7 +255,7 @@
                     <li class="sidebar-item active">
                         <a href="{{ route('tatib') }}" class='sidebar-link'>
                             <i class="bi bi-journal-check"></i>
-                            <span>Panduan Pendaftaran Magang</span>
+                            <span>Panduan Pengisian Aktivitas Magang</span>
                         </a>
 
                     </li>
@@ -190,7 +263,7 @@
                     <li class="sidebar-item ">
                         <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
                             <i class="bi bi-postcard-fill"></i>
-                            <span>Data Siswa/Mahasiswa</span>
+                            <span>Data Pengajuan Magang</span>
                         </a>
                     </li>
 
@@ -250,21 +323,17 @@
                     <li class="sidebar-item active">
                         <a href="{{ route('tatib') }}" class='sidebar-link'>
                             <i class="bi bi-journal-check"></i>
-                            <span>Panduan Magang</span>
+                            <span>Panduan Pengajuan Magang</span>
                         </a>
 
                     </li>
 
-                    <li class="sidebar-item  has-sub">
-                        <a href="#" class='sidebar-link'>
+                    <li class="sidebar-item">
+                        <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
                             <i class="bi bi-file-earmark-text-fill"></i>
                             <span>Pengajuan Magang</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('apprentince.index') }}">Data Siswa/Mahasiswa</a>
-                            </li>
-                        </ul>
+                       
                     </li>
 
                     <li class="sidebar-item active">

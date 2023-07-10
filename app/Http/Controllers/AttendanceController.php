@@ -23,7 +23,7 @@ class AttendanceController extends Controller
         $text = "Apakah yakin ingin menghapus data?";
         confirmDelete($title, $text);
 
-        if (Auth::user()->hasRole('Siswa/Mahasiswa')) {
+        if (Auth::user()->hasrole('Siswa/Mahasiswa')) {
             $user_id = Auth::user()->id;
             $apprentince = Apprentince::where('user_id', $user_id)->first();
             $absensiMasuk = Attendance::where('apprentince_id', $apprentince->id)->whereDate('present_in', Carbon::today())->first();

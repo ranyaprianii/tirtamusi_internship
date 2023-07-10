@@ -39,7 +39,7 @@
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Sertifikat</h6>
                                         <a href="#">Selengkapnya</a>
-                                        <h6 class="font-extrabold mb-0">183.000</h6>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -57,7 +57,7 @@
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Laporan</h6>
                                         <a href="#">Selengkapnya</a>
-                                        <h6 class="font-extrabold mb-0">80.000</h6>
+
                                     </div>
                                 </div>
                             </div>
@@ -72,7 +72,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">User</h5>
-                                        <a href="{{ route('logout') }}">Log out</a>
+
                                         <h6 class="text-muted mb-0">Admin</h6>
                                     </div>
                                 </div>
@@ -98,7 +98,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
-                                        <h6 class="text-muted font-semibold">Data Pengajuan Magang</h6>
+                                        <h6 class="text-muted font-semibold">Data Pengajuan</h6>
                                         <a href="{{ route('apprentince.index') }}">Selengkapnya</a>
 
                                     </div>
@@ -149,70 +149,18 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">User</h5>
-                                        <a href="{{ route('logout') }}">Log out</a>
-                                        <h6 class="text-muted mb-0">Admin</h6>
+
+                                        <h6 class="text-muted mb-0">Rany Apriani</h6>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
 
-            <h3>Penggunaan Aplikasi</h3>
-            <br>
-            <section class="section">
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <img class="card-img-top img-fluid"
-                                    src="{{ asset('mazer-admin/assets/images/samples/origami.jpg') }}" alt="Card image cap"
-                                    style="height: 20rem" />
-                                <div class="card-body">
-                                    <h4 class="card-title">Top Image Cap</h4>
-                                    <p class="card-text">
-                                        Jelly-o sesame snaps cheesecake topping. Cupcake fruitcake macaroon donut
-                                        pastry gummies tiramisu chocolate bar muffin. Dessert bonbon caramels brownie chocolate
-                                        bar
-                                        chocolate tart dragée.
-                                    </p>
-                                    <p class="card-text">
-                                        Cupcake fruitcake macaroon donut pastry gummies tiramisu chocolate bar muffin.
-                                    </p>
-                                    <button class="btn btn-primary block">Update now</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="card-body">
-                                    <h4 class="card-title">Bottom Image Cap</h4>
-                                    <p class="card-text">
-                                        Jelly-o sesame snaps cheesecake topping. Cupcake fruitcake macaroon donut
-                                        pastry gummies tiramisu chocolate bar muffin. Dessert bonbon caramels brownie chocolate
-                                        bar
-                                        chocolate tart dragée.
-                                    </p>
-                                    <p class="card-text">
-                                        Cupcake fruitcake macaroon donut pastry gummies tiramisu chocolate bar
-                                        muffin.
-                                    </p>
-                                    <small class="text-muted">Last updated 3 mins ago</small>
-                                </div>
-                                <img class="card-img-bottom img-fluid"
-                                    src="{{ asset('mazer-admin/assets/images/samples/water.jpg') }}" alt="Card image cap"
-                                    style="height: 20rem; object-fit: cover;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <h3>Tata Tertib Magang</h3>
-            <br>
             <section class="section">
                 <div class="row">
                     <div class="col-12">
@@ -224,9 +172,11 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <ol>
-                                            <li>Hadir sesuai dengan tanggal pada surat balasan pukul 07.00 WIB di PDAM Tirta Musi
+                                            <li>Hadir sesuai dengan tanggal pada surat balasan pukul 07.00 WIB di PDAM Tirta
+                                                Musi
                                                 Palembang.
-                                                (Jl. Rambutan Ujung No. 1 Bagian SDM) dikarenakan akan mengikuti apel pagi terlebih
+                                                (Jl. Rambutan Ujung No. 1 Bagian SDM) dikarenakan akan mengikuti apel pagi
+                                                terlebih
                                                 dahulu.
                                             </li>
                                             <br>
@@ -244,12 +194,15 @@
                                         </ol>
 
                                         <ul>
-                                            <li>Perempuan : Rok dasar hitam, baju kemeja (bebas pantas) / seragam sekolah / seragam
-                                                kampus, almamater dan sepatu pantofel / flatshoes / sepatu sekolah berwarna hitam.
+                                            <li>Perempuan : Rok dasar hitam, baju kemeja (bebas pantas) / seragam sekolah /
+                                                seragam
+                                                kampus, almamater dan sepatu pantofel / flatshoes / sepatu sekolah berwarna
+                                                hitam.
                                             </li>
                                             <br>
                                             <li>Laki - laki : Sepan dasar hitam, baju kemeja (bebas pantas) / seragam sekolah /
-                                                seragam kampus, almamater dan sepatu pantofel / sepatu sekolah berwarna hitam.</li>
+                                                seragam kampus, almamater dan sepatu pantofel / sepatu sekolah berwarna hitam.
+                                            </li>
                                         </ul>
                                     </div>
                                     <div class="col-md-6">
@@ -269,12 +222,12 @@
                                                         class="d-block w-100" alt="...">
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset('landing_page/images/tirta2.jpg') }}" class="d-block w-100"
-                                                        alt="...">
+                                                    <img src="{{ asset('landing_page/images/tirta2.jpg') }}"
+                                                        class="d-block w-100" alt="...">
                                                 </div>
                                                 <div class="carousel-item">
-                                                    <img src="{{ asset('landing_page/images/tirta3.jpg') }}" class="d-block w-100"
-                                                        alt="...">
+                                                    <img src="{{ asset('landing_page/images/tirta3.jpg') }}"
+                                                        class="d-block w-100" alt="...">
                                                 </div>
                                             </div>
                                             <button class="carousel-control-prev" type="button"
@@ -295,8 +248,8 @@
 
                                 </div>
                                 <div class="col-12 d-flex justify-content-end mt-3">
-                                    <a href="{{ route('apprentince.index') }}" class="btn btn-primary me-3 mb-1">Ke User
-                                        Profile</a>
+                                    <a href="{{ route('tatib') }}" class="btn btn-primary me-3 mb-1">Ke Panduan Pengisian
+                                        Aktivitas Magang</a>
                                 </div>
                             </div>
 
@@ -311,20 +264,21 @@
 
     @role('Calon Magang')
         <section class="row">
-            <div class="col-12 ">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Informasi</h4>
-                            </div>
-                            <div class="card-body">
-
-                            </div>
-                        </div>
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Informasi</h4>
+                    </div>
+                    <div class="card-body">
+                        <p>Sebelum mengisi data pengajuan magang, silahkan baca terlebih dahulu panduan pengajuan magang
+                            pada sidebar disamping. Setelah itu silahkan ikuti arahan sesuai panduan yang tertera.
+                        </p>
+                        <hr>
+                        Setelah pengisian data pengajuan magang, silahkan cek email terdaftar secara berkala.
                     </div>
                 </div>
             </div>
+
         </section>
     @endrole
 
@@ -372,4 +326,5 @@
             </div>
         </div>
     </section>
+
 @endsection
