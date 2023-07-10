@@ -41,7 +41,7 @@
         </section>
         @endrole
 
-        @hasrole('Mahasiswa')
+        @hasrole('Siswa/Mahasiswa')
         <section class="section">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
@@ -167,7 +167,7 @@
         @endrole
 
 
-@hasrole('Mahasiswa')
+@hasrole('Siswa/Mahasiswa')
 <script>
     $(document).ready(function() {
         getDatatable();
