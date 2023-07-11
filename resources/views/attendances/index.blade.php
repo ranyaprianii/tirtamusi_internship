@@ -139,6 +139,7 @@
         <script>
             $(document).ready(function() {
                 getDatatable();
+                initGeolocation();
             });
 
             let data_table = "";
@@ -176,12 +177,8 @@
 
             function initGeolocation() {
                 if (navigator.geolocation) {
-                    let options = {
-                        enableHighAccuracy: true,
-                        timeout: 5000,
-                    };
                     // Call getCurrentPosition with success and failure callbacks
-                    navigator.geolocation.getCurrentPosition(success, fail, options);
+                    navigator.geolocation.getCurrentPosition(success, fail);
                 } else {
                     alert("Sorry, your browser does not support geolocation services.");
                 }
@@ -195,8 +192,6 @@
             function fail() {
                 // Could not obtain location
             }
-
-            initGeolocation();
         </script>
     @endrole
 @endsection
