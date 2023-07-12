@@ -72,8 +72,8 @@
                         data: 'action'
                     },
                     {
-                        name: 'apprentince_id',
-                        data: 'apprentince_id'
+                        name: 'apprentince_name',
+                        data: 'apprentince_name'
                     },
                     {
                         name: 'total_score',

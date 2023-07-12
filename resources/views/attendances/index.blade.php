@@ -27,6 +27,7 @@
                                     <th>Nama</th>
                                     <th>Waktu Masuk</th>
                                     <th>Waktu Keluar</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +77,7 @@
                                     <th>Aksi</th>
                                     <th>Waktu Masuk</th>
                                     <th>Waktu Keluar</th>
+                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -128,6 +130,10 @@
                             name: 'present_out',
                             data: 'present_out'
                         },
+                        {
+                            name: 'status',
+                            data: 'status'
+                        },
                     ],
                 });
             }
@@ -170,6 +176,10 @@
                         {
                             name: 'present_out',
                             data: 'present_out'
+                        },
+                        {
+                            name: 'status',
+                            data: 'status'
                         },
                     ],
                 });

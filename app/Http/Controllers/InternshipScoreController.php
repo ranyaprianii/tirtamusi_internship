@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apprentince;
 use Illuminate\Http\Request;
 use App\Models\InternshipScore;
 use Yajra\DataTables\DataTables;
@@ -26,10 +27,13 @@ class InternshipScoreController extends Controller
     {
         $model = InternshipScore::query();
         return DataTables::of($model)
-        ->editColumn('created_at', function($data){
-            $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
-            return $dateformat;
-        })
+            ->editColumn('created_at', function ($data) {
+                $dateformat = Carbon::parse($data['created_at'])->translatedFormat('d F Y - H:i');
+                return $dateformat;
+            })
+            ->addColumn('apprentince_name', function ($data) {
+                return $data->apprentince->name;
+            })
             ->addColumn('action', function ($data) {
                 $url_show = route('internship_score.show', Crypt::encrypt($data->id));
                 $url_edit = route('internship_score.edit', Crypt::encrypt($data->id));
@@ -48,8 +52,8 @@ class InternshipScoreController extends Controller
 
     public function create()
     {
-        $internship_score = InternshipScore::all();
-        return view('internship_scores.create', compact('internship_score'));
+        $apprentinces = Apprentince::whereNull('sertificate')->get();
+        return view('internship_scores.create', compact('apprentinces'));
     }
 
     public function edit($id)
@@ -71,30 +75,66 @@ class InternshipScoreController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'discipline_score'=>'required',
-                'teamwork_score'=>'required',
-                'initiative_score'=>'required',
-                'diligent_score'=>'required',
-                'responsibility_score'=>'required',
-                'attitude_score'=>'required',
-                'performance_score'=>'required',
-                'total_score'=>'required',
-                'average_score'=>'required',
-
+                'apprentince_id' => 'required',
+                'discipline_score' => 'required',
+                'teamwork_score' => 'required',
+                'initiative_score' => 'required',
+                'diligent_score' => 'required',
+                'responsibility_score' => 'required',
+                'attitude_score' => 'required',
+                'performance_score' => 'required',
             ]);
 
+            $apprentince_id = Crypt::decrypt($request->apprentince_id);
+            $check_apprentince = InternshipScore::where('apprentince_id', $apprentince_id)->first();
+
+            // Calculate Score
+            $discipline_score = $request->discipline_score;
+            $teamwork_score = $request->teamwork_score;
+            $initiative_score = $request->initiative_score;
+            $diligent_score = $request->diligent_score;
+            $responsibility_score = $request->responsibility_score;
+            $attitude_score = $request->attitude_score;
+            $performance_score = $request->performance_score;
+
+            $total_score = $discipline_score + $teamwork_score + $initiative_score + $diligent_score + $responsibility_score + $attitude_score + $performance_score;
+            $average_score = $total_score / 7;
+
+            // Predikat
+            if ($average_score >= 8.5 || $average_score <= 10) {
+                $predicate = InternshipScore::PREDICATE_STATUS_A;
+            }
+
             // Create Data
-            $input = $request->all();
+            if ($check_apprentince) {
+                // If Data Error
+                DB::rollBack();
 
+                // Alert & Redirect
+                Alert::toast('Data Penilaian Sudah Ada!', 'error');
+                return redirect()->back();
+            } else {
+                $internship_score = new InternshipScore();
+                $internship_score->apprentince_id =  $apprentince_id;
+                $internship_score->discipline_score = $discipline_score;
+                $internship_score->teamwork_score = $teamwork_score;
+                $internship_score->initiative_score = $initiative_score;
+                $internship_score->diligent_score = $diligent_score;
+                $internship_score->responsibility_score = $responsibility_score;
+                $internship_score->attitude_score = $attitude_score;
+                $internship_score->performance_score = $performance_score;
+                $internship_score->total_score = $total_score;
+                $internship_score->average_score = $average_score;
+                $internship_score->predicate = $predicate;
+                $internship_score->save();
 
-            InternshipScore::create($input);
+                // Save Data
+                DB::commit();
 
-            // Save Data
-            DB::commit();
-
-            // Alert & Redirect
-            Alert::toast('Data Berhasil Disimpan', 'success');
-            return redirect()->route('internship_score.index');
+                // Alert & Redirect
+                Alert::toast('Data Berhasil Disimpan', 'success');
+                return redirect()->route('internship_score.index');
+            }
         } catch (\Exception $e) {
             // If Data Error
             DB::rollBack();
@@ -111,19 +151,47 @@ class InternshipScoreController extends Controller
             DB::beginTransaction();
 
             $request->validate([
-                'name' => 'required',
-                'description' => 'required',
+                'discipline_score' => 'required',
+                'teamwork_score' => 'required',
+                'initiative_score' => 'required',
+                'diligent_score' => 'required',
+                'responsibility_score' => 'required',
+                'attitude_score' => 'required',
+                'performance_score' => 'required',
             ]);
 
-            // Update Data
             $id = Crypt::decrypt($id);
+
+            // Calculate Score
+            $discipline_score = $request->discipline_score;
+            $teamwork_score = $request->teamwork_score;
+            $initiative_score = $request->initiative_score;
+            $diligent_score = $request->diligent_score;
+            $responsibility_score = $request->responsibility_score;
+            $attitude_score = $request->attitude_score;
+            $performance_score = $request->performance_score;
+
+            $total_score = $discipline_score + $teamwork_score + $initiative_score + $diligent_score + $responsibility_score + $attitude_score + $performance_score;
+            $average_score = $total_score / 7;
+
+            // Predikat
+            if ($average_score >= 8.5 || $average_score <= 10) {
+                $predicate = InternshipScore::PREDICATE_STATUS_A;
+            }
+
+            // Update Data
             $internship_score = InternshipScore::find($id);
-
-            $input = $request->all();
-
-
-
-            $internship_score->update($input);
+            $internship_score->discipline_score = $discipline_score;
+            $internship_score->teamwork_score = $teamwork_score;
+            $internship_score->initiative_score = $initiative_score;
+            $internship_score->diligent_score = $diligent_score;
+            $internship_score->responsibility_score = $responsibility_score;
+            $internship_score->attitude_score = $attitude_score;
+            $internship_score->performance_score = $performance_score;
+            $internship_score->total_score = $total_score;
+            $internship_score->average_score = $average_score;
+            $internship_score->predicate = $predicate;
+            $internship_score->save();
 
             // Save Data
             DB::commit();

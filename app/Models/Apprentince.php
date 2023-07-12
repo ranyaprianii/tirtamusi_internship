@@ -14,6 +14,7 @@ class Apprentince extends Model
     const STATUS_NOT_CONFIRMED = "Belum Dikonfirmasi";
     const STATUS_APPROVED = "Disetujui";
     const STATUS_REJECTED = "Ditolak";
+    const STATUS_DONE = "Selesai";
 
     // Gender
     const GENDER_MAN = "Laki-laki";
@@ -24,4 +25,9 @@ class Apprentince extends Model
         self::GENDER_WOMAN => self::GENDER_WOMAN,
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }

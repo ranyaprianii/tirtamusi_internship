@@ -106,9 +106,8 @@
                         },
                         {
                             name: 'created_at',
-                            date: 'created_at'
+                            data: 'created_at'
                         },
-
                     ],
                 });
             }

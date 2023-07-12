@@ -38,7 +38,7 @@ class ApprentinceController extends Controller
 
     public function datatable()
     {
-        $model = Apprentince::query();
+        $model = Apprentince::where('status', '!=', Apprentince::STATUS_NOT_CONFIRMED);
 
         return DataTables::of($model)
             ->editColumn('created_at', function ($data) {

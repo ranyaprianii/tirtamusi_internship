@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Apprentince;
 use Illuminate\Http\Request;
 use App\Models\Attendance;
-use Barryvdh\DomPDF\PDF;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class AttendanceController extends Controller
@@ -23,16 +23,16 @@ class AttendanceController extends Controller
         $text = "Apakah yakin ingin menghapus data?";
         confirmDelete($title, $text);
 
-        if (Auth::user()->hasrole('Siswa/Mahasiswa')) {
+        if (Auth::user()->hasRole('Siswa/Mahasiswa')) {
             $user_id = Auth::user()->id;
             $apprentince = Apprentince::where('user_id', $user_id)->first();
             $absensiMasuk = Attendance::where('apprentince_id', $apprentince->id)->whereDate('present_in', Carbon::today())->first();
             $absensiKeluar = $absensiMasuk ? $absensiMasuk->present_out : null;
 
             return view('attendances.index', compact('absensiMasuk', 'absensiKeluar'));
+        } else {
+            return view('attendances.index');
         }
-
-        return view('attendances.index');
     }
 
     public function report_pdf()
@@ -54,6 +54,17 @@ class AttendanceController extends Controller
                 $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
                 return $formatedDate;
             })
+            ->editColumn('status', function ($data) {
+                if ($data->status == Attendance::STATUS_PRESENT) {
+                    $badge = "<span class='badge bg-success'>" .  Attendance::STATUS_PRESENT . "</span>";
+                } elseif ($data->status == Attendance::STATUS_PERMIT) {
+                    $badge = "<span class='badge bg-warning'>" .  Attendance::STATUS_PERMIT . "</span>";
+                } elseif ($data->status == Attendance::STATUS_SICK) {
+                    $badge = "<span class='badge bg-danger'>" .  Attendance::STATUS_SICK . "</span>";
+                }
+
+                return $badge;
+            })
             ->addColumn('apprentince_name', function ($data) {
                 return $data->apprentince->name;
             })
@@ -66,6 +77,7 @@ class AttendanceController extends Controller
 
                 return $btn;
             })
+            ->rawColumns(['status', 'action'])
             ->toJson();
     }
 
@@ -80,6 +92,17 @@ class AttendanceController extends Controller
                 $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->translatedFormat('d F Y - H:i');
                 return $formatedDate;
             })
+            ->editColumn('status', function ($data) {
+                if ($data->status == Attendance::STATUS_PRESENT) {
+                    $badge = "<span class='badge bg-success'>" .  Attendance::STATUS_PRESENT . "</span>";
+                } elseif ($data->status == Attendance::STATUS_PERMIT) {
+                    $badge = "<span class='badge bg-warning'>" .  Attendance::STATUS_PERMIT . "</span>";
+                } elseif ($data->status == Attendance::STATUS_SICK) {
+                    $badge = "<span class='badge bg-danger'>" .  Attendance::STATUS_SICK . "</span>";
+                }
+
+                return $badge;
+            })
             ->addColumn('action', function ($data) {
                 $url_show = route('attendance.show', Crypt::encrypt($data->id));
 
@@ -89,6 +112,7 @@ class AttendanceController extends Controller
 
                 return $btn;
             })
+            ->rawColumns(['status', 'action'])
             ->toJson();
     }
 
