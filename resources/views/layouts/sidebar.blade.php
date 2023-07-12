@@ -134,7 +134,7 @@
                     <li class="sidebar-item ">
                         <a href="index.html" class='sidebar-link'>
                             <i class="bi bi-postcard-fill"></i>
-                            <span>Laporan</span>
+                            <span>Laporan Magang</span>
                         </a>
                     </li>
 
@@ -333,7 +333,7 @@
                             <i class="bi bi-file-earmark-text-fill"></i>
                             <span>Pengajuan Magang</span>
                         </a>
-                       
+
                     </li>
 
                     <li class="sidebar-item active">

@@ -4,7 +4,7 @@
 @endsection
 
 @section('content-header')
-    <h3>Data Siswa/Mahasiswa</h3>
+    <h3>Data Pengajuan Magang</h3>
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="header-title">
-                    <h4 class="card-title">Data Siswa/Mahasiswa</h4>
+                    <h4 class="card-title">Data Pengajuan Siswa/Mahasiswa</h4>
                 </div>
             </div>
             <div class="card-body">
