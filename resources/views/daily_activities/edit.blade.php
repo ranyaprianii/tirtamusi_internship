@@ -21,19 +21,18 @@
                     {{ session('error') }}
                 </div>
             @endif
-                <form action="{{ route('daily_activity.store') }}" method="post"
-                enctype="multipart/form-data">
+                <form action="{{ route('daily_activity.store') }}" method="POST">
                     @csrf
+                    @method('post')
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group has-icon-left">
                                 <label for="activity">Aktivitas / Catatan Jobdesk</label>
                                 <div class="position-relative">
-                                    <textarea class="form-control"
-                                        value="{{ old('activity', $data['activity']) }}" id="activity" name="activity" required> </textarea>
-                                        @error('activity')
+                                    <textarea type="text" class="form-control" placeholder="Catatan" id="activity" name="activity" required>{{ old('activity', $data['activity']) }}</textarea>
+                                    @error('activity')
                                         <span class="text-danger">{{ $message }}</span>
-                                        @enderror
+                                    @enderror
                                     <div class="form-control-icon">
                                         <span class="fa-fw select-all fas"></span>
                                     </div>

@@ -75,8 +75,11 @@ class DailyActivityController extends Controller
         $id = Crypt::decrypt($id);
         $data = DailyActivity::find($id);
 
+
         return view('daily_activities.edit', compact('data'));
     }
+
+
 
     public function store(Request $request)
     {
@@ -94,9 +97,14 @@ class DailyActivityController extends Controller
             $apprentince = Apprentince::where('user_id', $user_id)->first();
             $apprentince_id = $apprentince->id;
 
-            $input['apprentince_id']=$apprentince_id;
-
-            DailyActivity::create($input);
+            // Jika terdapat data dengan 'apprentince_id' yang sama dalam database, maka lakukan update, jika tidak, lakukan create
+            $dailyActivity = DailyActivity::where('apprentince_id', $apprentince_id)->first();
+            if ($dailyActivity) {
+                $dailyActivity->update($input);
+            } else {
+                $input['apprentince_id'] = $apprentince_id;
+                DailyActivity::create($input);
+            }
 
             // Save Data
             DB::commit();
@@ -113,6 +121,7 @@ class DailyActivityController extends Controller
             return redirect()->back()->with('error', 'Data Tidak Berhasil Disimpan' . $e->getMessage());
         }
     }
+
 
     public function update($id, Request $request)
     {
