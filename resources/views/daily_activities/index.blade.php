@@ -16,6 +16,8 @@
                     <div class="header-title">
                         <h4 class="card-title">Aktivitas Siswa/Mahasiswa</h4>
                     </div>
+                    <a class="text-end btn btn-sm btn-danger" href="#"><i
+                        class="fa fa-plus"></i> Cetak PDF</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -36,6 +38,8 @@
             </div>
         </section>
     @endhasanyrole
+
+
 
     @role('Siswa/Mahasiswa')
         <!-- Basic Tables start -->

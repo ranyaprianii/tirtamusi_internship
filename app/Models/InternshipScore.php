@@ -17,6 +17,12 @@ class InternshipScore extends Model
     const PREDICATE_STATUS_D = "D";
     const PREDICATE_STATUS_E = "E";
 
+    const DESCRIPTION_STATUS_A = "Baik Sekali";
+    const DESCRIPTION_STATUS_B = "Baik";
+    const DESCRIPTION_STATUS_C = "Cukup";
+    const DESCRIPTION_STATUS_D = "Kurang";
+    const DESCRIPTION_STATUS_E = "Kurang Sekali";
+
     public function apprentince()
     {
         return $this->belongsTo(Apprentince::class, 'apprentince_id', 'id');

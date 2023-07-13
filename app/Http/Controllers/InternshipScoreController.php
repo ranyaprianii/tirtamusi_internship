@@ -67,7 +67,12 @@ class InternshipScoreController extends Controller
 
     public function show($id)
     {
+        $id = Crypt::decrypt($id);
+        $data = InternshipScore::find($id);
+
+        return view('internship_scores.show', compact('data'));
     }
+
 
     public function store(Request $request)
     {
@@ -100,9 +105,30 @@ class InternshipScoreController extends Controller
             $total_score = $discipline_score + $teamwork_score + $initiative_score + $diligent_score + $responsibility_score + $attitude_score + $performance_score;
             $average_score = $total_score / 7;
 
-            // Predikat
-            if ($average_score >= 8.5 || $average_score <= 10) {
+            //Predikat
+            if ($average_score >= 8.5 && $average_score <= 10) {
                 $predicate = InternshipScore::PREDICATE_STATUS_A;
+            } else if ($average_score >= 7.5 && $average_score <= 8.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_B;
+            } else if ($average_score >= 5.5 && $average_score <= 7.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_C;
+            } else if ($average_score >= 3.5 && $average_score <= 5.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_D;
+            } else if ($average_score >= 1.0 && $average_score <= 3.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_E;
+            }
+
+            //Keterangan
+            if ($average_score >= 8.5 && $average_score <= 10) {
+                $description = InternshipScore::DESCRIPTION_STATUS_A;
+            } else if ($average_score >= 7.5 && $average_score <= 8.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_B;
+            } else if ($average_score >= 5.5 && $average_score <= 7.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_C;
+            } else if ($average_score >= 3.5 && $average_score <= 5.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_D;
+            } else if ($average_score >= 1.0 && $average_score <= 3.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_E;
             }
 
             // Create Data
@@ -126,6 +152,7 @@ class InternshipScoreController extends Controller
                 $internship_score->total_score = $total_score;
                 $internship_score->average_score = $average_score;
                 $internship_score->predicate = $predicate;
+                $internship_score->description = $description;
                 $internship_score->save();
 
                 // Save Data
@@ -174,9 +201,30 @@ class InternshipScoreController extends Controller
             $total_score = $discipline_score + $teamwork_score + $initiative_score + $diligent_score + $responsibility_score + $attitude_score + $performance_score;
             $average_score = $total_score / 7;
 
-            // Predikat
-            if ($average_score >= 8.5 || $average_score <= 10) {
+            //Predikat
+            if ($average_score >= 8.5 && $average_score <= 10) {
                 $predicate = InternshipScore::PREDICATE_STATUS_A;
+            } else if ($average_score >= 7.5 && $average_score <= 8.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_B;
+            } else if ($average_score >= 5.5 && $average_score <= 7.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_C;
+            } else if ($average_score >= 3.5 && $average_score <= 5.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_D;
+            } else if ($average_score >= 1.0 && $average_score <= 3.4) {
+                $predicate = InternshipScore::PREDICATE_STATUS_E;
+            }
+
+            //Keterangan
+            if ($average_score >= 8.5 && $average_score <= 10) {
+                $description = InternshipScore::DESCRIPTION_STATUS_A;
+            } else if ($average_score >= 7.5 && $average_score <= 8.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_B;
+            } else if ($average_score >= 5.5 && $average_score <= 7.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_C;
+            } else if ($average_score >= 3.5 && $average_score <= 5.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_D;
+            } else if ($average_score >= 1.0 && $average_score <= 3.4) {
+                $description = InternshipScore::DESCRIPTION_STATUS_E;
             }
 
             // Update Data
@@ -191,6 +239,7 @@ class InternshipScoreController extends Controller
             $internship_score->total_score = $total_score;
             $internship_score->average_score = $average_score;
             $internship_score->predicate = $predicate;
+            $internship_score->description = $description;
             $internship_score->save();
 
             // Save Data

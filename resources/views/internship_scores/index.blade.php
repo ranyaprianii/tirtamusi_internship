@@ -28,7 +28,8 @@
                                 <th>Nama Siswa/Mahasiswa</th>
                                 <th>Jumlah</th>
                                 <th>Rata-rata</th>
-
+                                <th>Predikat</th>
+                                <th>Keterangan</th>
                                 <th>Diinput pada</th>
                             </tr>
                         </thead>
@@ -57,7 +58,7 @@
                 serverSide: true,
                 destroy: true,
                 order: [
-                    [5, 'desc']
+                    [7, 'desc']
                 ],
                 columns: [{
                         "data": null,
@@ -83,6 +84,17 @@
                         name: 'average_score',
                         data: 'average_score'
                     },
+
+                    {
+                        name: 'predicate',
+                        data: 'predicate'
+                    },
+
+                    {
+                        name: 'description',
+                        data: 'description'
+                    },
+
 
                     {
                         name: 'created_at',

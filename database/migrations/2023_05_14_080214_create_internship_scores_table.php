@@ -24,6 +24,7 @@ return new class extends Migration
             $table->float('total_score')->comment('skor skor');
             $table->float('average_score')->comment('rata-rata skor');
             $table->string('predicate')->comment('Predikat');
+            $table->string('description')->comment('description');
             $table->timestamps();
         });
     }

@@ -91,7 +91,7 @@
                                 <a href="{{ route('apprentince.index') }}">Data Siswa/Mahasiswa</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('apprentince.index_verification') }}">Konfirmasi Magang</a>
+                                <a href="{{ route('apprentince.index_verification') }}">Konfirmasi Pengajuan Magang</a>
                             </li>
                         </ul>
                     </li>
@@ -109,7 +109,7 @@
                                 <a href="{{ route('attendance.index') }}">Presensi</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                                <a href="{{ route('daily_activity.index') }}">Catatan Harian</a>
                             </li>
                         </ul>
                     </li>

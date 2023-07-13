@@ -9,13 +9,18 @@
 
 @section('content')
     <!-- Basic Tables start -->
-    @hasanyrole('Admin|Manager')
+
+    @hasrole('Admin')
         <section class="section">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
                     <div class="header-title">
                         <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
+
+                    <a class="text-end btn btn-sm btn-danger" href="#"><i
+                            class="fa fa-plus"></i> Cetak PDF</a>
+             
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -37,7 +42,37 @@
                 </div>
             </div>
         </section>
-    @endhasanyrole
+    @endhasrole
+
+    @hasrole('Manager')
+    <section class="section">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="header-title">
+                    <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="data-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Aksi</th>
+                                <th>Nama</th>
+                                <th>Waktu Masuk</th>
+                                <th>Waktu Keluar</th>
+                                <th>Keterangan</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+@endhasrole
 
     @hasrole('Siswa/Mahasiswa')
         <section class="section">

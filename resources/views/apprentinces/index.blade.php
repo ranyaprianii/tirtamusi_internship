@@ -15,6 +15,13 @@
                 <div class="header-title">
                     <h4 class="card-title">Data Siswa/Mahasiswa Magang</h4>
                 </div>
+
+                @role('Admin')
+
+                    <a class="text-end btn btn-sm btn-danger" href="#"><i
+                            class="fa fa-plus"></i> Cetak PDF</a>
+            @endrole
+
                 @role('Calon Magang')
                     @if (count($data) == 0)
                         <a class="text-end btn btn-sm btn-outline-info" href="{{ route('apprentince.create') }}"><i
