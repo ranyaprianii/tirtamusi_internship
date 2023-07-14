@@ -8,6 +8,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DailyActivityController;
+use App\Http\Controllers\InternshipFilesController;
 use App\Http\Controllers\InternshipScoreController;
 
 /*
@@ -75,6 +76,7 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
     Route::get('/create_present', 'create_present')->name('create_present');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/report_pdf/{id}', 'sreport_pdf')->name('report_pdf');
 
 });
 
@@ -118,6 +120,25 @@ Route::group(['controller' => DivisionController::class, 'prefix' => 'division',
 
 });
 
+// Internship File
+Route::group(['controller' => InternshipFilesController::class, 'prefix' => 'internship_score', 'as' => 'internship_score.'], function () {
+
+    /* Data Table */
+    Route::get('/datatable', 'datatable')->name('datatable');
+
+    /* Store dan Update */
+    Route::post('/store', 'store')->name('store');
+    Route::put('/update/{id}', 'update')->name('update');
+    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+
+     /* View */
+    Route::get('/', 'index')->name('index');
+    Route::get('/create', 'create')->name('create');
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::get('/show/{id}', 'show')->name('show');
+
+});
+
 // Internship Score
 Route::group(['controller' => InternshipScoreController::class, 'prefix' => 'internship_score', 'as' => 'internship_score.'], function () {
 
@@ -136,6 +157,7 @@ Route::group(['controller' => InternshipScoreController::class, 'prefix' => 'int
     Route::get('/show/{id}', 'show')->name('show');
 
 });
+
 
 // Unit
 Route::group(['controller' => UnitController::class, 'prefix' => 'unit', 'as' => 'unit.'], function () {

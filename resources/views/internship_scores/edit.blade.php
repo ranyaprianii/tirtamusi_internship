@@ -29,7 +29,7 @@
                                         <select name="apprentince_id" class="form-control mb-3 select_apprentince">
                                             @isset($apprentinces)
                                                 @foreach ($apprentinces as $item)
-                                                    <option value="{{ $item->id }}" {{ $item->id == $data->apprentince_id ? 'selected' : '' }}>
+                                                    <option value="apprentince_name" {{ $item->id == $data->apprentince_id ? 'selected' : '' }}>
                                                         {{ $item->name }}
                                                     </option>
                                                 @endforeach
