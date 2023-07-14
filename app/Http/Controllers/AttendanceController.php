@@ -35,7 +35,7 @@ class AttendanceController extends Controller
         }
     }
 
-    
+
 
     public function report_pdf()
     {
@@ -170,7 +170,14 @@ class AttendanceController extends Controller
             $input['present_in'] = Carbon::now();
             $input['status'] = $request->status;
 
-            Attendance::create($input);
+            if ($request->status !== Attendance::STATUS_PRESENT) {
+
+                $input['present_out'] = Carbon::now();
+
+                Attendance::create($input);
+            } else {
+                Attendance::create($input);
+            }
 
             // Save Data
             DB::commit();

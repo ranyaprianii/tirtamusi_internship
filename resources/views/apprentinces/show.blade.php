@@ -91,6 +91,16 @@
                                                     href="{{ asset('assets/pengajuan/' . $data['file']) }}">Lihat Data</a>
                                             </td>
                                         </tr>
+                                        @if (!empty($data['letter_file']))
+                                            <tr>
+                                                <td>Surat Balasan</td>
+                                                <td>:</td>
+                                                <td><a target="_blank" class="btn btn-primary"
+                                                        href="{{ asset('assets/surat balasan/' . $data['letter_file']) }}">Lihat
+                                                        Data</a>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     </tbody>
 
 

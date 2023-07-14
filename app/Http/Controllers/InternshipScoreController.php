@@ -8,6 +8,7 @@ use App\Models\InternshipScore;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -20,7 +21,16 @@ class InternshipScoreController extends Controller
         $text = "Apakah yakin ingin menghapus data?";
         confirmDelete($title, $text);
 
-        return view('internship_scores.index');
+        if (Auth::user()->hasRole('Siswa/Mahasiswa')) {
+            $user_id = Auth::user()->id;
+            $apprentince = Apprentince::where('user_id', $user_id)->first();
+            $apprentince_id = $apprentince->id;
+
+            $data = InternshipScore::where('apprentince_id', $apprentince_id)->first();
+            return view('internship_scores.index', compact('data'));
+        } else {
+            return view('internship_scores.index');
+        }
     }
 
     public function datatable()
@@ -41,8 +51,10 @@ class InternshipScoreController extends Controller
 
                 $btn = "<div class='btn-group'>";
                 $btn .= "<a href='$url_show' class = 'btn btn-outline-primary btn-sm text-nowrap'><i class='fas fa-info mr-2'></i> Lihat</a>";
-                $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
-                $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
+                if (Auth::user()->hasRole('Manager')) {
+                    $btn .= "<a href='$url_edit' class = 'btn btn-outline-info btn-sm text-nowrap'><i class='fas fa-edit mr-2'></i> Edit</a>";
+                    $btn .= "<a href='$url_delete' class = 'btn btn-outline-danger btn-sm text-nowrap' data-confirm-delete='true'><i class='fas fa-trash mr-2'></i> Hapus</a>";
+                }
                 $btn .= "</div>";
 
                 return $btn;
@@ -60,9 +72,8 @@ class InternshipScoreController extends Controller
     {
         $id = Crypt::decrypt($id);
         $data = InternshipScore::find($id);
-        $internship_score = InternshipScore::all();
 
-        return view('internship_scores.edit', compact('data', 'internship_score'));
+        return view('internship_scores.edit', compact('data'));
     }
 
     public function show($id)

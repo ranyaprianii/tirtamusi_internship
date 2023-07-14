@@ -14,4 +14,9 @@ class Unit extends Model
     {
         return $this->hasMany(SectionUnit::class, 'unit_id', 'id');
     }
+
+    public function section_unit()
+    {
+        return $this->hasOne(SectionUnit::class, 'unit_id', 'id');
+    }
 }

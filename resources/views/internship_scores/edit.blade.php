@@ -1,10 +1,5 @@
 @extends('layouts.app')
 
-@section('css_after')
-    {{-- Select 2 --}}
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-@endsection
-
 @section('content-header')
     <h3>Edit Data Penialaian Sertifikat Magang</h3>
 @endsection
@@ -25,25 +20,18 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label>Pilih Siswa/Mahasiswa</label>
-                                        <select name="apprentince_id" class="form-control mb-3 select_apprentince">
-                                            @isset($apprentinces)
-                                                @foreach ($apprentinces as $item)
-                                                    <option value="apprentince_name" {{ $item->id == $data->apprentince_id ? 'selected' : '' }}>
-                                                        {{ $item->name }}
-                                                    </option>
-                                                @endforeach
-                                            @endisset
-                                        </select>
-
+                                        <label>Nama Siswa/Mahasiswa</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $data['apprentince']['name'] }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group has-icon-left">
                                         <label for="discipline_score">Disiplin</label>
                                         <div class="position-relative">
-                                            <input type="number" min="1" max="10" step="0.1" class="form-control"
-                                                placeholder="Masukkan Nilai Disiplin" value="{{ old('discipline_score', $data['discipline_score']) }}"
+                                            <input type="number" min="1" max="10" step="0.1"
+                                                class="form-control" placeholder="Masukkan Nilai Disiplin"
+                                                value="{{ old('discipline_score', $data['discipline_score']) }}"
                                                 id="discipline_score" name="discipline_score" required>
                                             @error('discipline_score')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -62,8 +50,9 @@
                                     <div class="form-group has-icon-left">
                                         <label for="teamwork_score">Kerjasama</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Kerjasama" value="{{ old('teamwork_score', $data['teamwork_score']) }}"
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Kerjasama"
+                                                value="{{ old('teamwork_score', $data['teamwork_score']) }}"
                                                 id="teamwork_score" name="teamwork_score" required>
                                             @error('teamwork_score')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -83,8 +72,9 @@
                                     <div class="form-group has-icon-left">
                                         <label for="initiative_score">Inisiatif</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Inisiatif" value="{{ old('initiative_score' , $data['initiative_score']) }}"
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Inisiatif"
+                                                value="{{ old('initiative_score', $data['initiative_score']) }}"
                                                 id="initiative_score" name="initiative_score" required>
                                             @error('initiative_score')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -103,8 +93,9 @@
                                     <div class="form-group has-icon-left">
                                         <label for="diligent_score">Kerajinan</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Kerajinan" value="{{ old('diligent_score', $data['diligent_score']) }}"
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Kerajinan"
+                                                value="{{ old('diligent_score', $data['diligent_score']) }}"
                                                 id="diligent_score" name="diligent_score" required>
                                             @error('diligent_score')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -124,10 +115,10 @@
                                     <div class="form-group has-icon-left">
                                         <label for="responsibility_score">Tanggung Jawab</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Tanggung Jawab"
-                                                value="{{ old('responsibility_score', $data['responsibility_score']) }}" id="responsibility_score"
-                                                name="responsibility_score" required>
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Tanggung Jawab"
+                                                value="{{ old('responsibility_score', $data['responsibility_score']) }}"
+                                                id="responsibility_score" name="responsibility_score" required>
                                             @error('responsibility_score')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -146,8 +137,9 @@
                                     <div class="form-group has-icon-left">
                                         <label for="attitude_score">Sikap</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Sikap" value="{{ old('attitude_score', $data['attitude_score']) }}"
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Sikap"
+                                                value="{{ old('attitude_score', $data['attitude_score']) }}"
                                                 id="attitude_score" name="attitude_score" required>
                                             @error('attitude_score')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -167,10 +159,10 @@
                                     <div class="form-group has-icon-left">
                                         <label for="performance_score">Prestasi</label>
                                         <div class="position-relative">
-                                            <input type="number"  min="1" max="10" step="0.01" class="form-control"
-                                                placeholder="Masukkan Nilai Prestasi"
-                                                value="{{ old('performance_score', $data['performance_score']) }}" id="performance_score"
-                                                name="performance_score" required>
+                                            <input type="number" min="1" max="10" step="0.01"
+                                                class="form-control" placeholder="Masukkan Nilai Prestasi"
+                                                value="{{ old('performance_score', $data['performance_score']) }}"
+                                                id="performance_score" name="performance_score" required>
                                             @error('performance_score')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -235,15 +227,4 @@
             </tr>
         </table>
     </section>
-@endsection
-
-@section('js_after')
-    {{-- Select 2 --}}
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $(".select_apprentince").select2();
-        });
-    </script>
 @endsection

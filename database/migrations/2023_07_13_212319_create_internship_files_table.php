@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('apprentince_id')->comment('foreign key user');
             $table->string('report_file')->comment('judul laporan');
             $table->string('file')->comment('file laporan magang');
+            $table->string('status')->comment('status laporan magang');
             $table->timestamps();
         });
     }

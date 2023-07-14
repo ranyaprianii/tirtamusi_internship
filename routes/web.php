@@ -8,7 +8,7 @@ use App\Http\Controllers\UnitController;
 use App\Http\Controllers\DivisionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DailyActivityController;
-use App\Http\Controllers\InternshipFilesController;
+use App\Http\Controllers\InternshipFileController;
 use App\Http\Controllers\InternshipScoreController;
 
 /*
@@ -77,7 +77,6 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
     Route::get('/report_pdf/{id}', 'report_pdf')->name('report_pdf');
-
 });
 
 
@@ -98,7 +97,6 @@ Route::group(['controller' => DailyActivityController::class, 'prefix' => 'daily
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
 });
 
 // Division
@@ -112,31 +110,30 @@ Route::group(['controller' => DivisionController::class, 'prefix' => 'division',
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
-     /* View */
+    /* View */
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
 });
 
 // Internship File
-Route::group(['controller' => InternshipFilesController::class, 'prefix' => 'internship_score', 'as' => 'internship_score.'], function () {
+Route::group(['controller' => InternshipFileController::class, 'prefix' => 'internship_file', 'as' => 'internship_file.'], function () {
 
     /* Data Table */
     Route::get('/datatable', 'datatable')->name('datatable');
+    Route::get('/datatable_student', 'datatable_student')->name('datatable_student');
 
     /* Store dan Update */
     Route::post('/store', 'store')->name('store');
     Route::put('/update/{id}', 'update')->name('update');
-    Route::delete('/destroy/{id}', 'destroy')->name('destroy');
+    Route::put('/update_verification/{id}', 'update_verification')->name('update_verification');
 
-     /* View */
+    /* View */
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
+    Route::get('/create_verification/{id}', 'create_verification')->name('create_verification');
     Route::get('/edit/{id}', 'edit')->name('edit');
-    Route::get('/show/{id}', 'show')->name('show');
-
 });
 
 // Internship Score
@@ -150,19 +147,18 @@ Route::group(['controller' => InternshipScoreController::class, 'prefix' => 'int
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
-     /* View */
+    /* View */
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
 });
 
 
 // Unit
 Route::group(['controller' => UnitController::class, 'prefix' => 'unit', 'as' => 'unit.'], function () {
 
-     /* Data Table */
+    /* Data Table */
     Route::get('/datatable', 'datatable')->name('datatable');
 
     /* Store dan Update */
@@ -170,18 +166,17 @@ Route::group(['controller' => UnitController::class, 'prefix' => 'unit', 'as' =>
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
-     /* View */
+    /* View */
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
 });
 
 // User
 Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' => 'user.'], function () {
 
-     /* Data Table */
+    /* Data Table */
     Route::get('/datatable', 'datatable')->name('datatable');
 
     /* Store dan Update */
@@ -189,10 +184,9 @@ Route::group(['controller' => UserController::class, 'prefix' => 'user', 'as' =>
     Route::put('/update/{id}', 'update')->name('update');
     Route::delete('/destroy/{id}', 'destroy')->name('destroy');
 
-     /* View */
+    /* View */
     Route::get('/', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-
 });

@@ -51,26 +51,17 @@
 
 @section('js_after')
     <script>
-        $(document).ready(function() {
-            initGeolocation();
-        });
-
         function initGeolocation() {
             if (navigator.geolocation) {
-                // Call getCurrentPosition with success and failure callbacks
-                navigator.geolocation.getCurrentPosition(success, fail);
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    $("#latitude").val(position.coords.latitude);
+                    $("#longitude").val(position.coords.longitude);
+                });
             } else {
-                alert("Sorry, your browser does not support geolocation services.");
+                alert("Lokasi tidak dapat diperoleh.");
             }
         }
 
-        function success(position) {
-            $("#longitude").val(position.coords.longitude);
-            $("#latitude").val(position.coords.latitude);
-        }
-
-        function fail() {
-            // Could not obtain location
-        }
+        initGeolocation();
     </script>
 @endsection

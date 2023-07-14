@@ -18,9 +18,8 @@
                         <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
 
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i
-                            class="fa fa-plus"></i> Cetak PDF</a>
-             
+                    <a class="text-end btn btn-sm btn-danger" href="#"><i class="fa fa-plus"></i> Cetak PDF</a>
+
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -45,34 +44,34 @@
     @endhasrole
 
     @hasrole('Manager')
-    <section class="section">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <div class="header-title">
-                    <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
+        <section class="section">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="header-title">
+                        <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="data-table" width="100%">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Aksi</th>
+                                    <th>Nama</th>
+                                    <th>Waktu Masuk</th>
+                                    <th>Waktu Keluar</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="data-table" width="100%">
-                        <thead>
-                            <tr>
-                                <th>No.</th>
-                                <th>Aksi</th>
-                                <th>Nama</th>
-                                <th>Waktu Masuk</th>
-                                <th>Waktu Keluar</th>
-                                <th>Keterangan</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </section>
-@endhasrole
+        </section>
+    @endhasrole
 
     @hasrole('Siswa/Mahasiswa')
         <section class="section">
@@ -222,20 +221,13 @@
 
             function initGeolocation() {
                 if (navigator.geolocation) {
-                    // Call getCurrentPosition with success and failure callbacks
-                    navigator.geolocation.getCurrentPosition(success, fail);
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        $("#latitude").val(position.coords.latitude);
+                        $("#longitude").val(position.coords.longitude);
+                    });
                 } else {
-                    alert("Sorry, your browser does not support geolocation services.");
+                    alert("Lokasi tidak dapat diperoleh.");
                 }
-            }
-
-            function success(position) {
-                $("#longitude").val(position.coords.longitude);
-                $("#latitude").val(position.coords.latitude);
-            }
-
-            function fail() {
-                // Could not obtain location
             }
         </script>
     @endrole

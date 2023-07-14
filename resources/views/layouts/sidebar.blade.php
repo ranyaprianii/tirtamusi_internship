@@ -111,6 +111,9 @@
                             <li class="submenu-item ">
                                 <a href="{{ route('daily_activity.index') }}">Catatan Harian</a>
                             </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('internship_file.index') }}">Laporan Magang</a>
+                            </li>
                         </ul>
                     </li>
 
@@ -156,89 +159,92 @@
         @endhasrole
 
         @hasrole('Manager')
-        <div class="sidebar-menu">
-            <ul class="menu">
-                <li class="sidebar-title">Menu</li>
+            <div class="sidebar-menu">
+                <ul class="menu">
+                    <li class="sidebar-title">Menu</li>
 
-                <li class="sidebar-item active ">
-                    <a href="{{ route('home') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
+                    <li class="sidebar-item active ">
+                        <a href="{{ route('home') }}" class='sidebar-link'>
+                            <i class="bi bi-grid-fill"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
 
-                <li class="sidebar-item active">
-                    <a href="{{ route('tatib') }}" class='sidebar-link'>
-                        <i class="bi bi-journal-check"></i>
-                        <span>Panduan Penilaian Magang</span>
-                    </a>
+                    <li class="sidebar-item active">
+                        <a href="{{ route('tatib') }}" class='sidebar-link'>
+                            <i class="bi bi-journal-check"></i>
+                            <span>Panduan Penilaian Magang</span>
+                        </a>
 
-                </li>
-
-
-                <li class="sidebar-item">
-                    <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
-                        <i class="bi bi-file-earmark-text-fill"></i>
-                        <span>Data Siswa/Mahasiswa</span>
-                    </a>
-
-                </li>
+                    </li>
 
 
+                    <li class="sidebar-item">
+                        <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
+                            <i class="bi bi-file-earmark-text-fill"></i>
+                            <span>Data Siswa/Mahasiswa</span>
+                        </a>
 
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-clipboard-data-fill"></i>
-                        <span>Aktivitas Magang</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('attendance.index') }}">Presensi</a>
-                        </li>
-                        <li class="submenu-item ">
-                            <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
-                        </li>
-                    </ul>
-                </li>
+                    </li>
 
 
 
-                <li class="sidebar-item has-sub ">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-bookmark-fill"></i>
-                        <span>Sertifikat Magang</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item ">
-                            <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
-                        </li>
-                    </ul>
-                </li>
 
-                <li class="sidebar-item ">
-                    <a href="index.html" class='sidebar-link'>
-                        <i class="bi bi-postcard-fill"></i>
-                        <span>Laporan</span>
-                    </a>
-                </li>
+                    <li class="sidebar-item  has-sub">
+                        <a href="#" class='sidebar-link'>
+                            <i class="bi bi-clipboard-data-fill"></i>
+                            <span>Aktivitas Magang</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="{{ route('attendance.index') }}">Presensi</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('internship_file.index') }}">Laporan Magang</a>
+                            </li>
+                        </ul>
+                    </li>
 
 
-                <li class="sidebar-item active">
-                    <a href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
+
+                    <li class="sidebar-item has-sub ">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-bookmark-fill"></i>
+                            <span>Sertifikat Magang</span>
+                        </a>
+                        <ul class="submenu ">
+                            <li class="submenu-item ">
+                                <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="sidebar-item ">
+                        <a href="index.html" class='sidebar-link'>
+                            <i class="bi bi-postcard-fill"></i>
+                            <span>Laporan</span>
+                        </a>
+                    </li>
+
+
+                    <li class="sidebar-item active">
+                        <a href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();"
-                        class='sidebar-link'>
-                        <i class="bi bi-box-arrow-right"></i>
-                        <span>Log Out</span>
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
-        </div>
-    @endhasrole
+                            class='sidebar-link'>
+                            <i class="bi bi-box-arrow-right"></i>
+                            <span>Log Out</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        @endhasrole
 
         @role('Siswa/Mahasiswa')
             <div class="sidebar-menu">
@@ -278,6 +284,9 @@
                             </li>
                             <li class="submenu-item ">
                                 <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                            </li>
+                            <li class="submenu-item ">
+                                <a href="{{ route('internship_file.index') }}">Laporan Magang</a>
                             </li>
                         </ul>
                     </li>

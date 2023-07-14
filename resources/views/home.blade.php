@@ -39,7 +39,7 @@
                                     <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                         <h6 class="text-muted font-semibold">Sertifikat</h6>
                                         <a href="#">Selengkapnya</a>
-                                      
+
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +73,7 @@
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">User</h5>
 
-                                        <h6 class="text-muted mb-0">Admin</h6>
+                                        <h6 class="text-muted mb-0">{{ Auth::user()->name }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -150,7 +150,7 @@
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">User</h5>
 
-                                        <h6 class="text-muted mb-0">Rany Apriani</h6>
+                                        <h6 class="text-muted mb-0">{{ Auth::user()->name }}</h6>
                                     </div>
                                 </div>
                             </div>
@@ -326,5 +326,4 @@
             </div>
         </div>
     </section>
-
 @endsection

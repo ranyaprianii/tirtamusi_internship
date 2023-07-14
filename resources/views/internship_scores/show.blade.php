@@ -1,19 +1,65 @@
 @extends('layouts.app')
 
-@section('css_after')
-@endsection
-
 @section('content-header')
     <h3>Data Penilaian Sertifikat</h3>
 @endsection
 @section('content')
     <section class="section">
-        <div class="row " id="table-borderless">
+        <div class="row" id="table-borderless">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Data Penilaian Sertifikat</h3>
                         <div class="card-content">
+                            <div class="table-responsive">
+                                <table class="table table-borderless" style="width: 30%">
+                                    <tr>
+                                        <th>Nama</th>
+                                        <td>:</td>
+                                        <td>{{ $data['apprentince']['name'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>NISN/NIM</th>
+                                        <td>:</td>
+                                        <td>{{ $data['apprentince']['nisn_nim'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Jenis Kelamin</th>
+                                        <td>:</td>
+                                        <td>{{ $data['apprentince']['gender'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Asal Instansi</th>
+                                        <td>:</td>
+                                        <td>{{ $data['apprentince']['school'] }}</td>
+                                    </tr>
+
+                                    @if (!empty($data['apprentince']['unit_id']))
+                                        <tr>
+                                            <th>Unit</th>
+                                            <td>:</td>
+                                            <td>{{ $data['apprentince']['unit']['name'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sub Unit</th>
+                                            <td>:</td>
+                                            <td>{{ $data['apprentince']['unit']['section_unit']['name'] }}</td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <th>Divisi</th>
+                                            <td>:</td>
+                                            <td>{{ $data['apprentince']['division']['name'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Sub Divisi</th>
+                                            <td>:</td>
+                                            <td>{{ $data['apprentince']['division']['section_division']['name'] }}</td>
+                                        </tr>
+                                    @endif
+                                </table>
+                            </div>
+                            <hr>
                             <!-- table with no border -->
                             <div class="table-responsive">
                                 <table class="table table-borderless mb-2">
@@ -104,46 +150,50 @@
                                     <h6>Keterangan Nilai :</h6>
 
                                     <table width="350px" mb-2>
-                                       <tbody>
-                                        <tr>
-                                            <td>A</td>
-                                            <td>=</td>
-                                            <td>8,5 - 10</td>
-                                            <td>=</td>
-                                            <td>Baik Sekali</td>
-                                        </tr>
-                                        <tr>
-                                            <td>B</td>
-                                            <td>=</td>
-                                            <td>7,5 - 8,4</td>
-                                            <td>=</td>
-                                            <td>Baik</td>
-                                        </tr>
-                                        <tr>
-                                            <td>C</td>
-                                            <td>=</td>
-                                            <td>5,5 - 7,4</td>
-                                            <td>=</td>
-                                            <td>Cukup</td>
-                                        </tr>
-                                        <tr>
-                                            <td>D</td>
-                                            <td>=</td>
-                                            <td>3,5 - 5,4</td>
-                                            <td>=</td>
-                                            <td>Kurang</td>
-                                        </tr>
-                                        <tr>
-                                            <td>E</td>
-                                            <td>=</td>
-                                            <td>1,0 - 3,4</td>
-                                            <td>=</td>
-                                            <td>Kurang Sekali</td>
-                                        </tr>
-                                       </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td>A</td>
+                                                <td>=</td>
+                                                <td>8,5 - 10</td>
+                                                <td>=</td>
+                                                <td>Baik Sekali</td>
+                                            </tr>
+                                            <tr>
+                                                <td>B</td>
+                                                <td>=</td>
+                                                <td>7,5 - 8,4</td>
+                                                <td>=</td>
+                                                <td>Baik</td>
+                                            </tr>
+                                            <tr>
+                                                <td>C</td>
+                                                <td>=</td>
+                                                <td>5,5 - 7,4</td>
+                                                <td>=</td>
+                                                <td>Cukup</td>
+                                            </tr>
+                                            <tr>
+                                                <td>D</td>
+                                                <td>=</td>
+                                                <td>3,5 - 5,4</td>
+                                                <td>=</td>
+                                                <td>Kurang</td>
+                                            </tr>
+                                            <tr>
+                                                <td>E</td>
+                                                <td>=</td>
+                                                <td>1,0 - 3,4</td>
+                                                <td>=</td>
+                                                <td>Kurang Sekali</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                 </div>
                                 <div class="col-12 d-flex justify-content-end mt-3">
+                                    @if (!empty($data['apprentince']['sertificate']))
+                                        <a href="{{ asset('assets/sertifikat/' . $data['apprentince']['sertificate']) }}"
+                                            target="_blank" class="btn btn-outline-primary">Download Sertifikat</a>
+                                    @endif
                                     <a href="{{ route('internship_score.index') }}"
                                         class="btn btn-primary me-3 mb-1">Kembali</a>
                                 </div>
@@ -155,7 +205,4 @@
         </div>
 
     </section>
-@endsection
-
-@section('js_after')
 @endsection

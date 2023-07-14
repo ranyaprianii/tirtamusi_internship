@@ -30,4 +30,14 @@ class Apprentince extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'unit_id', 'id');
+    }
+
+    public function division()
+    {
+        return $this->belongsTo(Division::class, 'division_id', 'id');
+    }
 }
