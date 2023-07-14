@@ -76,7 +76,7 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
     Route::get('/create_present', 'create_present')->name('create_present');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-    Route::get('/report_pdf/{id}', 'sreport_pdf')->name('report_pdf');
+    Route::get('/report_pdf/{id}', 'report_pdf')->name('report_pdf');
 
 });
 

@@ -35,6 +35,8 @@ class AttendanceController extends Controller
         }
     }
 
+    
+
     public function report_pdf()
     {
         $data = Attendance::all();
