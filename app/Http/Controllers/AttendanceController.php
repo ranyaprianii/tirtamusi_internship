@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Stevebauman\Location\Facades\Location;
 
 
 class AttendanceController extends Controller
@@ -142,6 +143,7 @@ class AttendanceController extends Controller
             DB::beginTransaction();
 
             $request->validate([
+                'status' => 'required',
                 'longitude' => 'required',
                 'latitude' => 'required',
             ]);
@@ -169,6 +171,10 @@ class AttendanceController extends Controller
 
             $input['present_in'] = Carbon::now();
             $input['status'] = $request->status;
+
+            $input['longitude'] = $request->longitude;
+            $input['latitude'] = $request->latitude;
+
 
             if ($request->status !== Attendance::STATUS_PRESENT) {
 
