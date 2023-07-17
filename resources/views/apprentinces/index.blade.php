@@ -56,7 +56,7 @@
 @endsection
 
 @section('js_after')
-    @role('Admin')
+    @role('Admin|Manager')
         <script>
             $(document).ready(function() {
                 getDatatable();

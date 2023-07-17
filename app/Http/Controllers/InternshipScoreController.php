@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Apprentince;
 use Illuminate\Http\Request;
 use App\Models\InternshipScore;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
@@ -83,6 +84,25 @@ class InternshipScoreController extends Controller
 
         return view('internship_scores.show', compact('data'));
     }
+
+    // public function show($id)
+    // {
+    //     try {
+    //         $decryptedId = Crypt::decrypt($id);
+    //         $data = InternshipScore::find($decryptedId);
+
+    //         if (!$data) {
+    //             // Handle jika data tidak ditemukan
+    //             return redirect()->back()->with('error', 'Data not found');
+    //         }
+
+    //         return view('internship_scores.show', compact('data'));
+    //     } catch (DecryptException $e) {
+    //         // Handle jika terjadi kesalahan dekripsi
+    //         return redirect()->back()->with('error', 'Invalid payload');
+    //     }
+    // }
+
 
 
     public function store(Request $request)

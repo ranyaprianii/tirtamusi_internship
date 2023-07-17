@@ -89,7 +89,7 @@
                                         <hr>
                                         <div>
                                             <p class="text-gray-600" align="center">Don't have an account? <a
-                                                    href="{{ route('register') }}" class="font-bold">Sign up</a></p>
+                                                    href="{{ route('register') }}" class="font-bold">Register</a></p>
                                         </div>
                                     </div>
                                     <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">

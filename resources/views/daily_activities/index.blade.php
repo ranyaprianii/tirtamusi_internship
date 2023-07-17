@@ -16,8 +16,10 @@
                     <div class="header-title">
                         <h4 class="card-title">Aktivitas Siswa/Mahasiswa</h4>
                     </div>
+                    @hasrole('Admin')
                     <a class="text-end btn btn-sm btn-danger" href="#"><i
                         class="fa fa-plus"></i> Cetak PDF</a>
+                        @endrole
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

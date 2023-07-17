@@ -27,7 +27,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama Siswa/Mahasiswa</th>
+                                    <th>Nama</th>
                                     <th>Jumlah</th>
                                     <th>Rata-rata</th>
                                     <th>Predikat</th>
@@ -62,7 +62,7 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Aksi</th>
-                                    <th>Nama Siswa/Mahasiswa</th>
+                                    <th>Nama</th>
                                     <th>Jumlah</th>
                                     <th>Rata-rata</th>
                                     <th>Predikat</th>
@@ -91,7 +91,7 @@
                                 <h3 class="card-title">Data Penilaian Sertifikat</h3>
                                 <div class="card-content">
                                     <div class="table-responsive">
-                                        <table class="table table-borderless" style="width: 30%">
+                                        <table class="table table-borderless" style="width: 50%">
                                             <tr>
                                                 <th>Nama</th>
                                                 <td>:</td>
@@ -126,12 +126,12 @@
                                                 </tr>
                                             @else
                                                 <tr>
-                                                    <th>Divisi</th>
+                                                    <th>Bagian</th>
                                                     <td>:</td>
                                                     <td>{{ $data['apprentince']['division']['name'] }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Sub Divisi</th>
+                                                    <th>Sub Bagian</th>
                                                     <td>:</td>
                                                     <td>{{ $data['apprentince']['division']['section_division']['name'] }}</td>
                                                 </tr>
@@ -269,7 +269,11 @@
                                             </table>
                                         </div>
                                         <div class="col-12 d-flex justify-content-end mt-3">
-                                            <a href="{{ route('internship_score.index') }}"
+                                            @if (!empty($data['apprentince']['sertificate']))
+                                            <a href="{{ asset('assets/sertifikat/' . $data['apprentince']['sertificate']) }}"
+                                                target="_blank" class="btn btn-outline-primary me-3 mb-1">Download Sertifikat</a>
+                                        @endif
+                                            <a href="{{ route('home') }}"
                                                 class="btn btn-primary me-3 mb-1">Kembali</a>
                                         </div>
                                     </div>
