@@ -17,13 +17,13 @@
             </div>
             <div class="card-body">
                 @if (session('error'))
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            @endif
-                <form action="{{ route('daily_activity.store') }}" method="POST">
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
+                <form action="{{ route('daily_activity.update', Crypt::encrypt($data['id'])) }}" method="POST">
                     @csrf
-                    @method('post')
+                    @method('put')
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group has-icon-left">
@@ -41,12 +41,12 @@
                             </div>
 
 
-                        <div class="col-12 d-flex justify-content-end mt-3">
-                            <a href="{{ route('daily_activity.index') }}"
-                                class="btn btn-light-secondary me-3 mb-1">Kembali</a>
-                            <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
+                            <div class="col-12 d-flex justify-content-end mt-3">
+                                <a href="{{ route('daily_activity.index') }}"
+                                    class="btn btn-light-secondary me-3 mb-1">Kembali</a>
+                                <button type="submit" class="btn btn-primary me-1 mb-1">Simpan</button>
+                            </div>
                         </div>
-                    </div>
                 </form>
             </div>
         </div>
@@ -54,6 +54,4 @@
 @endsection
 
 @section('js_after')
-
-
 @endsection

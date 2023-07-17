@@ -13,6 +13,14 @@
                     <div class="card-header">
                         <h4 class="card-title">Data Presensi Masuk</h4>
                     </div>
+
+                    {{-- Error Message --}}
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
                     <div class="card-body">
                         <form action="{{ route('attendance.store_present_in') }}" method="post">
                             @csrf

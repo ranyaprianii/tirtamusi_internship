@@ -123,7 +123,6 @@ class DailyActivityController extends Controller
 
             $request->validate([
                 'activity' => 'required',
-
             ]);
 
             // Update Data

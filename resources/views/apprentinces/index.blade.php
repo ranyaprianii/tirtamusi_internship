@@ -17,10 +17,8 @@
                 </div>
 
                 @role('Admin')
-
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i
-                            class="fa fa-plus"></i> Cetak PDF</a>
-            @endrole
+                    <a class="text-end btn btn-sm btn-danger" href="#"><i class="fa fa-plus"></i> Cetak PDF</a>
+                @endrole
 
                 @role('Calon Magang')
                     @if (count($data) == 0)
@@ -56,7 +54,7 @@
 @endsection
 
 @section('js_after')
-    @role('Admin|Manager')
+    @hasanyrole('Admin|Manager')
         <script>
             $(document).ready(function() {
                 getDatatable();
@@ -119,7 +117,7 @@
                 });
             }
         </script>
-    @endrole
+    @endhasanyrole
 
     @hasanyrole('Siswa/Mahasiswa|Calon Magang')
         <script>
