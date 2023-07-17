@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class ApprentinceController extends Controller
@@ -38,8 +39,8 @@ class ApprentinceController extends Controller
 
     public function datatable()
     {
-        $model = Apprentince::where('status', '!=', Apprentince::STATUS_NOT_CONFIRMED)
-            ->where('status', '!=', Apprentince::STATUS_DONE);
+        $model = Apprentince::where('status', '!=', Apprentince::STATUS_NOT_CONFIRMED);
+        // ->where('status', '!=', Apprentince::STATUS_DONE);
 
         return DataTables::of($model)
             ->editColumn('created_at', function ($data) {
@@ -358,6 +359,7 @@ class ApprentinceController extends Controller
         }
     }
 
+
     public function update($id, Request $request)
     {
         try {
@@ -373,9 +375,7 @@ class ApprentinceController extends Controller
                 'birth_place' => 'required',
                 'address' => 'required',
                 'phone_number' => 'required',
-                'date_start' => 'required',
-                'date_end' => 'required',
-                'file' => 'mimes:pdf|max:3000',
+
             ]);
 
             // Update Data
@@ -447,5 +447,17 @@ class ApprentinceController extends Controller
             Alert::toast('Data Tidak Berhasil Dihapus', 'error');
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
+    }
+
+    public function report_pdf()
+    {
+        $data = Apprentince::where('status', '!=', Apprentince::STATUS_NOT_CONFIRMED)
+            ->orderBy('id', 'desc')
+            ->get();
+        $pdf = PDF::loadView('apprentinces.report_pdf', compact('data'))->setPaper('a4', 'landscape');
+
+        $fileName = "Laporan Kegiatan Harian.pdf";
+
+        return $pdf->stream($fileName);
     }
 }

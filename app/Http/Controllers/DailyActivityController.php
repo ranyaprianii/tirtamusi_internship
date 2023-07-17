@@ -12,6 +12,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apprentince;
 
+
 class DailyActivityController extends Controller
 {
     public function index()

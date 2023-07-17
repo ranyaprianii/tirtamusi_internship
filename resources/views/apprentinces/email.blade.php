@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Surat Balasan Magang</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
     <p>Hi, {{ $name }}</p>
     <p>{{ $subject_email }}</p>
 
-    <p>Terima Kasih dan Tetap Semangat!</p>
+    <p>Terima Kasih telah mengajukan maganag di Perumda Tirta Musi Palembang</p>
 </body>
 
 </html>

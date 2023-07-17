@@ -112,7 +112,9 @@
                                                 <td>:</td>
                                                 <td>{{ $data['apprentince']['school'] }}</td>
                                             </tr>
-
+                                            <tr>
+                                                <td><b>Penempatan magang pada :</b></td>
+                                            </tr>
                                             @if (!empty($data['apprentince']['unit_id']))
                                                 <tr>
                                                     <th>Unit</th>

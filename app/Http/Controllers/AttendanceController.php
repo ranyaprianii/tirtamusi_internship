@@ -37,18 +37,6 @@ class AttendanceController extends Controller
     }
 
 
-
-    public function report_pdf()
-    {
-        $data = Attendance::all();
-
-        $pdf = PDF::loadView('attendances.report_pdf', compact('data'));
-
-        $fileName = "Laporan Presensi Harian.pdf";
-
-        return $pdf->stream($fileName);
-    }
-
     public function datatable()
     {
         $model = Attendance::query()->orderBy('id', 'desc');

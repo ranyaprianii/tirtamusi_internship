@@ -56,6 +56,7 @@ Route::group(['controller' => ApprentinceController::class, 'prefix' => 'apprent
     Route::get('/create_reject/{id}', 'create_reject')->name('create_reject');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/report_pdf', 'report_pdf')->name('report_pdf');
 });
 
 // Attendence
@@ -76,7 +77,7 @@ Route::group(['controller' => AttendanceController::class, 'prefix' => 'attendan
     Route::get('/create_present', 'create_present')->name('create_present');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
-    Route::get('/report_pdf/{id}', 'report_pdf')->name('report_pdf');
+    Route::get('/report_pdf', 'report_pdf')->name('report_pdf');
 });
 
 
@@ -97,6 +98,7 @@ Route::group(['controller' => DailyActivityController::class, 'prefix' => 'daily
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/report_pdf', 'report_pdf')->name('report_pdf');
 });
 
 // Division
@@ -152,6 +154,7 @@ Route::group(['controller' => InternshipScoreController::class, 'prefix' => 'int
     Route::get('/create', 'create')->name('create');
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::get('/show/{id}', 'show')->name('show');
+    Route::get('/report_pdf', 'report_pdf')->name('report_pdf');
 });
 
 

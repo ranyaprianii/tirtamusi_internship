@@ -17,7 +17,7 @@
                 </div>
 
                 @role('Admin')
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i class="fa fa-plus"></i> Cetak PDF</a>
+                    <a class="text-end btn btn-sm btn-danger" target="_blank" href="{{ route('apprentince.report_pdf') }}"><i class="fa fa-plus"></i> Cetak PDF</a>
                 @endrole
 
                 @role('Calon Magang')
@@ -37,6 +37,7 @@
                                 <th>Aksi</th>
                                 <th>Nama Lengkap</th>
                                 <th>Nisn/NIM</th>
+                               
                                 <th>Asal Instansi</th>
                                 <th>Tanggal Mulai</th>
                                 <th>Tanggal Selesai</th>
