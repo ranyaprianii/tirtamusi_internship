@@ -12,7 +12,7 @@
                         <h3 class="card-title">Data Penilaian Sertifikat</h3>
                         <div class="card-content">
                             <div class="table-responsive">
-                                <table class="table table-borderless" style="width: 30%">
+                                <table class="table table-borderless" style="width: 50%">
                                     <tr>
                                         <th>Nama</th>
                                         <td>:</td>
@@ -34,6 +34,10 @@
                                         <td>{{ $data['apprentince']['school'] }}</td>
                                     </tr>
 
+                                    <tr>
+                                        <td><b>Penempatan Magang</b></td>
+                                    </tr>
+
                                     @if (!empty($data['apprentince']['unit_id']))
                                         <tr>
                                             <th>Unit</th>
@@ -47,12 +51,12 @@
                                         </tr>
                                     @else
                                         <tr>
-                                            <th>Divisi</th>
+                                            <th>Bagian</th>
                                             <td>:</td>
                                             <td>{{ $data['apprentince']['division']['name'] }}</td>
                                         </tr>
                                         <tr>
-                                            <th>Sub Divisi</th>
+                                            <th>Sub Bagian</th>
                                             <td>:</td>
                                             <td>{{ $data['apprentince']['division']['section_division']['name'] }}</td>
                                         </tr>
@@ -121,7 +125,7 @@
                                             <td>{{ $data['description'] }}</td>
                                         </tr>
                                         <tr>
-                                            <td>7</td>
+                                            <td>8</td>
                                             <td>Prestasi</td>
                                             <td>{{ $data['performance_score'] }}</td>
                                             <td>{{ $data['predicate'] }}</td>
@@ -192,7 +196,7 @@
                                 <div class="col-12 d-flex justify-content-end mt-3">
                                     @if (!empty($data['apprentince']['sertificate']))
                                         <a href="{{ asset('assets/sertifikat/' . $data['apprentince']['sertificate']) }}"
-                                            target="_blank" class="btn btn-outline-primary">Download Sertifikat</a>
+                                            target="_blank" class="btn btn-outline-primary me-3 mb-1">Download Sertifikat</a>
                                     @endif
                                     <a href="{{ route('internship_score.index') }}"
                                         class="btn btn-primary me-3 mb-1">Kembali</a>

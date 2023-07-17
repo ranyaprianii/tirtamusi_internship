@@ -271,6 +271,122 @@
         </div>
     </section>
 @endrole
+
+@hasrole('Manager')
+    <h3>Panduan Pengisian Penilaian Sertifikat Magang</h3>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+
+                        <div class="card-body">
+                            <img class="card-img-bottom img-fluid" src="{{ asset('mazer-admin/assets/images/8.jpg') }}"
+                            alt="Card image cap" style="height: 20rem; object-fit: cover;">
+
+                            <br><br>
+                            <h4 class="card-title">1. Login akun yang sudah dibuat</h4>
+                            <p class="card-text">
+                                Ketika pengajuan magang sudah disetujui, silahkan login ke aplikasi kembali
+                                sesuai arahan dari pihak SDM Perumda Tirta Musi Palembang.
+                            </p>
+                            <hr>
+                            <hr>
+                            <p class="card-text">
+
+                               Ketika sudah login, anda akan diarahkan pada halaman Dashboard Manager.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h4 class="card-title">2. Ikuti Panduan Pengisian Penialain Sertifikat Magang</h4>
+                            <p class="card-text">
+                                Setelah berada di halaman Dashboard, sebelum penialain sertifikat magang, bacalah
+                                panduan pengisian penilaian sertifikat magang terlebih dahulu.
+                            </p>
+                            <p class="card-text">
+                                Diharapkan manager mengikuti arahan panduan pengisian penilaian sertifikat magang. Apabila
+                                ada yang tidak jelas, silahkan tanyakan ke bagian SDM Perumda Tirta Musi Palembang.
+                            </p>
+                            <br>
+                            <img class="card-img-bottom img-fluid" src="{{ asset('mazer-admin/assets/images/9.jpg') }}"
+                            alt="Card image cap" style="height: 20rem; object-fit: cover;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+
+                        <div class="card-body">
+                            <img class="card-img-bottom img-fluid" src="{{ asset('mazer-admin/assets/images/10.jpg') }}"
+                            alt="Card image cap" style="height: 20rem; object-fit: cover;">
+                            <br><br>
+                            <h4 class="card-title">3. Lihat aktivitas magang sebagai bahan evaluasi penilaian</h4>
+                            <p class="card-text">
+                                Pengisian penilaian sertifikat magang dilakukan secara individu.
+                            </p>
+                            <hr>
+                            <hr>
+                            <p class="card-text">
+                                1. Sebagai bahan evaluasi manager, diharapkan menilai siswa/mahasiswa magang dari presensi, ketepatan waktu presensi,
+                                catatan harian, laporan, dan kegiatan sehari harinya siswa/mahasiswa magang selama berada di lingkungan
+                                kantor Perumda Tirta Musi Palembang.
+                                <br><br>
+                                2. Pengisian penilaian sertifikat tersedia pada form tambah data dengan mancari nama siswa/mahasiswa yang akan di nilai.
+                                Penilaian dengan index desimal harap menggunakan tanda titik (.) bukan (,) agar dapat dibaca oleh sistem.
+                                Contoh 8.2
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <h4 class="card-title">4. Sertifikat akan muncul ketika siswa/mahasiswa magang mengumpulkan laporan magang</h4>
+                            <p class="card-text">
+                               Dihari terakhir magang, beritahu kepada manager (dimana Siswa/Mahasiswa magang)
+                               untuk mengisi penilaian kinerja magang siswa/mahasiswa magang pada aplikasi Tirta Musi
+                               Internship.
+
+                            </p>
+                            <hr>
+                            <hr>
+                            <p class="card-text">
+                                Keesokan harinya, silahkan datang kembali ke bagian SDM Perumda Tirta Musi Palembang dengan
+                                membawa Pas Foto berukuran 3x4 (latar merah) sebanyak 2 lembar.
+                            </p>
+                            <p class="card-text">
+                               Cek secara berkala pada bagian sertifikat magang. Apabila sertifikat magang pada website
+                               sudah dapat diunduh, silahkan datang kembali ke bagian SDM Perumda Tirta Musi Palembang
+                               untuk mengambil hardfile sertifikat.
+                            </p>
+
+                            <img class="card-img-bottom img-fluid" src="{{ asset('mazer-admin/assets/images/11.jpg') }}"
+                                alt="Card image cap" style="height: 20rem; object-fit: cover;">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endrole
 @endsection
 
 

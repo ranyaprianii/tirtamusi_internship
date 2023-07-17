@@ -119,28 +119,13 @@
 
 
 
-                    <li class="sidebar-item has-sub ">
-                        <a href="index.html" class='sidebar-link'>
+                    <li class="sidebar-item active">
+                        <a href="{{ route('internship_score.index') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
                             <span>Sertifikat Magang</span>
                         </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
-                            </li>
-                            <li class="submenu-item ">
-                                <a href="component-badge.html">Sertifikat Magang</a>
-                            </li>
-                        </ul>
-                    </li>
 
-                    <li class="sidebar-item ">
-                        <a href="index.html" class='sidebar-link'>
-                            <i class="bi bi-postcard-fill"></i>
-                            <span>Laporan Magang</span>
-                        </a>
                     </li>
-
 
                     <li class="sidebar-item active">
                         <a href="{{ route('logout') }}"
@@ -173,7 +158,7 @@
                     <li class="sidebar-item active">
                         <a href="{{ route('tatib') }}" class='sidebar-link'>
                             <i class="bi bi-journal-check"></i>
-                            <span>Panduan Penilaian Magang</span>
+                            <span>Panduan Penilaian Sertifikat Magang</span>
                         </a>
 
                     </li>
@@ -187,9 +172,6 @@
 
                     </li>
 
-
-
-
                     <li class="sidebar-item  has-sub">
                         <a href="#" class='sidebar-link'>
                             <i class="bi bi-clipboard-data-fill"></i>
@@ -200,7 +182,7 @@
                                 <a href="{{ route('attendance.index') }}">Presensi</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                                <a href="{{ route('daily_activity.index') }}">Catatan Harian</a>
                             </li>
                             <li class="submenu-item ">
                                 <a href="{{ route('internship_file.index') }}">Laporan Magang</a>
@@ -209,23 +191,10 @@
                     </li>
 
 
-
-                    <li class="sidebar-item has-sub ">
-                        <a href="index.html" class='sidebar-link'>
+                    <li class="sidebar-item active">
+                        <a href="{{ route('internship_score.index') }}" class='sidebar-link'>
                             <i class="bi bi-bookmark-fill"></i>
-                            <span>Sertifikat Magang</span>
-                        </a>
-                        <ul class="submenu ">
-                            <li class="submenu-item ">
-                                <a href="{{ route('internship_score.index') }}">Penilaian Sertifikat</a>
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li class="sidebar-item ">
-                        <a href="index.html" class='sidebar-link'>
-                            <i class="bi bi-postcard-fill"></i>
-                            <span>Laporan</span>
+                            <span>Penilaian Sertifikat Magang</span>
                         </a>
                     </li>
 
@@ -269,7 +238,7 @@
                     <li class="sidebar-item ">
                         <a href="{{ route('apprentince.index') }}" class='sidebar-link'>
                             <i class="bi bi-postcard-fill"></i>
-                            <span>Data Pengajuan Magang</span>
+                            <span>Data Siswa/Mahasiswa</span>
                         </a>
                     </li>
 
@@ -283,15 +252,13 @@
                                 <a href="{{ route('attendance.index') }}">Presensi</a>
                             </li>
                             <li class="submenu-item ">
-                                <a href="{{ route('daily_activity.index') }}">Catatan Internship-desk</a>
+                                <a href="{{ route('daily_activity.index') }}">Catatan Harian</a>
                             </li>
                             <li class="submenu-item ">
                                 <a href="{{ route('internship_file.index') }}">Laporan Magang</a>
                             </li>
                         </ul>
                     </li>
-
-
 
                     <li class="sidebar-item ">
                         <a href="{{ route('internship_score.index') }}" class='sidebar-link'>

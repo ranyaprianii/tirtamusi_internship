@@ -28,8 +28,8 @@
                             <div class="form-group has-icon-left">
                                 <label for="report_file">Judul Laporan</label>
                                 <div class="position-relative">
-                                    <textarea class="form-control" placeholder="Tambahkan Aktivitas..." value="{{ old('report_file') }}" id="report_file"
-                                        name="report_file" required> </textarea>
+                                    <textarea class="form-control" placeholder="Tambahkan Aktivitas..."
+                                        name="report_file" required>{{ old('report_file', $data['report_file']) }} </textarea>
                                     @error('report_file')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
