@@ -18,7 +18,7 @@
                         <h4 class="card-title">Presensi Siswa/Mahasiswa</h4>
                     </div>
 
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i class="fa fa-plus"></i> Cetak PDF</a>
+                    <a class="text-end btn btn-sm btn-danger" href="{{ route('attendance.report_pdf') }}"><i class="fa fa-plus"></i> Cetak PDF</a>
 
                 </div>
                 <div class="card-body">

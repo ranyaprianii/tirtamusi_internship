@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InternshipScoreController extends Controller
 {
@@ -314,5 +315,17 @@ class InternshipScoreController extends Controller
             Alert::toast('Data Tidak Berhasil Dihapus', 'error');
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
+    }
+
+    public function report_pdf()
+    {
+        $data = InternshipScore::orderBy('id', 'desc')
+            ->get();
+
+        $pdf = PDF::loadView('internship_scores.report_pdf', compact('data'))->setPaper('a4', 'landscape');
+
+        $fileName = "Laporan Kegiatan Harian.pdf";
+
+        return $pdf->stream($fileName);
     }
 }

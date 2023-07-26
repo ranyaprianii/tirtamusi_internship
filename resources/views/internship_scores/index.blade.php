@@ -18,7 +18,7 @@
 
                     </div>
 
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i class="fa fa-plus"></i> Cetak PDF</a>
+                    <a class="text-end btn btn-sm btn-danger" href="{{ route('internship_score.report_pdf') }}"><i class="fa fa-plus"></i> Cetak PDF</a>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">

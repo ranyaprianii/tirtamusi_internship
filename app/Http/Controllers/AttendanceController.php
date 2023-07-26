@@ -266,4 +266,16 @@ class AttendanceController extends Controller
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
     }
+
+    public function report_pdf()
+    {
+        $data = Attendance::where('status', '=', Attendance::STATUS_PRESENT)
+            ->orderBy('id', 'desc')
+            ->get();
+        $pdf = PDF::loadView('attendances.report_pdf', compact('data'))->setPaper('a4', 'landscape');
+
+        $fileName = "Laporan Presensi Harian.pdf";
+
+        return $pdf->stream($fileName);
+    }
 }

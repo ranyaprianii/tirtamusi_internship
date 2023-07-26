@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Apprentince;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class DailyActivityController extends Controller
@@ -176,4 +177,17 @@ class DailyActivityController extends Controller
             return redirect()->back()->with('error', 'Data Tidak Berhasil Dihapus' . $e->getMessage());
         }
     }
+
+    public function report_pdf()
+    {
+        $data = DailyActivity::orderBy('id', 'desc')
+            ->get();
+
+        $pdf = PDF::loadView('daily_activities.report_pdf', compact('data'))->setPaper('a4', 'landscape');
+
+        $fileName = "Laporan Kegiatan Harian.pdf";
+
+        return $pdf->stream($fileName);
+    }
+
 }

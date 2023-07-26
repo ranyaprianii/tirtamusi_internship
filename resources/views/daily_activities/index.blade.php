@@ -17,7 +17,7 @@
                         <h4 class="card-title">Aktivitas Siswa/Mahasiswa</h4>
                     </div>
                     @hasrole('Admin')
-                    <a class="text-end btn btn-sm btn-danger" href="#"><i
+                    <a class="text-end btn btn-sm btn-danger" href="{{ route('daily_activity.report_pdf') }}"><i
                         class="fa fa-plus"></i> Cetak PDF</a>
                         @endrole
                 </div>
