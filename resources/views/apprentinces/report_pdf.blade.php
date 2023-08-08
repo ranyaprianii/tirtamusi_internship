@@ -49,13 +49,12 @@
     <hr><br>
     <h5 class="text-center">Laporan Data Siswa / Mahasiswa Magang</h5>
     <br>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="max-width: 50%">
         <thead class="text-center">
             <tr>
                 <th>No.</th>
                 <th>Nama Siswa/Mahasiswa</th>
                 <th>Nisn/Nim</th>
-                <th>Jenis Kelamin</th>
                 <th>divisi</th>
                 <th>Sub Divisi</th>
                 <th>Unit</th>
@@ -74,7 +73,6 @@
                     <td>{{ $i++ }}</td>
                     <td>{{ $item->name }}</td>
                     <td>{{ $item->nisn_nim }}</td>
-                    <td>{{ $item->gender }}</td>
                     @if (!empty($item->division_id))
                         <td>{{ $item['division']['name'] }}</td>
                         <td>{{ $item['division']['section_division']['name'] }}</td>
@@ -90,7 +88,7 @@
                         <td>-</td>
                         <td>-</td>
                     @endif
-                    <td>{{ $item->department }}</td>
+                    <td>{{ $item->school }}</td>
                     <td>{{ $item->date_start }}</td>
                     <td>{{ $item->date_end }}</td>
                 </tr>

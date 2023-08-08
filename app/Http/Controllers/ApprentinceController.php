@@ -457,6 +457,7 @@ class ApprentinceController extends Controller
         $pdf = PDF::loadView('apprentinces.report_pdf', compact('data'))->setPaper('a4', 'landscape');
 
         $fileName = "Data Siswa/Mahasiswa.pdf";
+        
 
         return $pdf->stream($fileName);
     }
